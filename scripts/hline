@@ -1,0 +1,38 @@
+#!/usr/bin/bash
+
+# hline is a simple script to draw a horizontal line
+# on the terminal. It is useful for separating sections
+
+# an example of the output can be found below
+# ------------------------------ history -----------------------------
+
+# the total length of the line is 80 characters
+# the text inside the line is set by the user
+# the script takes one argument, the text to be displayed
+# the text is centered inside the line
+
+print_x() {
+    character=$1
+    num=$2
+    printf "%0.s$character" $(seq 1 $num)
+}
+
+hline() {
+    # save the text to be displayed all input arguments
+    comment=$1
+    comment_length=${#comment}
+    shift
+    text=$@
+    text_length=${#text}
+    # count many characters are in text
+    line_length=80
+
+    num_to_print=$((($line_length-$comment_length-$text_length - 3)/2))
+    dashes=$(print_x - $num_to_print)
+    printf "%s %s %s %s\n" "$comment" "$dashes" "$text" "$dashes"      
+}
+
+while IFS= read -r line; do
+    hline $line
+done
+
