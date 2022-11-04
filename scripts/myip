@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+# Pulls down the external IP address used by this system or local area
+# network in a safe, reliable way. Consider avoiding alternatives using
+# curl that cannot be verified as legitimate organizations.
+dig +short myip.opendns.com @resolver1.opendns.com
