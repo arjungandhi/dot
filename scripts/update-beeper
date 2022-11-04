@@ -23,6 +23,7 @@ wget download.beeper.com/linux/appimage/x64 -O beeper.AppImage
 chmod +x beeper.AppImage
 
 # make sure to kill the running beeper process
+pkill beeper
 
 # copy the beeper.AppImage to /opt/beeper
 cp beeper.AppImage /opt/beeper
