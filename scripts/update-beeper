@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+# This script is used to update the beeper script
+
+# if not root then exit
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+# if failure, exit 
+set -e
+
+# make a temp directory
+tempdir=$(mktemp -d)
+
+# cd into the temp directory
+cd $tempdir
+
+# download the beeper script and save it as beeper.AppImage
+wget download.beeper.com/linux/appimage/x64 -O beeper.AppImage
+
+# make the beeper.AppImage executable
+chmod +x beeper.AppImage
+
+# make sure to kill the running beeper process
+
+# copy the beeper.AppImage to /opt/beeper
+cp beeper.AppImage /opt/beeper
+
