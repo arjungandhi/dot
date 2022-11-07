@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 # ---------------------------------- the code ----------------------------------
-[[ -z $SNIPPETS ]] && echo "SNIPPETS directory undefined" && exit 1k
+[[ -z $SNIPPETS ]] && echo "SNIPPETS directory undefined" && exit 1
 
 list() {
       find "$SNIPPETS" -type f -not -path "*/.*"  -exec basename {} \;
