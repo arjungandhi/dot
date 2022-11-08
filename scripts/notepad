@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+# notepad creates a .notepad file in the home directory and opens it for you to write in.
+# It then opens the file in your default text editor.
+
+# Check if the file exists if it doesnt create it
+if [ ! -f ~/.notepad ]; then
+    touch ~/.notepad
+fi
+
+exec $EDITOR +2 ~/.notepad
+

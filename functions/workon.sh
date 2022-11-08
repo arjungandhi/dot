@@ -4,10 +4,9 @@ workon() {
     # function to convert a full path to a repo path aka
     # /home/username/repo/path/to/repo to user/repo
     # this is done by removing all directories before the last 2
-    convert_path() {
-        local path=$1
-        local repo_path=$(echo $path | rev | cut -d '/' -f 1-2 | rev)
-        echo $repo_path
+    list() {
+        find $WORKSPACE -maxdepth 2 -mindepth 2 -type d \
+        | rev | cut -d '/' -f 1-2 | rev 
     }
 
     # check that $WORKSPACE is set
@@ -20,19 +19,26 @@ workon() {
     if [[ -n $COMP_LINE ]]; then
         prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
         # workon takes you to a git repo to start working 
-        find $WORKSPACE -maxdepth 2 -mindepth 2 -type d \
-            | rev | cut -d '/' -f 1-2 | rev \
-            | grep "^$prefix"
+            list | grep "$prefix"
         exit
     fi
 
     # --------------------------------- main ---------------------------------
 
     # check that the repo exists
-    if [ ! -d "$WORKSPACE/$1" ]; then
-        echo "repo $1 does not exist"
+    workspace=$(list | grep "$1")
+
+    # check theres only one match
+    if [ $(echo "$workspace" | wc -l) -gt 1 ]; then
+        echo "More than one match for $1"
+        echo "use tab complete"
         return 1
     fi
 
-    cd $WORKSPACE/$1
+    if [ ! -d "$WORKSPACE/$workspace" ]; then
+        echo "repo $workspace does not exist"
+        return 1
+    fi
+
+    cd $WORKSPACE/$workspace
  }    

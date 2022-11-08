@@ -30,7 +30,7 @@ snip() {
 
 if [[ -n $COMP_LINE ]]; then
     prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
-    list | grep "^$prefix" 
+    list | grep "$prefix" 
     exit
 fi
 
