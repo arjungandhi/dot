@@ -1,0 +1,37 @@
+#!/usr/bin/bash
+
+# clone is a script to help with cloning a git repository
+# it leverages the gh cli tool to search and clone repositories
+
+# ---------------------------------- the code ----------------------------------
+# check that $REPOS is set
+[[ -z $REPOS  ]] && echo "REPOS is not set" && exit 1
+
+# check that we have gh installed
+type gh &>/dev/null || echo "gh is not installed" && exit 1
+
+list() {
+    # list all the repos
+    gh repo list --limit 1000
+}
+
+usage() {
+    echo "Usage: clone <user> <repo>"
+}
+
+clone() {
+
+}
+
+# --------------------------------- completion ---------------------------------
+
+if [[ -n $COMP_LINE ]]; then
+    prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
+    list | grep "$prefix" 
+    exit
+fi
+
+case "$1" in
+    usage) usage ;;
+    *) clone "$1" ;;
+esac

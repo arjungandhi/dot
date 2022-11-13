@@ -16,6 +16,6 @@ if test -e "${path}"; then
   exit 0
 fi
 
-snip newx > "${path}"
+snip bash/newx > "${path}"
 chmod +x "${path}" 
 exec nvim +2 "${path}"

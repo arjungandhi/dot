@@ -1,0 +1,51 @@
+#!/usr/bin/bash
+
+# license puts a license file named LICENSE in the current directory.
+
+# check for some required commands and variables exit if they arent set
+[[ -z $SNIPPETS ]] && echo "SNIPPETS is not set" && exit 1
+
+
+usage() {
+    echo "usage: license [license]"
+}
+
+list() {
+    find $SNIPPETS/licenses -mindepth 1 -exec basename {} \;
+}
+
+license() {
+    l=$SNIPPETS/licenses/$1
+
+    [[ -z $l ]] && usage && exit 1
+    [[ ! -f $l ]] && echo "license $1 not found" && exit 1
+    
+    buf=$(<$l)
+
+    # replace [yyyy] with the current year
+    # replace [fullname] with the full name
+
+    buf=${buf/\[yyyy\]/$(date +%Y)}
+    buf=${buf/\[owner\]/$(git config user.name)}
+
+    echo "$buf" > LICENSE
+}
+
+
+
+# ----------------------------- command completion -----------------------------
+# add complete -C license license to your .bashrc
+
+if [[ -n $COMP_LINE ]]; then
+    prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
+    list | grep "$prefix"    
+    exit
+fi
+
+
+# run the code
+case "$1" in
+    list) list ;;
+    usage) usage ;;
+    *) license "$1" ;;
+esac

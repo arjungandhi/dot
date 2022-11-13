@@ -1,0 +1,122 @@
+#!/usr/bin/bash
+
+# this script is used to list all PRs for a given user
+# Depends on the gh cli tool being setup and functioning
+
+# check for gh
+if ! command -v gh &> /dev/null
+then
+    echo "Please install and setup the gh cli tool"
+    echo "https://cli.github.com/"
+    exit
+fi
+
+
+# command options
+arguments=(usage review-requested reviewed-by author mentions involves)
+options=(-h -u -w)
+orgs=(Pattern-Labs)
+users=(@me )
+usage() {
+    echo "Usage: prs [options] [arguments]"
+    echo ""
+    echo "Options:"
+    echo "  -h         show this help text"
+    echo "  -u <user>  specify a user to search for default: @me"
+    echo "  -w         open in web browser"
+    echo ""
+    echo "Arguments:"
+    echo "  usage: show this help text"
+    echo "  review-requested: show all PRs that are request the users review"
+    echo "  reviewed-by: show all PRs that have been reviewed by the user"
+    echo "  author: show all PRs that are authored by the user"
+    echo "  mentions: show all PRs that mention the user"
+    echo "  involves: show all PRs that involve the user"
+    exit 0
+}
+
+# --------------------------------- completion ---------------------------------
+# add `complete -C prs prs` to you .bashrc to enable completion
+
+# # --------------------------------- completion ---------------------------------
+
+
+if [[ -n $COMP_LINE ]]; then
+    prefix=$(echo "$COMP_LINE" | rev | cut -d " " -f 1 | rev)
+    prev_prefix=$(echo "$COMP_LINE" | rev | cut -d " " -f 2 | rev)
+
+    # if the prefix starts with a - complete an option
+    if [[ $prefix == -* ]]; then
+        for option in "${options[@]}"; do
+            if [[ $option == $prefix* ]]; then
+                echo $option
+            fi
+        done
+    # if the prefix doesnt start with a - but the previous word starts with 
+    # a -u then complete a user
+    elif [[ $prev_prefix == -u ]]; then
+        # search each org for memebrs and add to a user list
+        for org in "${orgs[@]}"; do
+            api=$(gh api orgs/$org/members | jq -r '.[].login')
+            for user in $api; do
+                users+=($user)
+            done
+        done
+
+        for user in "${users[@]}"; do
+            if [[ $user == $prefix* ]]; then
+                echo $user
+            fi
+        done
+    # other wise complete a command
+    else
+        for argument in "${arguments[@]}"; do
+            if [[ $argument == $prefix* ]]; then
+                echo $argument
+            fi
+        done
+    fi
+
+    exit 0
+fi
+
+# ------------------------------ run the command ------------------------------
+
+user=@me
+search_args=(--state=open)
+
+while getopts "hwu:" flag; do
+case "$flag" in
+    u) user=$OPTARG;;
+    w) search_args+=(-w);;
+    h) usage; exit 0;;
+esac
+done
+
+arg=${@:$OPTIND:1}
+
+case $arg in
+    usage)
+        usage
+        ;;
+    review-requested)
+        search_args+=(--review-requested=$user)
+        ;;
+    reviewed-by)
+        search_args+=(--reviewed-by=$user)
+        ;;
+    author)
+        search_args+=(--author=$user)
+        ;;
+    mentions)
+        search_args+=(--mentions=$user)
+        ;;
+    involves)
+        search_args+=(--involves=$user)
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+gh search prs "${search_args[@]}"

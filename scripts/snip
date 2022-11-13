@@ -3,7 +3,8 @@
 [[ -z $SNIPPETS ]] && echo "SNIPPETS directory undefined" && exit 1
 
 list() {
-      find "$SNIPPETS" -type f -not -path "*/.*"  -exec basename {} \;
+    find "$SNIPPETS" -maxdepth 2 -mindepth 2 -not -path "*/.*" \
+    | rev | cut -d '/' -f 1-2 | rev 
 }
 
 usage() {
@@ -11,18 +12,17 @@ usage() {
 }
 
 snip() {
-    local snippet="$1"
     # check we got an argument
-    [[ -z $snippet ]] && usage && exit 1
+    [[ -z $1 ]] && usage && exit 1
 
+
+    local snippet="$SNIPPETS/$1"
     # find the snippet we want and check its readable
-    local snippet_file=$(find "$SNIPPETS" -type f -name "$snippet" -not -path "*/.*")
     # check that we dont have more than 1 file 
-    [[ $(echo "$snippet_file" | wc -l) -gt 1 ]] && echo "More than one snippet found" && exit 1
-    [[ ! -r $snippet_file ]] && echo "Snippet $snippet not found" && exit 1
+    [[ ! -r $snippet ]] && echo "Snippet $snippet not found" && exit 1
    
     # print the snippet
-    cat "$snippet_file"
+    cat "$snippet"
 }
 
 # --------------------------------- completion ---------------------------------
