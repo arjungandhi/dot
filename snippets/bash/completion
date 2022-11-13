@@ -1,0 +1,5 @@
+if [[ -n $COMP_LINE ]]; then
+    prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
+    # echo valid completions after this point
+    exit
+fi
