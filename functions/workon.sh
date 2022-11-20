@@ -7,6 +7,9 @@ workon() {
     list() {
         find $WORKSPACE -maxdepth 2 -mindepth 2 -type d \
         | rev | cut -d '/' -f 1-2 | rev 
+
+        find $WORKSPACE -maxdepth 1 -mindepth 1 -type d \
+        | rev | cut -d '/' -f 1 | rev 
     }
 
     # check that $WORKSPACE is set
@@ -24,17 +27,20 @@ workon() {
     fi
 
     # --------------------------------- main ---------------------------------
-
-    # check that the repo exists
-    workspace=$(list | grep "$1")
-
-    # check theres only one match
-    if [ $(echo "$workspace" | wc -l) -gt 1 ]; then
-        echo "More than one match for $1"
-        echo "use tab complete"
-        return 1
+    # check if the directory exists
+    # if it does cd into it
+    if [ -d "$WORKSPACE/$1" ]; then
+        cd "$WORKSPACE/$1"
+        return 0
     fi
 
+    workspace=$(list | grep "$1")
+
+    # else choose the first directory that matches
+    if [ $(echo "$workspace" | wc -l) -gt 1 ]; then
+        workspace=$(echo "$workspace" | head -n 1)
+    fi
+    # check if the directory exists
     if [ ! -d "$WORKSPACE/$workspace" ]; then
         echo "repo $workspace does not exist"
         return 1
