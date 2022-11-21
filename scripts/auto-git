@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+# autocommit watches a directory and commits any changes to git
+# Usage: autocommit <directory>
+
+# ------------------------------------ code ------------------------------------
+auto-git() {
+    # check we got an arg
+    [[ -z $1 ]] && echo "Usage: autocommit <directory>" && return 1
+    # check the directory exists and is a git repo
+    [[ ! -d $1 ]] && echo "Directory $1 does not exist" && return 1
+    [[ ! -d $1/.git ]] && echo "Directory $1 is not a git repository" && return 1
+    path=$1
+    
+    while true
+    do
+    	inotifywait --recursive -qq -e attrib,create,delete,modify,delete_self,move,move_self,close_write $path
+    	cd $path                              &> /dev/null
+    	git pull                              &> /dev/null
+    	git add --all                         &> /dev/null
+    	now=$(date)                           &> /dev/null
+    	git commit -m "Auto-Commit at : $now" &> /dev/null	
+    	git push -u origin main               &> /dev/null
+    done
+}
+
+auto-git $@
