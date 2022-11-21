@@ -9,7 +9,7 @@ auto-git() {
     # check the directory exists and is a git repo
     [[ ! -d $1 ]] && echo "Directory $1 does not exist" && return 1
     [[ ! -d $1/.git ]] && echo "Directory $1 is not a git repository" && return 1
-    path=$1
+    path=$(readlink -e $1)
     
     while true
     do
