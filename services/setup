@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+loginctl enable-linger $USER
+mkdir -p ~/.config/systemd/user
+cp $SCRIPTPATH/*.service ~/.config/systemd/user

@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+# autocommit watches a directory and commits and push on file change
+
+autocommit() {
+    [[ -z "$1" ]] && echo "Usage: autocommit file" && return 1
+
+    # check the directory exists and is a git repo
+    [[ ! -d "$1" ]] && echo "Directory $1 does not exist" && return 1
+    [[ ! -d "$1/.git" ]] && echo "Directory $1 is not a git repo" && return 1
+
+    path=$(readlink -e "$1")
+
+    while true; do
+    	inotifywait --recursive --exclude '\.git' -e attrib,create,delete,modify,delete_self,move,move_self,close_write $path
+    	cd $path                              &> /dev/null
+        sleep 30s                             &> /dev/null
+    	git pull                              &> /dev/null
+    	git add --all                         &> /dev/null
+    	now=$(date)                           &> /dev/null
+    	git commit -m "Auto-Commit at : $now" &> /dev/null	
+    	git push                              &> /dev/null
+    done
+
+}
+
+autocommit $@
