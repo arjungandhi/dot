@@ -1,6 +1,4 @@
 #!/usr/bin/bash
 
-port=6060
-
 # run go doc on current package
-godoc -http=:$port "$@" && xdg-open "http://localhost:$port"
+godoc "$@"
