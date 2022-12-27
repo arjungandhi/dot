@@ -9,4 +9,5 @@ fi
 
 
 # -------------------------------- the command --------------------------------
+# yoink this from .local/share/applications/chrome-blaskhajdhfaksdfsa.desktop
 /opt/google/chrome/google-chrome --profile-directory=Default --app-id=kmcnjdcipmgchfndpapkoecbidofdpbc $@ & 
