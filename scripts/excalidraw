@@ -9,4 +9,4 @@ fi
 
 
 # -------------------------------- the command --------------------------------
-/usr/lib/brave-bin/brave --profile-directory=Default --app-id=kmcnjdcipmgchfndpapkoecbidofdpbc $@ &
+/opt/google/chrome/google-chrome --profile-directory=Default --app-id=kmcnjdcipmgchfndpapkoecbidofdpbc $@ 
