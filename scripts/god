@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+port=6060
+
+ godoc -http=:$port && xdg-open "http://localhost:$port"
+
