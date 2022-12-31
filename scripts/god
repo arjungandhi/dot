@@ -2,4 +2,9 @@
 
 port=6060
 
+pkill $0
+
+echo "Starting godoc on port $port"
+
 godoc -http=:$port && xdg-open "http://localhost:$port" &
+
