@@ -2,7 +2,7 @@
 
 port=6060
 
-pkill $0
+pkill god
 
 echo "Starting godoc on port $port"
 
