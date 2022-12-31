@@ -4,5 +4,5 @@ port=6060
 
 echo "Starting godoc on port $port"
 
-godoc -http=:$port && xdg-open "http://localhost:$port"
-
+xdg-open "http://localhost:$port"
+godoc -http=:$port 
