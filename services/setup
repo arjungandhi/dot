@@ -8,8 +8,10 @@ cp $SCRIPTPATH/*.service ~/.config/systemd/user
 
 # enable the servces
 #
-# Get the list of services
-services=$(systemctl --user list-unit-files | grep enabled | awk '{print $1}')
+# Get the list of services in the directory
+services=$(ls $SCRIPTPATH/*.service)
+
+
 for service in $services; do
     systemctl --user enable --now $service
 done
