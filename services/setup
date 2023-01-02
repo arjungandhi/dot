@@ -5,3 +5,11 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
 cp $SCRIPTPATH/*.service ~/.config/systemd/user
+
+# enable the servces
+#
+# Get the list of services
+services=$(systemctl --user list-unit-files | grep enabled | awk '{print $1}')
+for service in $services; do
+    systemctl --user enable --now $service
+done
