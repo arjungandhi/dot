@@ -5,8 +5,9 @@ if [[ -n $COMP_LINE ]]; then
     prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
     # echo valid completions after this point
     # iterate through dirs and search
-    for i in ${owncomp[@]}; do
+    for i in ${dirs[@]}; do
        find $i/*.excalidraw -maxdepth 1 -type f -printf "%f" | grep "$prefix"
+       
     done
     exit
 fi
