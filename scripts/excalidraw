@@ -1,12 +1,12 @@
 #!/usr/bin/bash
-dirs=( . $PATTERN_PLANNING_DIR)
+dirs=( . )
 
 if [[ -n $COMP_LINE ]]; then
     prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
     # echo valid completions after this point
     # iterate through dirs and search
     for i in ${dirs[@]}; do
-       find $i/*.excalidraw -maxdepth 1 -type f -printf "%f" | grep "$prefix"
+       $i/*.excalidraw | grep "$prefix"
        
     done
     exit
