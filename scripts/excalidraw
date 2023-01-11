@@ -2,7 +2,7 @@
 if [[ -n $COMP_LINE ]]; then
     prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
     # echo valid completions after this point
-    find *.excalidraw -maxdepth 1 -type f -printf "%f" | grep "$prefix"
+    find  -maxdepth 1 -type f -name "*.excalidraw" -printf "%f" | grep "$prefix"
     exit
 fi
 
