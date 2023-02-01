@@ -1,3 +1,11 @@
 #!/usr/bin/bash
 
+# clear the terminal
+clear
+
+# run the program the user wants to run
+$@
+
+# on change run this script
+onchange $@
 
