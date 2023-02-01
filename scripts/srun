@@ -6,6 +6,6 @@ clear
 # run the program the user wants to run
 $@
 
-# on change run this script
+# on change run this the code again
 onchange $@
 
