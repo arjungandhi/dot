@@ -1,4 +1,3 @@
 #!/usr/bin/bash
 clear
 python $1/main.py
-f3d $1/out.stl &
