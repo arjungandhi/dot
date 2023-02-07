@@ -1,3 +1,4 @@
-#!/usr/bin/bash
-python $1/main.py
-f3d $1/out.stl &&
+clear
+cadt "$@" 
+f3d out.stl &
+onchange cadt "$@"
