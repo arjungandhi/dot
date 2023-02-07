@@ -1,9 +1,3 @@
 #!/usr/bin/bash
-
-run_and_view() {
-    python $1/main.py
-    f3d $1/out.stl
-}
-
-
-
+python $1/main.py
+f3d $1/out.stl
