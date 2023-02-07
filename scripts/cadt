@@ -1,5 +1,4 @@
 #!/usr/bin/bash
 clear
 python $1/main.py
-pkill -f cadt
-f3d $1/out.stl
+f3d $1/out.stl &
