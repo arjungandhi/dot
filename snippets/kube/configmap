@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-config
+data:
+    # some useful pieces of info
+    # everything here needs to be a string
+    # no other value is accepted
+    KEY: 'VALUE'
+
