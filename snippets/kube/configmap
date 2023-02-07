@@ -9,6 +9,6 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}-config
 data:
     # everything here needs to be a string
-    # no other value is accepted
+    # make sure to wrap bools/nums in single quotes
     KEY: 'VALUE'
 
