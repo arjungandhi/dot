@@ -1,0 +1,14 @@
+NatsLoadBalancer:
+  Properties:
+    LoadBalancerAttributes:
+      - Key: load_balancing.cross_zone.enabled
+        Value: "true"
+    Scheme: internet-facing
+    Subnets: 
+      - ${PATTERN_PUBLICSUBNET1}
+      - ${PATTERN_PUBLICSUBNET2}
+    Tags:
+      - Key: com.docker.compose.project
+        Value: ${COMPOSE_PROJECT_NAME} 
+    Type: network
+  Type: AWS::ElasticLoadBalancingV2::LoadBalancer

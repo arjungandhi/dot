@@ -1,0 +1,13 @@
+LoadBalancer:
+  Properties:
+    Scheme: internet-facing
+    SecurityGroups:
+      - ${PATTERN_PUBLICSECURITYGROUPID}
+    Subnets:
+      - ${PATTERN_PUBLICSUBNET1}
+      - ${PATTERN_PUBLICSUBNET2}
+    Tags:
+      - Key: com.docker.compose.project
+        Value: ${COMPOSE_PROJECT_NAME}
+    Type: application
+  Type: AWS::ElasticLoadBalancingV2::LoadBalancer
