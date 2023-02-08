@@ -1,26 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-logger-deployment
+  # if you need multiple config maps you can do something like so
+  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<app_name>-config
+  # optionally you can group config maps logically and make them more
+  # based on whats contained in them ex
+  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<config_type>-config
+  name: {{ .Release.Name }}-{{ .Chart.Name}}-deployment
   labels:
-    app: {{ .Release.Name }}-logger
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-logger
+      app: {{ .Release.Name }}-{{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-logger
+        app: {{ .Release.Name }}-{{ .Chart.Name }}
     spec:
       containers:
-      - name: {{ .Release.Name }}-logger
-        image: patternlabs/client-logger:{{ .Values.logger.version }}
+      - name: {{ .Release.Name }}-{{ .Chart.Name }}
+        image: {{ .Values.image }}
         ports:
-        - containerPort: 24224
+        - containerPort: {{ .Values.port }}
         envFrom:
         - configMapRef:
-            name: {{ .Release.Name }}-logger-config
+            name: {{ .Release.Name }}-{{ .Chart.Name }}-config
       imagePullSecrets:
         - name: pattern.docker.credentials
