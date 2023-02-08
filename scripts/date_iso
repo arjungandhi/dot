@@ -20,9 +20,7 @@ if [[ -n $COMP_LINE ]]; then
     exit
 fi
 
-$1=${1:-second}
+mode=${1:-second}
 
-date -I$1
+date -I$mode
 
-/home/arjun/repos/github.com/arjungandhi/dot/scripts/date_iso: line 23: =seconds: command not found
-2023-02-07
