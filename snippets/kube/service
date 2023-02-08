@@ -1,10 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-logger
+  # this name uniquely identifies the service
+  # if you have multiple services you may need to append a suffix
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   selector:
-    app: {{ .Release.Name }}-logger
+    # this should match the deployment selector
+    app: {{ .Release.Name }}-{{ .Chart.Name }}
   ports:
-    - port: 24224
-      targetPort: 24224
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}
