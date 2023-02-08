@@ -4,7 +4,15 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}-job
 spec:
   template:
-    # This is a pod template 
-    # snip/kube/pod
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-{{ .Chart.Name }}
+        image: patternlabs/<molecule>.<atom_name>:<tag>
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-{{ .Chart.Name }}-config
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: pattern.docker.credentials
   backoffLimit: 4
 

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-logger-deployment
+  labels:
+    app: {{ .Release.Name }}-logger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-logger
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-logger
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-logger
+        image: patternlabs/client-logger:{{ .Values.logger.version }}
+        ports:
+        - containerPort: 24224
+        envFrom:
+        - configMapRef:
+            name: {{ .Release.Name }}-logger-config
+      imagePullSecrets:
+        - name: pattern.docker.credentials
