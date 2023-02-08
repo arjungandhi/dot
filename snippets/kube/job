@@ -1,0 +1,10 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-job
+spec:
+  template:
+    # This is a pod template 
+    # snip/kube/pod
+  backoffLimit: 4
+
