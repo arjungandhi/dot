@@ -1,3 +1,28 @@
 #!/usr/bin/bash
-date -I
 
+# --------------------------------- completion ---------------------------------
+
+options=(
+    hours
+    minutes
+    date
+    seconds
+    ns
+)
+
+if [[ -n $COMP_LINE ]]; then
+    prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
+    for option in "${options[@]}"; do
+        if [[ $option == $prefix* ]]; then
+            echo "$option"
+        fi
+    done
+    exit
+fi
+
+$1=${1:-second}
+
+date -I$1
+
+/home/arjun/repos/github.com/arjungandhi/dot/scripts/date_iso: line 23: =seconds: command not found
+2023-02-07
