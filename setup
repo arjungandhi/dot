@@ -3,6 +3,4 @@
 # ---------------------------------- Symlinks ----------------------------------
 
 # .bashrc
-ln -s .bashrc ~/.bashrc
-
-
+ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
