@@ -2,10 +2,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   # if you need multiple config maps you can do something like so
-  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<app_name>-config
+  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<app_name>
   # optionally you can group config maps logically and make them more
   # based on whats contained in them ex
-  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<config_type>-config
+  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<config_type>
   name: {{ .Release.Name }}-{{ .Chart.Name }}
 data:
     # everything here needs to be a string
