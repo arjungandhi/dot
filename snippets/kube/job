@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}-job
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
 spec:
   template:
     spec:
@@ -10,7 +10,7 @@ spec:
         image: patternlabs/<molecule>.<atom_name>:<tag>
         envFrom:
         - configMapRef:
-            name: {{ .Release.Name }}-{{ .Chart.Name }}-config
+            name: {{ .Release.Name }}-{{ .Chart.Name }}
       restartPolicy: Never
       imagePullSecrets:
         - name: pattern.docker.credentials
