@@ -3,11 +3,11 @@
 # --------------------------------- completion ---------------------------------
 
 options=(
-    hours
-    minutes
-    date
-    seconds
-    ns
+    'hours'
+    'minutes'
+    'date'
+    'seconds'
+    'ns'
 )
 
 if [[ -n $COMP_LINE ]]; then
@@ -20,7 +20,7 @@ if [[ -n $COMP_LINE ]]; then
     exit
 fi
 
-mode=${1:-second}
+mode=${1:-'seconds'}
 
 date -I$mode
 
