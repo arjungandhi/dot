@@ -6,7 +6,7 @@ metadata:
   # optionally you can group config maps logically and make them more
   # based on whats contained in them ex
   # name: {{ .Release.Name }}-{{ .Chart.Name }}-<config_type>-config
-  name: {{ .Release.Name }}-{{ .Chart.Name }}-config
+  name: {{ .Release.Name }}-{{ .Chart.Name }}
 data:
     # everything here needs to be a string
     # make sure to wrap bools/nums in single quotes
