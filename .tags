@@ -1,0 +1,63 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/arjun/repos/github.com/arjungandhi/dot/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20220828.0/
+About	snippets/md/README.md	/^# About$/;"	c
+Description	services/watch-dot.service	/^Description=Watches the dot file repo for changes and commits them$/;"	k	section:Unit
+Description	services/watch-knowledge.service	/^Description=Watches the knowledge repo for changes and commits them$/;"	k	section:Unit
+Description	services/watch-tree.service	/^Description=Watches the darwin-tree file repo for changes and commits them$/;"	k	section:Unit
+ExecStart	services/watch-dot.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
+ExecStart	services/watch-knowledge.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
+ExecStart	services/watch-tree.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
+Ingredients	snippets/zet/recipe.md	/^## Ingredients$/;"	s	chapter:{{.title}}
+Install	services/watch-dot.service	/^[Install]$/;"	s
+Install	services/watch-knowledge.service	/^[Install]$/;"	s
+Install	services/watch-tree.service	/^[Install]$/;"	s
+Restart	services/watch-dot.service	/^Restart=always$/;"	k	section:Service
+Restart	services/watch-knowledge.service	/^Restart=always$/;"	k	section:Service
+Restart	services/watch-tree.service	/^Restart=always$/;"	k	section:Service
+RestartSec	services/watch-dot.service	/^RestartSec=1$/;"	k	section:Service
+RestartSec	services/watch-knowledge.service	/^RestartSec=1$/;"	k	section:Service
+RestartSec	services/watch-tree.service	/^RestartSec=1$/;"	k	section:Service
+Service	services/watch-dot.service	/^[Service]$/;"	s
+Service	services/watch-knowledge.service	/^[Service]$/;"	s
+Service	services/watch-tree.service	/^[Service]$/;"	s
+Steps	snippets/zet/recipe.md	/^## Steps$/;"	s	chapter:{{.title}}
+Type	services/watch-dot.service	/^Type=simple$/;"	k	section:Service
+Type	services/watch-knowledge.service	/^Type=simple$/;"	k	section:Service
+Type	services/watch-tree.service	/^Type=simple$/;"	k	section:Service
+Unit	services/watch-dot.service	/^[Unit]$/;"	s
+Unit	services/watch-knowledge.service	/^[Unit]$/;"	s
+Unit	services/watch-tree.service	/^[Unit]$/;"	s
+WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Install
+WantedBy	services/watch-knowledge.service	/^WantedBy=default.target$/;"	k	section:Install
+WantedBy	services/watch-tree.service	/^WantedBy=default.target$/;"	k	section:Install
+autocommit	scripts/autocommit	/^autocommit() {$/;"	f
+changed	scripts/changed	/^changed () {$/;"	f
+clone	scripts/clone	/^clone() {$/;"	f
+haschanged	scripts/haschanged	/^haschanged () {$/;"	f
+hline	scripts/hline	/^hline() {$/;"	f
+license	scripts/license	/^license() {$/;"	f
+list	functions/workon.sh	/^    list() {$/;"	f
+list	scripts/clone	/^list() {$/;"	f
+list	scripts/license	/^list() {$/;"	f
+list	scripts/snip	/^list() {$/;"	f
+onchange	scripts/onchange	/^onchange () {$/;"	f
+print_x	scripts/hline	/^print_x() {$/;"	f
+snip	scripts/snip	/^snip() {$/;"	f
+the	README.md	/^# the $/;"	c
+usage	scripts/clone	/^usage() {$/;"	f
+usage	scripts/license	/^usage() {$/;"	f
+usage	scripts/prs	/^usage() {$/;"	f
+usage	scripts/snip	/^usage() {$/;"	f
+workon	functions/workon.sh	/^workon() {$/;"	f
+{{.title}}	snippets/zet/note.md	/^# {{.title}}$/;"	c
+{{.title}}	snippets/zet/recipe.md	/^# {{.title}}$/;"	c
+{{.title}}	snippets/zet/url.md	/^# {{.title}}$/;"	c
