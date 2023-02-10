@@ -28,8 +28,12 @@ export REPOS=/home/arjun/repos
 export FUNCTIONS=/home/arjun/repos/github.com/arjungandhi/dot/functions
 export ZETDIR=/home/arjun/repos/github.com/arjungandhi/knowledge
 export DARWINDIR=/home/arjun/repos/github.com/arjungandhi/darwin-tree
-export pp="/home/arjun/repos/github.com/Pattern-Labs/vault/02 - Getting Sh!t Done/01 - Engineering/03 - What People Are Doing/monkey"
 export PATTERN_DEV_NAMESPACE=monkey
+
+# variables for cd
+export pp="/home/arjun/repos/github.com/Pattern-Labs/vault/02 - Getting Sh!t Done/01 - Engineering/03 - What People Are Doing/monkey"
+export snippets=$SNIPPETS
+export notes=$SCRIPTS
 
 # -------------------------------- smart prompt --------------------------------
 #                 (keeping in bashrc for portability)
