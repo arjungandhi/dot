@@ -1,10 +1,10 @@
 name: molecule_name
 
 atoms:
-  atom_name:
+  - name: atom_name
     path: "atoms/atom_name"
 
 charts:
-  chart_name:
+  - name: chart_name
     path: "charts/chart_name"
 
