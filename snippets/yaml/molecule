@@ -1,0 +1,10 @@
+name: ping
+
+atoms:
+  <atom_name>:
+    path: "atoms/<atom_name>"
+
+charts:
+  <chart_name>:
+    path: "charts/<chart_name>"
+
