@@ -190,7 +190,7 @@ complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform
 
 _have fzf && source /usr/share/fzf/completion.bash
-_have fzf && _fzf_setup_completion kubectl
+_have fzf && _fzf_setup_completion path kubectl
 # ---------------------------------- aliases ----------------------------------
 # ls 
 alias ls='ls --color'
