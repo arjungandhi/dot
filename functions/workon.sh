@@ -34,12 +34,8 @@ workon() {
         return 0
     fi
 
-    workspace=$(list | grep "$1")
+    workspace=$(list | fzf -q "$1" -1)
 
-    # else choose the first directory that matches
-    if [ $(echo "$workspace" | wc -l) -gt 1 ]; then
-        workspace=$(echo "$workspace" | head -n 1)
-    fi
     # check if the directory exists
     if [ ! -d "$WORKSPACE/$workspace" ]; then
         echo "repo $workspace does not exist"
