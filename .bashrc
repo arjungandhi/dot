@@ -167,6 +167,8 @@ docker-purge-all() {
   docker volume rm $(docker volume ls -qf dangling="true")
   # Remove all networks
   docker network rm `docker network ls -q`
+  # Remove Build Cache
+  docker builder prune -a -f
 }
 
 
