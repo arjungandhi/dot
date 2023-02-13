@@ -189,6 +189,7 @@ _have pattern && . <(pattern completion bash)
 complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform
 
+_have fzf && source /usr/share/fzf/completion.bash
 
 # ---------------------------------- aliases ----------------------------------
 # ls 
