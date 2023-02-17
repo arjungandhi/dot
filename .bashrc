@@ -190,6 +190,7 @@ _have pattern && . <(pattern completion bash)
 
 complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform
+complete -F __start_kubectl k
 
 _have fzf && source /usr/share/fzf/completion.bash
 
@@ -222,6 +223,10 @@ alias snippets="cd $SNIPPETS"
 # knowledge
 # note this is a temporary thing as we work out the organization of our knowledge base
 alias knowledge="cd $KNOWLEDGE"
+
+# kubectl -> k
+alias k=kubectl
+
 
 # ------------------------------ program configs ------------------------------
 # pdm
