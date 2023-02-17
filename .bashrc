@@ -42,9 +42,9 @@ PROMPT_AT=@
 
 __ps1() {
   # append history
-  history -a
+  # history -a
   # read history
-  history -n
+  # history -n
 
   local P='❯' dir="${PWD##*/}" BR A B \
     red='\[\e[31m\]' grey='\[\e[30m\]' dark_blue='\[\e[36m\]' \
