@@ -1,3 +1,4 @@
 #!/usr/bin/bash
 
-
+out_dir=$(mktemp -d)
+in_dir=$1
