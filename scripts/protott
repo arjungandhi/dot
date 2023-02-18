@@ -2,7 +2,7 @@
 
 out_dir=$(mktemp -d)
 in_dir=$1
-
+protot $in_dir $out_dir
 onchange protot $in_dir $out_dir
 
 rm -r $out_dir
