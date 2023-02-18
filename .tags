@@ -51,6 +51,7 @@ list	scripts/license	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
 onchange	scripts/onchange	/^onchange () {$/;"	f
 print_x	scripts/hline	/^print_x() {$/;"	f
+protot	scripts/protott	/^protot() {$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 the	README.md	/^# the $/;"	c
 usage	scripts/clone	/^usage() {$/;"	f

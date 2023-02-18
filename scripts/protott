@@ -3,7 +3,11 @@
 out_dir=$(mktemp -d)
 in_dir=$1
 
+protot() {
+    clear
+    protoc --proto_path=$in_dir --python_out=$out_dir $(find $in_dir -name '*.proto')
+}
 
-protoc --proto_path=$in_dir --python_out=$out_dir $(find $in_dir -name '*.proto')
+onchange protot
 
-onchange protoc --proto_path=$in_dir --python_out=$out_dir $(find $in_dir -name '*.proto')
+rm -r $out_dir
