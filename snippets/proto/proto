@@ -1,2 +1,12 @@
 syntax = "proto2";
 
+package cloud.type
+
+// use the import syntax to use other protos in your proto
+import "path/to/proto"
+
+message Type {
+    optional type field = 1;
+}
+
+
