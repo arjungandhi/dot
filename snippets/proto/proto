@@ -6,7 +6,13 @@ package cloud.type
 import "path/to/proto"
 
 message Type {
+    // make everything optional unless its
+    // repeated
     optional type field = 1;
+    // repeated fields are always optional
+    // and are used for dynamically sized arrays
+    repeated type field = 2;
+
 }
 
 
