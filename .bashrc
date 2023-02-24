@@ -206,7 +206,6 @@ alias apollo_into="docker exec -it apollo /bin/bash"
 
 # kitty
 alias ssh="kitty +kitten ssh"
-alias icat="kitty +kitten icat"
 
 # alias both vi and vim to nvim
 alias vi=nvim
