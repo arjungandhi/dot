@@ -1,11 +1,6 @@
 #!/usr/bin/bash
-render_dot() {
 clear
-dot "$@" -Tsvg | kitty +kitten icat --align=left
-}
-
-clear
-render_dot "$@"
-onchange render_dot "$@"
+dotr "$@"
+onchange dotr "$@"
 
 
