@@ -204,8 +204,9 @@ alias apollo_dev_into=~/workspace/pattern/apollo/docker/scripts/dev_into.sh
 alias apollo_compose="docker compose --env-file /opt/pattern/robot.env --project-directory ~/workspace/pattern/apollo/docker/service"
 alias apollo_into="docker exec -it apollo /bin/bash"
 
-# ssh kitty
+# kitty
 alias ssh="kitty +kitten ssh"
+alias icat="kitty +kitten icat"
 
 # alias both vi and vim to nvim
 alias vi=nvim
