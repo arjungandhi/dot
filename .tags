@@ -9,6 +9,27 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20220828.0/
+<C-H>	config/nvim/init.vim	/^nnoremap <C-H> <C-W><C-H>$/;"	m
+<C-J>	config/nvim/init.vim	/^nnoremap <C-J> <C-W><C-J>$/;"	m
+<C-K>	config/nvim/init.vim	/^nnoremap <C-K> <C-W><C-K>$/;"	m
+<C-L>	config/nvim/init.vim	/^nnoremap <C-L> <C-W><C-L>$/;"	m
+<C-N>	config/nvim/init.vim	/^nnoremap <C-N> :bn<CR>$/;"	m
+<C-P>	config/nvim/init.vim	/^nnoremap <C-P> :bp<CR>$/;"	m
+<C-s>	config/nvim/init.vim	/^inoremap <C-s> <C-G>u<Esc>[s1z=`]a<C-G>u$/;"	m
+<leader>$s	config/nvim/init.vim	/^nmap <leader>$s <C-w>s<C-w>j:terminal<CR>:set nonumber<CR><S-a>$/;"	m
+<leader>$v	config/nvim/init.vim	/^nmap <leader>$v <C-w>v<C-w>l:terminal<CR>:set nonumber<CR><S-a>$/;"	m
+<leader><leader>	config/nvim/init.vim	/^nmap <silent> <leader><leader> :noh<CR>$/;"	m
+<leader>bd	config/nvim/init.vim	/^nmap <leader>bd :bufdo bd<CR>$/;"	m
+<leader>e	config/nvim/init.vim	/^nmap <leader>e :NERDTreeToggle<CR>$/;"	m
+<leader>ff	config/nvim/init.vim	/^nmap <leader>ff :Files<CR>$/;"	m
+<leader>fp	config/nvim/init.vim	/^nmap <leader>fp :ProjectFiles<CR>$/;"	m
+<leader>fs	config/nvim/init.vim	/^nmap <leader>fs :SNIPPETS<CR>$/;"	m
+<leader>ft	config/nvim/init.vim	/^nmap <leader>ft :Tags<CR>$/;"	m
+<leader>n	config/nvim/init.vim	/^nmap <leader>n :cc<CR>$/;"	m
+<leader>p	config/nvim/init.vim	/^nnoremap <leader>p :ProjectFiles<CR>$/;"	m
+<leader>r	config/nvim/init.vim	/^nmap <leader>r :so ~\/.config\/nvim\/init.vim<CR>$/;"	m
+<leader>s	config/nvim/init.vim	/^nmap <leader>s :setlocal spell!<CR>$/;"	m
+<leader>t	config/nvim/init.vim	/^nmap <leader>t :call TrimWhitespace()<CR>$/;"	m
 About	snippets/md/README.md	/^# About$/;"	c
 Description	services/watch-dot.service	/^Description=Watches the dot file repo for changes and commits them$/;"	k	section:Unit
 Description	services/watch-knowledge.service	/^Description=Watches the knowledge repo for changes and commits them$/;"	k	section:Unit
@@ -16,32 +37,56 @@ Description	services/watch-tree.service	/^Description=Watches the darwin-tree fi
 ExecStart	services/watch-dot.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
 ExecStart	services/watch-knowledge.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
 ExecStart	services/watch-tree.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
+HiLink	config/nvim/syntax/proto.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
+HiLink	config/nvim/syntax/proto.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 Ingredients	snippets/zet/recipe.md	/^## Ingredients$/;"	s	chapter:{{.title}}
 Install	services/watch-dot.service	/^[Install]$/;"	s
 Install	services/watch-knowledge.service	/^[Install]$/;"	s
 Install	services/watch-tree.service	/^[Install]$/;"	s
+ProjectFiles	config/nvim/init.vim	/^command! ProjectFiles execute s:find_files()$/;"	c
 Restart	services/watch-dot.service	/^Restart=always$/;"	k	section:Service
 Restart	services/watch-knowledge.service	/^Restart=always$/;"	k	section:Service
 Restart	services/watch-tree.service	/^Restart=always$/;"	k	section:Service
 RestartSec	services/watch-dot.service	/^RestartSec=1$/;"	k	section:Service
 RestartSec	services/watch-knowledge.service	/^RestartSec=1$/;"	k	section:Service
 RestartSec	services/watch-tree.service	/^RestartSec=1$/;"	k	section:Service
+SNIPPETS	config/nvim/init.vim	/^command! SNIPPETS call fzf#run(fzf#wrap({'source': 'snip list', 'sink': '.!snip'}))$/;"	c
 Service	services/watch-dot.service	/^[Service]$/;"	s
 Service	services/watch-knowledge.service	/^[Service]$/;"	s
 Service	services/watch-tree.service	/^[Service]$/;"	s
 Steps	snippets/zet/recipe.md	/^## Steps$/;"	s	chapter:{{.title}}
+TrimWhitespace	config/nvim/init.vim	/^function! TrimWhitespace()$/;"	f
 Type	services/watch-dot.service	/^Type=simple$/;"	k	section:Service
 Type	services/watch-knowledge.service	/^Type=simple$/;"	k	section:Service
 Type	services/watch-tree.service	/^Type=simple$/;"	k	section:Service
 Unit	services/watch-dot.service	/^[Unit]$/;"	s
 Unit	services/watch-knowledge.service	/^[Unit]$/;"	s
 Unit	services/watch-tree.service	/^[Unit]$/;"	s
+W	config/nvim/init.vim	/^command! -bar W wa$/;"	c
 WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-knowledge.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-tree.service	/^WantedBy=default.target$/;"	k	section:Install
 autocommit	scripts/autocommit	/^autocommit() {$/;"	f
+b:current_syntax	config/nvim/syntax/proto.vim	/^let b:current_syntax = "proto"/;"	v
 changed	scripts/changed	/^changed () {$/;"	f
 clone	scripts/clone	/^clone() {$/;"	f
+did_proto_syn_inits	config/nvim/syntax/proto.vim	/^    let did_proto_syn_inits = 1$/;"	v
+filetype	config/nvim/ftdectect/proto.vim	/^augroup filetype$/;"	a
+g:context_nvim_no_redraw	config/nvim/init.vim	/^let g:context_nvim_no_redraw = 1$/;"	v
+g:copilot_node_command	config/nvim/init.vim	/^let g:copilot_node_command = '~\/.nodenv\/versions\/16.17.0\/bin\/node'$/;"	v
+g:cursorhold_updatetime	config/nvim/init.vim	/^let g:cursorhold_updatetime = 100$/;"	v
+g:fzf_layout	config/nvim/init.vim	/^let g:fzf_layout = { 'down': '40%' }$/;"	v
+g:gutentags_ctags_tagfile	config/nvim/init.vim	/^let g:gutentags_ctags_tagfile = '.tags'$/;"	v
+g:gutentags_file_list_command	config/nvim/init.vim	/^    let g:gutentags_file_list_command = 'rg --files'$/;"	v
+g:indentLine_char	config/nvim/init.vim	/^let g:indentLine_char = '▏'$/;"	v
+g:indentLine_defaultGroup	config/nvim/init.vim	/^let g:indentLine_defaultGroup = 'NonText'$/;"	v
+g:indentLine_setConceal	config/nvim/init.vim	/^let g:indentLine_setConceal = 0$/;"	v
+g:isort_vim_options	config/nvim/init.vim	/^let g:isort_vim_options = join([$/;"	v
+g:pydocstring_doq_path	config/nvim/init.vim	/^let g:pydocstring_doq_path = '\/home\/arjun\/.local\/bin\/doq'$/;"	v
+g:python3_host_prog	config/nvim/init.vim	/^let g:python3_host_prog = '\/usr\/bin\/python'$/;"	v
+g:vim_json_syntax_conceal	config/nvim/init.vim	/^let g:vim_json_syntax_conceal = 0$/;"	v
+g:vim_markdown_conceal	config/nvim/init.vim	/^let g:vim_markdown_conceal = 0$/;"	v
+g:vim_markdown_conceal_code_blocks	config/nvim/init.vim	/^let g:vim_markdown_conceal_code_blocks = 0$/;"	v
 get_dockerctx	config/i3status/wrapper.py	/^def get_dockerctx():$/;"	f
 get_kubectx	config/i3status/wrapper.py	/^def get_kubectx():$/;"	f
 get_kubens	config/i3status/wrapper.py	/^def get_kubens():$/;"	f
@@ -55,18 +100,22 @@ list	functions/workon.sh	/^    list() {$/;"	f
 list	scripts/clone	/^list() {$/;"	f
 list	scripts/license	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
+mapleader	config/nvim/init.vim	/^let mapleader=","$/;"	v
 onchange	scripts/onchange	/^onchange () {$/;"	f
 prefix	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 prefix	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 print_line	config/i3status/wrapper.py	/^def print_line(message):$/;"	f
 print_x	scripts/hline	/^print_x() {$/;"	f
+python_linting	config/nvim/init.vim	/^augroup python_linting$/;"	a
 read_line	config/i3status/wrapper.py	/^def read_line():$/;"	f
+s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 the	README.md	/^# the $/;"	c
 usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
 usage	scripts/prs	/^usage() {$/;"	f
 usage	scripts/snip	/^usage() {$/;"	f
+web_autofmt	config/nvim/init.vim	/^augroup web_autofmt$/;"	a
 workon	functions/workon.sh	/^workon() {$/;"	f
 {{.title}}	snippets/zet/note.md	/^# {{.title}}$/;"	c
 {{.title}}	snippets/zet/recipe.md	/^# {{.title}}$/;"	c
