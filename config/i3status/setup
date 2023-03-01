@@ -9,4 +9,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 mkdir -p ~/.config/i3status
 
 # create symlinks
-ln -sf $DIR/* ~/.config/i3status/
+ln -sf $DIR/config ~/.config/i3status/config
+ln -sf $DIR/wrapper.py ~/.config/i3status/wrapper.py
