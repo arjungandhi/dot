@@ -2,5 +2,22 @@
 
 # ---------------------------------- Symlinks ----------------------------------
 
-# .bashrc
-ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
+# get the directory of this script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# iterate over all folders in this directory
+# and call the setup script in each folder
+for folder in $DIR/*; do
+    # if the folder is a directory
+    if [ -d "$folder" ]; then
+        # get the name of the folder
+        folder_name=$(basename $folder)
+        # if the folder is not the .git folder
+        if [ "$folder_name" != ".git" ]; then
+            # call the setup script in the folder if it exists
+            if [ -f "$folder/setup" ]; then
+                $folder/setup
+            fi
+        fi
+    fi
+done

@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+# ---------------------------------- Symlinks ----------------------------------
+
+# .bashrc
+ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
