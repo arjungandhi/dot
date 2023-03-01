@@ -6,7 +6,14 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # make sure the directory exists
-mkdir -p ~/.config/i3status
+mkdir -p ~/.config/nvim
 
 # create symlinks
-ln -sf $DIR/* ~/.config/i3status/
+# link everything in the directory to the .config/nvim
+# except for setup
+for file in $DIR/*; do
+    if [ "$file" != "$DIR/setup" ]; then
+        ln -sf $file ~/.config/nvim
+    fi
+done
+
