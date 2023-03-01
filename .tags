@@ -42,15 +42,25 @@ WantedBy	services/watch-tree.service	/^WantedBy=default.target$/;"	k	section:Ins
 autocommit	scripts/autocommit	/^autocommit() {$/;"	f
 changed	scripts/changed	/^changed () {$/;"	f
 clone	scripts/clone	/^clone() {$/;"	f
+get_dockerctx	config/i3status/wrapper.py	/^def get_dockerctx():$/;"	f
+get_kubectx	config/i3status/wrapper.py	/^def get_kubectx():$/;"	f
+get_kubens	config/i3status/wrapper.py	/^def get_kubens():$/;"	f
 haschanged	scripts/haschanged	/^haschanged () {$/;"	f
 hline	scripts/hline	/^hline() {$/;"	f
+j	config/i3status/wrapper.py	/^        j = json.loads(line)$/;"	v
 license	scripts/license	/^license() {$/;"	f
+line	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
+line	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 list	functions/workon.sh	/^    list() {$/;"	f
 list	scripts/clone	/^list() {$/;"	f
 list	scripts/license	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
 onchange	scripts/onchange	/^onchange () {$/;"	f
+prefix	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
+prefix	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
+print_line	config/i3status/wrapper.py	/^def print_line(message):$/;"	f
 print_x	scripts/hline	/^print_x() {$/;"	f
+read_line	config/i3status/wrapper.py	/^def read_line():$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 the	README.md	/^# the $/;"	c
 usage	scripts/clone	/^usage() {$/;"	f
