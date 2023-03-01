@@ -2,5 +2,11 @@
 
 # ---------------------------------- Symlinks ----------------------------------
 
+# get script directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 # .bashrc
-ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
+ln -sf "$DIR/.bashrc" "$HOME/.bashrc"
+
+# call setup in config
+$DIR/config/setup
