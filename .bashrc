@@ -264,3 +264,5 @@ export FZF_DEFAULT_OPTS='-m --height 50% --border'
 . <(pattern completion bash)
 # Pattern CLI completion
 . <(pattern completion bash)
+# Pattern CLI completion
+. <(pattern completion bash)
