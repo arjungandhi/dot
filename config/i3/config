@@ -48,8 +48,6 @@ for_window [class="Beeper"] move to workspace $ws0
 # making notes exist in notes workspace
 for_window [class="Typora"] move to workspace $wsn
 for_window [class="obsidian"] move to workspace $wsn
-# make gitkraken exist in the git window
-for_window [class="GitKraken"] move to workspace $wsg
 # move scratchterm to scratchpad
 for_window [title="scratchterm"] move scratchpad
 
