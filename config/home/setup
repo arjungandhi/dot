@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+# ---------------------------------- Symlinks ----------------------------------
+
+# .gitignore
+ln -sf "$DIR/.gitignore" "$HOME/.gitignore"
+git conifg --global core.excludesfile ~/gitignore
