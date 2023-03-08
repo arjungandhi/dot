@@ -250,3 +250,9 @@ eval $(thefuck --alias)
 # fzf
 _have rg && export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS='-m --height 50% --border'
+ 
+if [[ -f /opt/pattern/bin/pattern_user_env.sh ]]; then
+    . /opt/pattern/bin/pattern_user_env.sh
+fi
+
+. "$HOME/.cargo/env"
