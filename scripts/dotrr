@@ -1,6 +1,0 @@
-#!/usr/bin/bash
-clear
-dotr "$@"
-onchange dotr "$@"
-
-

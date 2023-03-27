@@ -1,5 +1,0 @@
-#!/usr/bin/bash
-
-clear
-protoc --proto_path=$1 --python_out=$2 $(find $1 -name '*.proto')
-

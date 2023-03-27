@@ -1,4 +1,0 @@
-#!/usr/bin/bash
-clear
-dot "$@" -Tsvg | kitty +kitten icat --align=left
-
