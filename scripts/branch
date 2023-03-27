@@ -8,6 +8,6 @@ branches=$(git branch -al | cut -c 3-)
 if [[ -n $COMP_LINE ]]; then
     prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
     # echo valid completions after this point
-    echo "$branches" | grep "$prefix"
+    echo $branches | grep "$prefix"
     exit
 fi
