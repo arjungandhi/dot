@@ -1,4 +1,0 @@
-#!/usr/bin/bash
-clear
-python $@ 
-echo "Rendered Model"

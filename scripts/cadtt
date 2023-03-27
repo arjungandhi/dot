@@ -1,4 +1,0 @@
-clear
-cadt "$@" 
-f3d out.stl &
-onchange cadt "$@"
