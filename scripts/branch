@@ -14,5 +14,19 @@ if [[ -n $COMP_LINE ]]; then
 fi
 
 # --------------------------------- main ---------------------------------
-# get the branch name from the user
-git checkout -b $1
+b=$1
+if [[ -z $b ]]; then
+    echo "usage: branch <branch>"
+    exit
+fi
+
+# if the branch exists checkout to it
+if [[ $(echo "$branches" | grep "$b") ]]; then
+    git checkout $b
+    exit
+fi
+
+# if the branch does not exist checkout with -b
+git checkout -b $b
+
+
