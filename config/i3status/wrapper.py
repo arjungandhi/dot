@@ -7,10 +7,7 @@
 #
 # To use it, ensure your ~/.i3status.conf contains this line:
 #     output_format = "i3bar"
-# in the 'general' section.
-# Then, in your ~/.i3/config, use:
-#     status_command i3status | ~/i3status/contrib/wrapper.py
-# In the 'bar' section.
+# in the 'general' section. Then, in your ~/.i3/config, use: status_command i3status | ~/i3status/contrib/wrapper.py In the 'bar' section.
 #
 # In its current version it will display the cpu frequency governor, but you
 # are free to change it to display whatever you like, see the comment in the
