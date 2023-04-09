@@ -125,12 +125,15 @@ W	config/nvim/init.vim	/^command! -bar W wa$/;"	c
 WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-knowledge.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-tree.service	/^WantedBy=default.target$/;"	k	section:Install
+any	snippets/python/tox.ini	/^allow-star-arg-any = true$/;"	k	section:flake8
 autocommit	scripts/autocommit	/^autocommit() {$/;"	f
 b:current_syntax	config/nvim/syntax/proto.vim	/^let b:current_syntax = "proto"/;"	v
 changed	scripts/changed	/^changed () {$/;"	f
 clone	scripts/clone	/^clone() {$/;"	f
 did_proto_syn_inits	config/nvim/syntax/proto.vim	/^    let did_proto_syn_inits = 1$/;"	v
+exclude	snippets/python/tox.ini	/^exclude =$/;"	k	section:flake8
 filetype	config/nvim/ftdectect/proto.vim	/^augroup filetype$/;"	a
+flake8	snippets/python/tox.ini	/^[flake8]$/;"	s
 g:context_nvim_no_redraw	config/nvim/init.vim	/^let g:context_nvim_no_redraw = 1$/;"	v
 g:copilot_node_command	config/nvim/init.vim	/^let g:copilot_node_command = '~\/.nodenv\/versions\/16.17.0\/bin\/node'$/;"	v
 g:cursorhold_updatetime	config/nvim/init.vim	/^let g:cursorhold_updatetime = 100$/;"	v
@@ -151,7 +154,9 @@ get_kubectx	config/i3status/wrapper.py	/^def get_kubectx():$/;"	f
 get_kubens	config/i3status/wrapper.py	/^def get_kubens():$/;"	f
 haschanged	scripts/haschanged	/^haschanged () {$/;"	f
 hline	scripts/hline	/^hline() {$/;"	f
+ignore	snippets/python/tox.ini	/^ignore = $/;"	k	section:flake8
 j	config/i3status/wrapper.py	/^        j = json.loads(line)$/;"	v
+length	snippets/python/tox.ini	/^max-line-length = 88$/;"	k	section:flake8
 license	scripts/license	/^license() {$/;"	f
 line	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 line	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
@@ -160,6 +165,7 @@ list	scripts/clone	/^list() {$/;"	f
 list	scripts/license	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
 mapleader	config/nvim/init.vim	/^let mapleader=","$/;"	v
+names	snippets/python/tox.ini	/^application-import-names = flake8$/;"	k	section:flake8
 onchange	scripts/onchange	/^onchange () {$/;"	f
 prefix	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 prefix	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
@@ -167,8 +173,11 @@ print_line	config/i3status/wrapper.py	/^def print_line(message):$/;"	f
 print_x	scripts/hline	/^print_x() {$/;"	f
 python_linting	config/nvim/init.vim	/^augroup python_linting$/;"	a
 read_line	config/i3status/wrapper.py	/^def read_line():$/;"	f
+return	snippets/python/tox.ini	/^mypy-init-return = true$/;"	k	section:flake8
+returning	snippets/python/tox.ini	/^suppress-none-returning = true$/;"	k	section:flake8
 s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
+style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
 the	README.md	/^# the $/;"	c
 usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
