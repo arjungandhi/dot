@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-kb
+  name: {{ .Release.Name }}-ingress
   annotations:
     # cert-manager annotations
     cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -11,16 +11,16 @@ metadata:
 spec:
   tls:
     - hosts:
-        - "kibana.{{ Release.Namespace }}.rutherford.patternlabs.tech"
-      secretName: "pattern.kibana.tls"
+        - "{{ .Chart.Name }}.{{ .Release.Namespace }}.rutherford.patternlabs.tech"
+      secretName: "pattern.{{ .Chart.Name}}.tls"
   rules:
-  - host: "kibana.{{ .Release.Namespace }}.rutherford.patternlabs.tech"
+  - host: "{{ .Chart.Name }}.{{ .Release.Namespace }}.rutherford.patternlabs.tech"
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: {{ .Release.Name }}-kb-http
+            name: {{ .Release.Name }}
             port:
-              number: 5601
+              number: 80
