@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-kb
+  annotations:
+    # cert-manager annotations
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # oauth2-proxy annotations
+    nginx.ingress.kubernetes.io/auth-url: "https://auth.rutherford.patternlabs.tech/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "https://auth.rutherford.patternlabs.tech/oauth2/start?rd=https%3A%2F%2F$host$request_uri"
+spec:
+  tls:
+    - hosts:
+        - "kibana.{{ Release.Namespace }}.rutherford.patternlabs.tech"
+      secretName: "pattern.kibana.tls"
+  rules:
+  - host: "kibana.{{ .Release.Namespace }}.rutherford.patternlabs.tech"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: {{ .Release.Name }}-kb-http
+            port:
+              number: 5601
