@@ -6,4 +6,5 @@ fzf --ansi \
     --delimiter : \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'right,50%'
+    --bind 'enter:become(vim {1} +{2})'
 
