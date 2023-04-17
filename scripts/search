@@ -2,7 +2,9 @@
 
 # check if $1 was supplied and is a dir
 # if not use current dir
-# searchDir=${1:-.}
+searchDir=${1:-.}
+
+cd $searchDir
 
 rg --color=always --line-number --no-heading --smart-case "${*:-}" | \
 fzf --ansi \
