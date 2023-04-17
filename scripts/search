@@ -2,7 +2,12 @@
 
 # check if $1 was supplied and is a dir
 # if not use current dir
-dir="${1:-.}"
+searchDir=$1
+if [ -d "$searchDir" ]; then
+    dir=$searchDir
+else
+    dir=$(pwd)
+fi
 
 
 rg --color=always --line-number --no-heading --smart-case "${*:-}" $dir | \
