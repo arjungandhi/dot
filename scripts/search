@@ -5,11 +5,12 @@
 searchDir=${1:-.}
 
 echo "Searching in $searchDir"
-rg --color=always --line-number --no-heading --smart-case "${*:-}" . | \
+rg --color=always --line-number --no-heading --smart-case "${*:-}" $searchDir | \
 fzf --ansi \
     --color hl:-1:underline,hl+:-1:underline:reverse \
     --delimiter : \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'right,50%' \
-    --bind 'enter:become(vim {1} +{2})'
+    --bind 'enter:become(vim {1} +{2})' \
+    $searchDir
 
