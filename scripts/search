@@ -4,7 +4,7 @@
 # if not use current dir
 searchDir=${1:-.}
 
-
+echo "Searching in $searchDir"
 rg --color=always --line-number --no-heading --smart-case "${*:-}" . | \
 fzf --ansi \
     --color hl:-1:underline,hl+:-1:underline:reverse \
