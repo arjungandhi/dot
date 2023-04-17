@@ -2,15 +2,10 @@
 
 # check if $1 was supplied and is a dir
 # if not use current dir
-searchDir=$1
-if [ -d "$searchDir" ]; then
-    dir=$searchDir
-else
-    dir=$(pwd)
-fi
+searchDir=${1:-.}
 
 
-rg --color=always --line-number --no-heading --smart-case "${*:-}" $dir | \
+rg --color=always --line-number --no-heading --smart-case "${*:-}" . | \
 fzf --ansi \
     --color hl:-1:underline,hl+:-1:underline:reverse \
     --delimiter : \
