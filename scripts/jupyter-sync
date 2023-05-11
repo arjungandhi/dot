@@ -1,3 +1,4 @@
 #!/usr/bin/bash
-
+pods=$(kubectl get pods -n monkey -o name | grep jupyter)
+echo $pods
 
