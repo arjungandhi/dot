@@ -29,8 +29,6 @@ Plug 'towolf/vim-helm'
 " Terraform
 Plug 'hashivim/vim-terraform'
 
-" Jupyter
-Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'goerz/jupytext.vim'
 
 
@@ -190,20 +188,6 @@ nmap <leader>fs :SNIPPETS<CR>
 
 
 """ Core plugin configuration (vim)
-" Magma Config
-
-" Magma Keybindings
-nnoremap <expr><silent> <leader>j  nvim_exec('MagmaEvaluateOperator', v:true)
-nnoremap <silent>       <leader>jl :MagmaEvaluateLine<CR>
-xnoremap <silent>       <leader>j  :<C-u>MagmaEvaluateVisual<CR>
-nnoremap <silent>       <leader>jc :MagmaReevaluateCell<CR>
-nnoremap <silent>       <leader>jd :MagmaDelete<CR>
-nnoremap <silent>       <leader>jo :MagmaShowOutput<CR>
-nnoremap <silent>       <leader>ji :noautocmd MagmaEnterOutput<CR>
-
-let g:magma_image_provider = 'kitty'
-
-
 " fzf
 let g:fzf_layout = { 'down': '40%' }
 
