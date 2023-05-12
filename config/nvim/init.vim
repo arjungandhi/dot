@@ -198,7 +198,7 @@ xnoremap <silent>       <leader>j  :<C-u>MagmaEvaluateVisual<CR>
 nnoremap <silent>       <leader>jc :MagmaReevaluateCell<CR>
 nnoremap <silent>       <leader>jd :MagmaDelete<CR>
 nnoremap <silent>       <leader>jo :MagmaShowOutput<CR>
-nnoremap <silent>       <leader>jq :noautocmd MagmaEnterOutput<CR>
+nnoremap <silent>       <leader>ji :noautocmd MagmaEnterOutput<CR>
 
 g:magma_image_provider = 'kitty'
 
