@@ -29,6 +29,9 @@ Plug 'towolf/vim-helm'
 " Terraform
 Plug 'hashivim/vim-terraform'
 
+" Jupyter
+Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
+
 
 call plug#end()
 
