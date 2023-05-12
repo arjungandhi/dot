@@ -31,6 +31,7 @@ Plug 'hashivim/vim-terraform'
 
 " Jupyter
 Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'goerz/jupytext.vim'
 
 
 call plug#end()
