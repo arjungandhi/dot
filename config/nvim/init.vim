@@ -42,14 +42,6 @@ call plug#end()
 
 """ main config
 
-nmap <F2> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
 " enable syntax and plugins
 syntax enable
 filetype plugin indent on
@@ -155,6 +147,14 @@ function! TrimWhitespace()
     call winrestview(l:save)
 endfunction
 
+" Syntax Stack
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " Core
 let mapleader=","
 " reload conifg
@@ -177,6 +177,9 @@ nmap <leader>bd :bufdo bd<CR>
 " toggle spell check
 nmap <leader>s :setlocal spell!<CR>
 inoremap <C-s> <C-G>u<Esc>[s1z=`]a<C-G>u
+
+" function keys
+nmap <F2> :call <SID>SynStack()<CR>
 
 " fxf commands
 " project files
