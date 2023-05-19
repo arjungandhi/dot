@@ -213,5 +213,5 @@ let g:cursorhold_updatetime = 100
 let g:context_nvim_no_redraw = 1
 
 " setup TreeSitter to have highlighting and indentation
-" autocmd VimEnter * :TSEnable highlight
-" autocmd VimEnter * :TSEnable indent
+autocmd VimEnter * :TSEnable highlight
+autocmd VimEnter * :TSEnable indent
