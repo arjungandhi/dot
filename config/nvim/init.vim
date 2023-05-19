@@ -99,23 +99,11 @@ set splitright
 
 """ Filetype-Specific Configurations
 
-" HTML, XML, JS, JSX , TS, TSX
-autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
 augroup web_autofmt
   autocmd FileType javascript,typescript AutoFormatBuffer clang-format
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType vue AutoFormatBuffer prettier
 augroup end
-
-" Markdown and Journal
-autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
-" Python
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 augroup python_linting
 	autocmd!
