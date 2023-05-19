@@ -144,7 +144,6 @@ length	snippets/python/tox.ini	/^max-line-length = 88$/;"	k	section:flake8
 license	scripts/license	/^license() {$/;"	f
 line	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 line	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
-list	functions/workon.sh	/^    list() {$/;"	f
 list	scripts/clone	/^list() {$/;"	f
 list	scripts/license	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
@@ -157,6 +156,7 @@ print_line	config/i3status/wrapper.py	/^def print_line(message):$/;"	f
 print_x	scripts/hline	/^print_x() {$/;"	f
 python_linting	config/nvim/init.vim	/^augroup python_linting$/;"	a
 read_line	config/i3status/wrapper.py	/^def read_line():$/;"	f
+repo-list	functions/workon.sh	/^    repo-list() {$/;"	f
 return	snippets/python/tox.ini	/^mypy-init-return = true$/;"	k	section:flake8
 returning	snippets/python/tox.ini	/^suppress-none-returning = true$/;"	k	section:flake8
 s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
