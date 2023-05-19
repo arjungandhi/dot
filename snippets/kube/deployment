@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-{{ .Chart.Name }}
-        image: {{ .Values.image }}
+        image: {{ .Values.image.name }}:{{ .Values.image.tag }}
         ports:
         - containerPort: {{ .Values.port }}
         envFrom:
