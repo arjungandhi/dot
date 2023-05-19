@@ -81,11 +81,10 @@
 <leader>bd	config/nvim/init.vim	/^nmap <leader>bd :bufdo bd<CR>$/;"	m
 <leader>e	config/nvim/init.vim	/^nmap <leader>e :NERDTreeToggle<CR>$/;"	m
 <leader>ff	config/nvim/init.vim	/^nmap <leader>ff :Files<CR>$/;"	m
-<leader>fp	config/nvim/init.vim	/^nmap <leader>fp :ProjectFiles<CR>$/;"	m
+<leader>fg	config/nvim/init.vim	/^nmap <leader>fg :ProjectFiles<CR>$/;"	m
 <leader>fs	config/nvim/init.vim	/^nmap <leader>fs :SNIPPETS<CR>$/;"	m
 <leader>ft	config/nvim/init.vim	/^nmap <leader>ft :Tags<CR>$/;"	m
 <leader>n	config/nvim/init.vim	/^nmap <leader>n :cc<CR>$/;"	m
-<leader>p	config/nvim/init.vim	/^nnoremap <leader>p :ProjectFiles<CR>$/;"	m
 <leader>r	config/nvim/init.vim	/^nmap <leader>r :so ~\/.config\/nvim\/init.vim<CR>$/;"	m
 <leader>s	config/nvim/init.vim	/^nmap <leader>s :setlocal spell!<CR>$/;"	m
 <leader>t	config/nvim/init.vim	/^nmap <leader>t :call TrimWhitespace()<CR>$/;"	m
@@ -131,15 +130,9 @@ g:cursorhold_updatetime	config/nvim/init.vim	/^let g:cursorhold_updatetime = 100
 g:fzf_layout	config/nvim/init.vim	/^let g:fzf_layout = { 'down': '40%' }$/;"	v
 g:gutentags_ctags_tagfile	config/nvim/init.vim	/^let g:gutentags_ctags_tagfile = '.tags'$/;"	v
 g:gutentags_file_list_command	config/nvim/init.vim	/^    let g:gutentags_file_list_command = 'rg --files'$/;"	v
-g:indentLine_char	config/nvim/init.vim	/^let g:indentLine_char = '▏'$/;"	v
-g:indentLine_defaultGroup	config/nvim/init.vim	/^let g:indentLine_defaultGroup = 'NonText'$/;"	v
-g:indentLine_setConceal	config/nvim/init.vim	/^let g:indentLine_setConceal = 0$/;"	v
 g:isort_vim_options	config/nvim/init.vim	/^let g:isort_vim_options = join([$/;"	v
 g:pydocstring_doq_path	config/nvim/init.vim	/^let g:pydocstring_doq_path = '\/home\/arjun\/.local\/bin\/doq'$/;"	v
 g:python3_host_prog	config/nvim/init.vim	/^let g:python3_host_prog = '\/usr\/bin\/python'$/;"	v
-g:vim_json_syntax_conceal	config/nvim/init.vim	/^let g:vim_json_syntax_conceal = 0$/;"	v
-g:vim_markdown_conceal	config/nvim/init.vim	/^let g:vim_markdown_conceal = 0$/;"	v
-g:vim_markdown_conceal_code_blocks	config/nvim/init.vim	/^let g:vim_markdown_conceal_code_blocks = 0$/;"	v
 get_dockerctx	config/i3status/wrapper.py	/^def get_dockerctx():$/;"	f
 get_kubectx	config/i3status/wrapper.py	/^def get_kubectx():$/;"	f
 get_kubens	config/i3status/wrapper.py	/^def get_kubens():$/;"	f

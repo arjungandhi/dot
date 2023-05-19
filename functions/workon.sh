@@ -4,7 +4,7 @@ workon() {
     # function to convert a full path to a repo path aka
     # /home/username/repo/path/to/repo to user/repo
     # this is done by removing all directories before the last 2
-    list() {
+    repo_list() {
         find $WORKSPACE -maxdepth 2 -mindepth 2 -type d \
         | rev | cut -d '/' -f 1-2 | rev 
 
@@ -22,7 +22,7 @@ workon() {
     if [[ -n $COMP_LINE ]]; then
         prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
         # workon takes you to a git repo to start working 
-            list | grep "$prefix"
+            repo_list | grep "$prefix"
         exit
     fi
 
@@ -34,7 +34,7 @@ workon() {
         return 0
     fi
 
-    workspace=$(list | fzf -q "$1" -1)
+    workspace=$(repo_list | fzf -q "$1" -1)
 
     # check if the directory exists
     if [ ! -d "$WORKSPACE/$workspace" ]; then
