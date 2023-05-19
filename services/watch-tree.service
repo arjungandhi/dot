@@ -1,11 +1,11 @@
 [Unit]
-Description=Watches the darwin-tree file repo for changes and commits them
+Description=Watches the monkey file repo for changes and commits them
 
 [Service]
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/home/arjun/repos/github.com/arjungandhi/dot/scripts/autocommit /home/arjun/repos/github.com/arjungandhi/darwin-tree
+ExecStart=/home/arjun/repos/github.com/arjungandhi/dot/scripts/autocommit /home/arjun/repos/github.com/arjungandhi/monkey
 
 [Install]
 WantedBy=default.target
