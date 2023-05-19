@@ -91,31 +91,31 @@
 <leader>t	config/nvim/init.vim	/^nmap <leader>t :call TrimWhitespace()<CR>$/;"	m
 About	snippets/md/README.md	/^# About$/;"	c
 Description	services/watch-dot.service	/^Description=Watches the dot file repo for changes and commits them$/;"	k	section:Unit
-Description	services/watch-tree.service	/^Description=Watches the monkey file repo for changes and commits them$/;"	k	section:Unit
+Description	services/watch-monkey.service	/^Description=Watches the monkey file repo for changes and commits them$/;"	k	section:Unit
 ExecStart	services/watch-dot.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
-ExecStart	services/watch-tree.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
+ExecStart	services/watch-monkey.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
 HiLink	config/nvim/syntax/proto.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
 HiLink	config/nvim/syntax/proto.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 Ingredients	snippets/zet/recipe.md	/^## Ingredients$/;"	s	chapter:{{.title}}
 Install	services/watch-dot.service	/^[Install]$/;"	s
-Install	services/watch-tree.service	/^[Install]$/;"	s
+Install	services/watch-monkey.service	/^[Install]$/;"	s
 ProjectFiles	config/nvim/init.vim	/^command! ProjectFiles execute s:find_files()$/;"	c
 Restart	services/watch-dot.service	/^Restart=always$/;"	k	section:Service
-Restart	services/watch-tree.service	/^Restart=always$/;"	k	section:Service
+Restart	services/watch-monkey.service	/^Restart=always$/;"	k	section:Service
 RestartSec	services/watch-dot.service	/^RestartSec=1$/;"	k	section:Service
-RestartSec	services/watch-tree.service	/^RestartSec=1$/;"	k	section:Service
+RestartSec	services/watch-monkey.service	/^RestartSec=1$/;"	k	section:Service
 SNIPPETS	config/nvim/init.vim	/^command! SNIPPETS call fzf#run(fzf#wrap({'source': 'snip list', 'sink': '.!snip'}))$/;"	c
 Service	services/watch-dot.service	/^[Service]$/;"	s
-Service	services/watch-tree.service	/^[Service]$/;"	s
+Service	services/watch-monkey.service	/^[Service]$/;"	s
 Steps	snippets/zet/recipe.md	/^## Steps$/;"	s	chapter:{{.title}}
 TrimWhitespace	config/nvim/init.vim	/^function! TrimWhitespace()$/;"	f
 Type	services/watch-dot.service	/^Type=simple$/;"	k	section:Service
-Type	services/watch-tree.service	/^Type=simple$/;"	k	section:Service
+Type	services/watch-monkey.service	/^Type=simple$/;"	k	section:Service
 Unit	services/watch-dot.service	/^[Unit]$/;"	s
-Unit	services/watch-tree.service	/^[Unit]$/;"	s
+Unit	services/watch-monkey.service	/^[Unit]$/;"	s
 W	config/nvim/init.vim	/^command! -bar W wa$/;"	c
 WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Install
-WantedBy	services/watch-tree.service	/^WantedBy=default.target$/;"	k	section:Install
+WantedBy	services/watch-monkey.service	/^WantedBy=default.target$/;"	k	section:Install
 any	snippets/python/tox.ini	/^allow-star-arg-any = true$/;"	k	section:flake8
 autocommit	scripts/autocommit	/^autocommit() {$/;"	f
 b:current_syntax	config/nvim/syntax/proto.vim	/^let b:current_syntax = "proto"/;"	v
