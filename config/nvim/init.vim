@@ -218,15 +218,6 @@ let g:isort_vim_options = join([
 " set node js path for copilot
 let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
 
-" indentLine
-let g:indentLine_char = '▏'
-let g:indentLine_defaultGroup = 'NonText'
-" Disable indentLine from concealing json and markdown syntax (e.g. ```)
-let g:vim_json_syntax_conceal = 0
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:indentLine_setConceal = 0
-
 " FixCursorHold for better performance
 let g:cursorhold_updatetime = 100
 
@@ -234,5 +225,5 @@ let g:cursorhold_updatetime = 100
 let g:context_nvim_no_redraw = 1
 
 " setup TreeSitter to have highlighting and indentation
-autocmd VimEnter * :TSEnable highlight
-autocmd VimEnter * :TSEnable indent
+" autocmd VimEnter * :TSEnable highlight
+" autocmd VimEnter * :TSEnable indent
