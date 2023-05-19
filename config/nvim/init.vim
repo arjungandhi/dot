@@ -42,7 +42,7 @@ call plug#end()
 """ main config
 
 " enable syntax and plugins
-syntax enable
+" syntax enable
 filetype plugin indent on
 
 " turn on relative numbers
