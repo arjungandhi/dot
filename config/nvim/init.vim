@@ -42,6 +42,14 @@ call plug#end()
 
 """ main config
 
+nmap <F2> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " enable syntax and plugins
 syntax enable
 filetype plugin indent on
