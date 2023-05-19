@@ -25,7 +25,7 @@ Plug 'junegunn/fzf.vim'
 " bullets
 Plug 'dkarter/bullets.vim'
 " nord theme
-Plug 'articicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim'
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
 " python
