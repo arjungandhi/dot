@@ -9,11 +9,12 @@ Plug 'konfekt/vim-compilers'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
+Plug 'tpope/vim-sensible'
+Plug 'kana/vim-textobj-line'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " text objects
-Plug 'kana/vim-textobj-line'
 
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
@@ -50,6 +51,7 @@ set number
 
 " turn on autowrite
 set autowrite
+
 
 " spell check highlights
 hi clear SpellRare
