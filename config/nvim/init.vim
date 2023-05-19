@@ -15,7 +15,6 @@ Plug 'kana/vim-textobj-line'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dkarter/bullets.vim'
-Plug 'vim-scripts/SyntaxAttr.vim'
 
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
@@ -147,14 +146,6 @@ function! TrimWhitespace()
     call winrestview(l:save)
 endfunction
 
-" Syntax Stack
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
 " Core
 let mapleader=","
 " reload conifg
@@ -178,10 +169,7 @@ nmap <leader>bd :bufdo bd<CR>
 nmap <leader>s :setlocal spell!<CR>
 inoremap <C-s> <C-G>u<Esc>[s1z=`]a<C-G>u
 
-" function keys
-nmap <F2> :call <SID>SynStack()<CR>
-
-" fxf commands
+"" fzf commands
 " project files
 function! s:find_files()
     let git_dir = system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
@@ -194,10 +182,13 @@ endfunction
 command! ProjectFiles execute s:find_files()
 nnoremap <leader>p :ProjectFiles<CR>
 nmap <leader>fp :ProjectFiles<CR>
+
 " tags
 nmap <leader>ft :Tags<CR>
+
 " files
 nmap <leader>ff :Files<CR>
+
 " snippets
 command! SNIPPETS call fzf#run(fzf#wrap({'source': 'snip list', 'sink': '.!snip'}))
 nmap <leader>fs :SNIPPETS<CR>
