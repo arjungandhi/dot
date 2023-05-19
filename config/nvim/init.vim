@@ -14,8 +14,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'dkarter/bullets.vim'
 
-" text objects
 
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
