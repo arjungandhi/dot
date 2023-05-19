@@ -26,7 +26,7 @@ export NOTES=/home/arjun/repos/github.com/arjungandhi/dot/vault
 export WORKSPACE=/home/arjun/repos/github.com
 export REPOS=/home/arjun/repos
 export FUNCTIONS=/home/arjun/repos/github.com/arjungandhi/dot/functions
-export ZETDIR=/home/arjun/repos/github.com/arjungandhi/knowledge
+export ZETDIR=/home/arjun/repos/github.com/arjungandhi/monkey/notes
 export DARWINDIR=/home/arjun/repos/github.com/arjungandhi/darwin-tree
 export PATTERN_DEV_NAMESPACE=monkey
 
