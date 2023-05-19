@@ -53,15 +53,19 @@ set number
 set autowrite
 
 
-" spell check highlights
+" highlights
 hi clear SpellRare
 hi clear SpellBad
 hi clear SpellCap
 hi clear SpellLocal
+hi clear Error
+hi clear Todo
 hi SpellBad ctermbg=None ctermfg=darkred
 hi SpellRare ctermbg=None ctermfg=darkred
 hi SpellCap ctermbg=None ctermfg=darkgreen
 hi SpellLocal ctermbg=None ctermfg=darkgreen
+hi Error ctermbg=None ctermfg=darkred
+hi Todo ctermbg=None ctermfg=yellow  
 
 
 " set the path to where we opened vim
