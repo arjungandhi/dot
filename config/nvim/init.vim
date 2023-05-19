@@ -28,11 +28,9 @@ Plug 'dkarter/bullets.vim'
 Plug 'arcticicestudio/nord-vim'
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
-" python
-" isort
+" Python - isort
 Plug 'brentyi/isort.vim'
 " Go
-"
 Plug 'fatih/vim-go'
 " Helm
 Plug 'towolf/vim-helm'
@@ -176,8 +174,6 @@ nmap <leader>ff :Files<CR>
 " snippets
 command! SNIPPETS call fzf#run(fzf#wrap({'source': 'snip list', 'sink': '.!snip'}))
 nmap <leader>fs :SNIPPETS<CR>
-
-
 
 """ Core plugin configuration (vim)
 " fzf
