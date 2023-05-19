@@ -12,6 +12,9 @@ Plug 'google/vim-glaive'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" text objects
+Plug 'kana/vim-textobj-line'
+
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
 
