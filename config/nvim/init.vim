@@ -165,8 +165,7 @@ function! s:find_files()
     endif
 endfunction
 command! ProjectFiles execute s:find_files()
-nnoremap <leader>p :ProjectFiles<CR>
-nmap <leader>fp :ProjectFiles<CR>
+nmap <leader>fg :ProjectFiles<CR>
 
 " tags
 nmap <leader>ft :Tags<CR>
