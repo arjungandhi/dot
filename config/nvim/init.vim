@@ -108,6 +108,14 @@ augroup python_linting
 	autocmd QuickFixCmdPost [^l]* cwindow
 augroup end
 
+" md 
+autocmd FileType markdown setlocal spell spelllang=en_us
+autocmd FileType markdown setlocal complete+=kspell
+
+" gitcommit
+autocmd FileType gitcommit setlocal spell spelllang=en_us
+autocmd FileType gitcommit setlocal complete+=kspell
+
 """ set certain filetypes to be typed
 
 " ~/.notepad
@@ -120,6 +128,7 @@ autocmd BufNewFile,BufRead $SNIPPETS/markdown/* set filetype=markdown
 autocmd BufNewFile,BufRead $SNIPPETS/yaml/* set filetype=yaml
 autocmd BufNewFile,BufRead $SNIPPETS/kube/* set filetype=helm
 autocmd BufNewFile,BufRead $SNIPPETS?proto/* set filetype=proto
+
 """ Custom Functions
 
 " Trim Whitespaces
