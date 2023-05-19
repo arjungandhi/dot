@@ -10,6 +10,7 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'tpope/vim-sensible'
+Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
