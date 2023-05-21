@@ -13,8 +13,10 @@ changed () {
   if [[ ! -e "${tmp}" ]]; then
       find "${dir}" -type f -not -path '*testdata*'  # Find all files in the directory, excluding testdata
   else
-    if [[ -n "${git_dir}" ]]; then             # If in a Git directory
-      find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*' | xargs -I {} git check-ignore -q {} || true  # Find changed files in the directory
+    if [[ -n "${git_dir}" ]]; then             
+      # If in a Git directory
+      # Find changed files in the directory, excluding testdata and files ignored by Git
+      find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*' | git check-ignore --stdin
     else
       find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*'  # Find changed files in the directory
     fi
