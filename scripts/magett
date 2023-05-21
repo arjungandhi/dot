@@ -7,6 +7,6 @@
 # running real-time evaluations during development)
 
 clear
-maget "$@" 
-onchange maget "$@"
+maget 
+onchange maget
 

@@ -1,4 +1,4 @@
 #!/bin/sh
 clear
-mage test "$@"
+mage test
 
