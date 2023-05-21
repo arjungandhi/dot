@@ -24,12 +24,9 @@ changed () {
       find "${dir}" -type f  # Find all files in the directory
   else
     if [[ -n "${git_dir}" ]]; then             
-      # If in a Git directory
-      # Find any git files that are newer than tmp 
       git ls-files | new_filter "${tmp}"
-
     else
-      find "${dir}" -newer "${tmp}" -type f  # Find changed files in the directory
+      find "${dir}" -type f  | new_filter "${tmp}"
     fi
   fi
   touch "${tmp}"                                # Update the timestamp of the temporary file
