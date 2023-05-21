@@ -16,7 +16,7 @@ changed () {
     if [[ -n "${git_dir}" ]]; then             
       # If in a Git directory
       # Find changed files in the directory, excluding testdata and files ignored by Git
-      find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*' | git check-ignore --stdin
+      find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*' | git check-ignore --stdin -n --verbose | grep -v '^Ignoring' | cut -d: -f1
     else
       find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*'  # Find changed files in the directory
     fi
