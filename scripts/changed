@@ -11,18 +11,10 @@ changed () {
   local git_dir="$(git rev-parse --git-dir 2>/dev/null)"  # Check if in a Git directory
 
   if [[ ! -e "${tmp}" ]]; then
-    if [[ -n "${git_dir}" ]]; then             # If in a Git directory
-      git ls-files --exclude-standard --full-name -- "${dir}"  # List Git-tracked files, excluding ignored files
-    else
       find "${dir}" -type f -not -path '*testdata*'  # Find all files in the directory, excluding testdata
-    fi
   else
     if [[ -n "${git_dir}" ]]; then             # If in a Git directory
-      local git_files="$(git ls-files --exclude-standard --full-name -- "${dir}")"  # List Git-tracked files
-      local diff_files="$(git diff --name-only --diff-filter=d --no-renames --no-ext-diff "${tmp}" HEAD -- ${dir})"  # Compare with changes since last update
-
-      # Filter out files that are both Git-tracked and have changed since last update
-      comm -12 <(echo "$git_files" | sort) <(echo "$diff_files" | sort)
+      find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*' | xargs -I {} git check-ignore -q {} || true  # Find changed files in the directory
     else
       find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*'  # Find changed files in the directory
     fi
