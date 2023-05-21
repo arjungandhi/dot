@@ -1,19 +1,30 @@
 #!/usr/bin/env bash
 
 ## Returns the full path to any changed files in the current directory
-## or any subdirectories recursively one to a line. Useful for detecting
-## changes and taking action (see onchange).
+## or any subdirectories recursively one to a line. Ignores files
+## that are ignored by Git when working in a Git directory.
 
 changed () {
-  local dir="${PWD}"
-  local tmpname="onchange${dir//\//-}"
-  local tmp="/tmp/${tmpname}"
+  local dir="${PWD}"                            # Store the current working directory
+  local tmpname="onchange${dir//\//-}"          # Create a unique name for the temporary file
+  local tmp="/tmp/${tmpname}"                   # Set the path of the temporary file
+  local git_dir="$(git rev-parse --git-dir 2>/dev/null)"  # Check if in a Git directory
+
   if [[ ! -e "${tmp}" ]]; then
-    find "${dir}" -type f -not -path '*testdata*' 
+    if [[ -n "${git_dir}" ]]; then             # If in a Git directory
+      git ls-files --exclude-standard --full-name -- "${dir}"  # List Git-tracked files, excluding ignored files
+    else
+      find "${dir}" -type f -not -path '*testdata*'  # Find all files in the directory, excluding testdata
+    fi
   else
-    find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*'
+    if [[ -n "${git_dir}" ]]; then             # If in a Git directory
+      git ls-files --exclude-standard --full-name --newer="${tmp}" -- "${dir}"  # Find changed Git-tracked files
+    else
+      find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*'  # Find changed files in the directory
+    fi
   fi
-  touch "${tmp}"
+  touch "${tmp}"                                # Update the timestamp of the temporary file
 }
 
 changed "$@"
+
