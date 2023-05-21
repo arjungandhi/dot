@@ -7,6 +7,7 @@ import (
 	"github.com/magefile/mage/sh"
 )
 
+// Test runs all tests
 func Test() error {
 	mg.Deps(Install)
 	mg.Deps(Proto)
@@ -15,14 +16,17 @@ func Test() error {
 	return sh.RunV("go", "test", "-v", "./...")
 }
 
+// Install installs all dependencies
 func Install() error {
 	return sh.RunV("go", "mod", "tidy")
 }
 
+// Proto generates the protobuf files
 func Proto() error {
 	return sh.RunV("protoc", "--go_out=.", "--go_opt=paths=source_relative", "--go-grpc_out=.", "--go-grpc_opt=paths=source_relative", "proto/magellan.proto")
 }
 
+// Run runs the given command
 func Run(what string) error {
 	mg.Deps(Install)
 	mg.Deps(Proto)
