@@ -94,10 +94,11 @@ set splitright
 
 """ Filetype-Specific Configurations
 
-augroup web_autofmt
+augroup autofmt
+  autocmd FileType bzl AutoFormatBuffer buildifier
   autocmd FileType javascript,typescript AutoFormatBuffer clang-format
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
-  autocmd FileType vue AutoFormatBuffer prettier
+  autocmd FileType go AutoFormatBuffer gofmt  
 augroup end
 
 augroup python_linting
