@@ -159,6 +159,7 @@ set $wsm ""
 set $wse ""
 set $wsn ""
 set $wst ""
+set $wsl ""
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -175,6 +176,7 @@ bindsym $mod+m workspace $wsm
 bindsym $mod+e workspace $wse
 bindsym $mod+n workspace $wsn
 bindsym $mod+t workspace $wst
+bindsym $mod+l workspace $wsl   
 bindsym $mod+minus scratchpad show
 
 # move focused container to workspace
@@ -190,6 +192,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0
 bindsym $mod+Shift+n move container to workspace $wsn
 bindsym $mod+Shift+t move container to workspace $wst
+bindsym $mod+Shift+l move container to workspace $wsl
 bindsym $mod+Shift+minus move scratchpad
 
 
