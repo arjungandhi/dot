@@ -99,7 +99,7 @@ augroup autofmt
   autocmd FileType javascript,typescript AutoFormatBuffer clang-format
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType go AutoFormatBuffer gofmt  
-  autocmd Filetype python AutoFormatBuffer python
+  autocmd Filetype python AutoFormatBuffer black
 augroup end
 
 augroup python_linting
