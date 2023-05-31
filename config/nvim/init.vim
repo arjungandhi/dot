@@ -217,6 +217,18 @@ let g:cursorhold_updatetime = 100
 " context.vim
 let g:context_nvim_no_redraw = 1
 
+" Openscad TreeSitter
+lua <<EOF
+local parser config = require "nvim-tree-sitter.parsers".get_parser_configs()
+parser_config["scad"] = {
+    install_info = {
+        url = "https://github.com/bollian/tree-sitter-openscad.git",
+    },
+    filetype = "scad",
+}
+
 " setup TreeSitter to have highlighting and indentation
 autocmd VimEnter * :TSEnable highlight
 autocmd VimEnter * :TSEnable indent
+
+
