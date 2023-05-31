@@ -99,6 +99,7 @@ augroup autofmt
   autocmd FileType javascript,typescript AutoFormatBuffer clang-format
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType go AutoFormatBuffer gofmt  
+  autocmd Filetype python AutoFormatBuffer python
 augroup end
 
 augroup python_linting
@@ -107,7 +108,6 @@ augroup python_linting
 	autocmd FileType python compiler flake8
 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
 	autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd FileType python AutoFormatBuffer black
 augroup end
 
 " md 
@@ -129,8 +129,8 @@ autocmd BufNewFile,BufRead $SNIPPETS/python/* set filetype=python
 autocmd BufNewFile,BufRead $SNIPPETS/markdown/* set filetype=markdown
 autocmd BufNewFile,BufRead $SNIPPETS/yaml/* set filetype=yaml
 autocmd BufNewFile,BufRead $SNIPPETS/kube/* set filetype=helm
-autocmd BufNewFile,BufRead $SNIPPETS?proto/* set filetype=proto
-autocmd BufNewFile,BufRead $SNIPPETS?go/* set filetype=go    
+autocmd BufNewFile,BufRead $SNIPPETS/proto/* set filetype=proto
+autocmd BufNewFile,BufRead $SNIPPETS/go/* set filetype=go    
 
 """ Custom Functions
 
