@@ -210,6 +210,10 @@ let g:isort_vim_options = join([
 " set node js path for copilot
 let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
 
+" set copilot accept to Shift-Tab
+inoremap <silent><expr> <S-Tab> copilot#Accept("")
+let g:copilot_no_tab_map = 1
+
 " FixCursorHold for better performance
 let g:cursorhold_updatetime = 100
 
@@ -227,6 +231,19 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
+""" coc config
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+
+
+
 
 " setup TreeSitter to have highlighting and indentation
 autocmd VimEnter * :TSEnable highlight
