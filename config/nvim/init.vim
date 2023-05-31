@@ -134,7 +134,6 @@ autocmd BufNewFile,BufRead $SNIPPETS/proto/* set filetype=proto
 autocmd BufNewFile,BufRead $SNIPPETS/go/* set filetype=go    
 
 """ Custom Functions
-
 " Trim Whitespaces
 function! TrimWhitespace()
     let l:save = winsaveview()
@@ -216,6 +215,18 @@ let g:cursorhold_updatetime = 100
 
 " context.vim
 let g:context_nvim_no_redraw = 1
+
+" coc text obj
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " setup TreeSitter to have highlighting and indentation
 autocmd VimEnter * :TSEnable highlight
