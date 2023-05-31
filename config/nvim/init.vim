@@ -41,7 +41,6 @@ Plug 'goerz/jupytext.vim'
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-
 call plug#end()
 
 
