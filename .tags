@@ -117,6 +117,7 @@ WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Inst
 WantedBy	services/watch-monkey.service	/^WantedBy=default.target$/;"	k	section:Install
 any	snippets/python/tox.ini	/^allow-star-arg-any = true$/;"	k	section:flake8
 autocommit	scripts/autocommit	/^autocommit() {$/;"	f
+autofmt	config/nvim/init.vim	/^augroup autofmt$/;"	a
 b:current_syntax	config/nvim/syntax/proto.vim	/^let b:current_syntax = "proto"/;"	v
 changed	scripts/changed	/^changed () {$/;"	f
 clone	scripts/clone	/^clone() {$/;"	f
@@ -168,7 +169,6 @@ usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
 usage	scripts/prs	/^usage() {$/;"	f
 usage	scripts/snip	/^usage() {$/;"	f
-web_autofmt	config/nvim/init.vim	/^augroup web_autofmt$/;"	a
 workon	functions/workon.sh	/^workon() {$/;"	f
 {{.title}}	snippets/zet/note.md	/^# {{.title}}$/;"	c
 {{.title}}	snippets/zet/recipe.md	/^# {{.title}}$/;"	c
