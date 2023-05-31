@@ -211,7 +211,7 @@ let g:isort_vim_options = join([
 let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
 
 " set copilot accept to Shift-Tab
-inoremap <silent><expr> <S-Tab> copilot#Accept("")
+inoremap <silent><expr> <Tab> copilot#Accept("")
 let g:copilot_no_tab_map = 1
 
 " FixCursorHold for better performance
