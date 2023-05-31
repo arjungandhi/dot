@@ -223,9 +223,11 @@ local parser config = require "nvim-tree-sitter.parsers".get_parser_configs()
 parser_config["scad"] = {
     install_info = {
         url = "https://github.com/bollian/tree-sitter-openscad.git",
+        files = {"src/parser.c"},
     },
     filetype = "scad",
 }
+EOF
 
 " setup TreeSitter to have highlighting and indentation
 autocmd VimEnter * :TSEnable highlight
