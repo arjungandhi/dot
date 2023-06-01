@@ -18,7 +18,9 @@ site() {
 
     local post="$BLOGPOST/$1"
 
-    # launch hugo server if it's not running
+    cd "$SITEREPO"
+    # launch hugo server
+    hugo server -D & 
 
     # open the post in the editor
     $EDITOR "$post"
