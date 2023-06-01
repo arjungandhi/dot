@@ -184,7 +184,7 @@ if [ -f /etc/bash_completion ]; then
   source /etc/bash_completion
 fi
 # source stuff that has inbuilt completion
-owncomp=(snip list workon prs license zet excalidraw darwin date_iso branch site)
+owncomp=(snip list workon prs license zet excalidraw darwin date_iso branch post)
 for i in ${owncomp[@]}; do complete -C $i $i; done
 # other stuff
 _have gh && . <(gh completion -s bash)
