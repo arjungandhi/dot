@@ -16,7 +16,7 @@ site() {
     # check we got an argument
     [[ -z $1 ]] && usage && exit 1
 
-    local post="$BLOGPOST/$1"
+    local post="$BLOGPOSTS/$1"
 
     cd "$SITEREPO"
     # launch hugo server
