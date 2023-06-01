@@ -1,0 +1,44 @@
+---
+title: "Page" # TODO:
+date: 2021-07-01 # TODO: Change this
+description: "shows up in google things" # TODO:
+tags: # TODO: set these to seo *sparkle* terms
+  - <programming languages> 
+  - <hardware things>  
+categories:
+  - what category # TODO:
+draft: true # TODO: set false 
+---
+
+This first section is a bunch the tld section fill it out you get a really small section
+
+# The Blurb
+
+This project was a shot at my childhood dream of making a robot that can walk. Somehow also convinced my school to give me college credit for it. Me and my team designed built and programmed a 12 DOF quadruped over the course of 8 months. Due to some mechanical errors the quadruped was not able to hold up its own weight but this should be easily fixable in future generations of the mechanics.
+
+# What I did
+
+On this project I was primarily responsible for the programming and controls of the robot. I worked on everything from the math on the controls to the high level visualizations of the robots. 
+
+# Features
+  - Carbon Fiber and 3d printed body
+  - Custom circuit boards for power distribution and wire management
+  - Highly expansible code base that runs on a Raspberry pi
+  - Code base can easily be modified to work on a completely different quadruped
+  - Visualization of the quadruped gaits for debugging for running on a real robot
+  - Low latency Websocket comms over Wifi
+  - 2 custom GUI's for Motor, and Single Leg testing
+  - 3 implemented gaits 
+  - High Power BLDC actuators
+
+# Links:
+- [paper](https://books.arjungandhi.com/Robotics/mqp-report.pdf)
+- [github](https://github.com/swol-kat)
+
+# Photos/Videos
+{{< google-photos tbHcgyWN44g9qj216 carousel >}}
+
+
+<end-tldr>
+
+# put the real content here markdown headings are okay
