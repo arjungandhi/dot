@@ -22,13 +22,13 @@ post() {
     # launch hugo server
     hugo server -D  &> /dev/null &
     
-    # kill hugo server when we exit
-    trap "killall background" EXIT
-
     # open the post in the browser
     # strip the .md extension
     local url="http://localhost:1313/$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
-    xdg-open "$url"
+    xdg-open "$url" &> /dev/null  &
+
+    # kill hugo server when we exit
+    trap "killall background" EXIT
     # open the post in the editor
     $EDITOR "$p"
 }
