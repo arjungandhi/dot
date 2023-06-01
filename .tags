@@ -147,6 +147,7 @@ line	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 line	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 list	scripts/clone	/^list() {$/;"	f
 list	scripts/license	/^list() {$/;"	f
+list	scripts/site	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
 mapleader	config/nvim/init.vim	/^let mapleader=","$/;"	v
 names	snippets/python/tox.ini	/^application-import-names = flake8$/;"	k	section:flake8
@@ -162,12 +163,14 @@ repo-list	functions/workon.sh	/^    repo-list() {$/;"	f
 return	snippets/python/tox.ini	/^mypy-init-return = true$/;"	k	section:flake8
 returning	snippets/python/tox.ini	/^suppress-none-returning = true$/;"	k	section:flake8
 s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
+site	scripts/site	/^site() {$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
 the	README.md	/^# the $/;"	c
 usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
 usage	scripts/prs	/^usage() {$/;"	f
+usage	scripts/site	/^usage() {$/;"	f
 usage	scripts/snip	/^usage() {$/;"	f
 workon	functions/workon.sh	/^workon() {$/;"	f
 {{.title}}	snippets/zet/note.md	/^# {{.title}}$/;"	c
