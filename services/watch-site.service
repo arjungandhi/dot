@@ -1,0 +1,11 @@
+[Unit]
+Description=Watches the arjungandhi.com file repo for changes and commits them
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/home/arjun/repos/github.com/arjungandhi/dot/scripts/autocommit /home/arjun/repos/github.com/arjungandhi/arjungandhi.com
+
+[Install]
+WantedBy=default.target

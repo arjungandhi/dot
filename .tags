@@ -91,30 +91,39 @@
 About	snippets/md/README.md	/^# About$/;"	c
 Description	services/watch-dot.service	/^Description=Watches the dot file repo for changes and commits them$/;"	k	section:Unit
 Description	services/watch-monkey.service	/^Description=Watches the monkey file repo for changes and commits them$/;"	k	section:Unit
+Description	services/watch-site.service	/^Description=Watches the arjungandhi.com file repo for changes and commits them$/;"	k	section:Unit
 ExecStart	services/watch-dot.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
 ExecStart	services/watch-monkey.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
+ExecStart	services/watch-site.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
 HiLink	config/nvim/syntax/proto.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
 HiLink	config/nvim/syntax/proto.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 Ingredients	snippets/zet/recipe.md	/^## Ingredients$/;"	s	chapter:{{.title}}
 Install	services/watch-dot.service	/^[Install]$/;"	s
 Install	services/watch-monkey.service	/^[Install]$/;"	s
+Install	services/watch-site.service	/^[Install]$/;"	s
 ProjectFiles	config/nvim/init.vim	/^command! ProjectFiles execute s:find_files()$/;"	c
 Restart	services/watch-dot.service	/^Restart=always$/;"	k	section:Service
 Restart	services/watch-monkey.service	/^Restart=always$/;"	k	section:Service
+Restart	services/watch-site.service	/^Restart=always$/;"	k	section:Service
 RestartSec	services/watch-dot.service	/^RestartSec=1$/;"	k	section:Service
 RestartSec	services/watch-monkey.service	/^RestartSec=1$/;"	k	section:Service
+RestartSec	services/watch-site.service	/^RestartSec=1$/;"	k	section:Service
 SNIPPETS	config/nvim/init.vim	/^command! SNIPPETS call fzf#run(fzf#wrap({'source': 'snip list', 'sink': '.!snip'}))$/;"	c
 Service	services/watch-dot.service	/^[Service]$/;"	s
 Service	services/watch-monkey.service	/^[Service]$/;"	s
+Service	services/watch-site.service	/^[Service]$/;"	s
 Steps	snippets/zet/recipe.md	/^## Steps$/;"	s	chapter:{{.title}}
 TrimWhitespace	config/nvim/init.vim	/^function! TrimWhitespace()$/;"	f
 Type	services/watch-dot.service	/^Type=simple$/;"	k	section:Service
 Type	services/watch-monkey.service	/^Type=simple$/;"	k	section:Service
+Type	services/watch-site.service	/^Type=simple$/;"	k	section:Service
 Unit	services/watch-dot.service	/^[Unit]$/;"	s
 Unit	services/watch-monkey.service	/^[Unit]$/;"	s
+Unit	services/watch-site.service	/^[Unit]$/;"	s
 W	config/nvim/init.vim	/^command! -bar W wa$/;"	c
 WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-monkey.service	/^WantedBy=default.target$/;"	k	section:Install
+WantedBy	services/watch-site.service	/^WantedBy=default.target$/;"	k	section:Install
 any	snippets/python/tox.ini	/^allow-star-arg-any = true$/;"	k	section:flake8
 autocommit	scripts/autocommit	/^autocommit() {$/;"	f
 autofmt	config/nvim/init.vim	/^augroup autofmt$/;"	a
@@ -147,13 +156,13 @@ line	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 line	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 list	scripts/clone	/^list() {$/;"	f
 list	scripts/license	/^list() {$/;"	f
-list	scripts/site	/^list() {$/;"	f
+list	scripts/post	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
 mapleader	config/nvim/init.vim	/^let mapleader=","$/;"	v
 names	snippets/python/tox.ini	/^application-import-names = flake8$/;"	k	section:flake8
 new_filter	scripts/changed	/^new_filter () {$/;"	f
 onchange	scripts/onchange	/^onchange () {$/;"	f
-post	scripts/site	/^post() {$/;"	f
+post	scripts/post	/^post() {$/;"	f
 prefix	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 prefix	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 print_line	config/i3status/wrapper.py	/^def print_line(message):$/;"	f
@@ -169,8 +178,8 @@ style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
 the	README.md	/^# the $/;"	c
 usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
+usage	scripts/post	/^usage() {$/;"	f
 usage	scripts/prs	/^usage() {$/;"	f
-usage	scripts/site	/^usage() {$/;"	f
 usage	scripts/snip	/^usage() {$/;"	f
 workon	functions/workon.sh	/^workon() {$/;"	f
 {{.title}}	snippets/zet/note.md	/^# {{.title}}$/;"	c
