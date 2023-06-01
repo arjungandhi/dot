@@ -21,6 +21,7 @@ export DOCKER_BUILDKIT=1
 export GOPATH=/home/arjun/.go
 export GOPRIVATE=github.com/Pattern-Labs
 export SNIPPETS=/home/arjun/repos/github.com/arjungandhi/dot/snippets
+export BLOGPOSTS=/home/arjun/repos/github.com/arjungandhi/arjungandhi.com/content/projects
 export SCRIPTS=/home/arjun/repos/github.com/arjungandhi/dot/scripts
 export NOTES=/home/arjun/repos/github.com/arjungandhi/dot/vault
 export WORKSPACE=/home/arjun/repos/github.com
