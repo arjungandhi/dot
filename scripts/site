@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 # ---------------------------------- the code ----------------------------------
-[[ -z $SITE ]] && echo "SITE directory undefined" && exit 1
+[[ -z $BLOGPOSTS ]] && echo "BLOGPOSTS directory undefined" && exit 1
 
 list() {
-    find "$SNIPPETS" -maxdepth 2 -mindepth 2 -not -path "*/.*" \
+    find "$BLOGPOSTS" -maxdepth 2 -mindepth 2 -not -path "*/.*" \
     | rev | cut -d '/' -f 1-2 | rev 
 }
 
@@ -16,10 +16,7 @@ site() {
     [[ -z $1 ]] && usage && exit 1
 
 
-    local post="$SITE/$1"
-    # find the post we want and check its readable
-    # check that we dont have more than 1 file 
-    [[ ! -e $post ]] && echo "Snippet $post not found" && exit 1
+    local post="$BLOGPOST/$1"
 
     # open the post in the editor
     $EDITOR "$post"
