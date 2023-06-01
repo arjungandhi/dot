@@ -39,7 +39,6 @@ Plug 'hashivim/vim-terraform'
 " jupyter notebooks
 Plug 'goerz/jupytext.vim'
 " coc
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -209,10 +208,6 @@ let g:isort_vim_options = join([
 
 " set node js path for copilot
 let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
-
-" set copilot accept to Shift-Tab
-inoremap <silent><expr> <Tab> copilot#Accept("")
-let g:copilot_no_tab_map = 1
 
 " FixCursorHold for better performance
 let g:cursorhold_updatetime = 100
