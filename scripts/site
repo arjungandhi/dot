@@ -20,7 +20,13 @@ site() {
 
     cd "$SITEREPO"
     # launch hugo server
-    hugo server -D & 
+    hugo server -D  &> /dev/null &
+    
+    # kill hugo server when we exit
+    trap "killall background" EXIT
+
+    # open the post in the browser
+    xdg-open "http://localhost:1313/$1" &> /dev/null &
 
     # open the post in the editor
     $EDITOR "$post"
