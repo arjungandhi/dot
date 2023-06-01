@@ -153,6 +153,7 @@ mapleader	config/nvim/init.vim	/^let mapleader=","$/;"	v
 names	snippets/python/tox.ini	/^application-import-names = flake8$/;"	k	section:flake8
 new_filter	scripts/changed	/^new_filter () {$/;"	f
 onchange	scripts/onchange	/^onchange () {$/;"	f
+post	scripts/site	/^post() {$/;"	f
 prefix	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 prefix	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 print_line	config/i3status/wrapper.py	/^def print_line(message):$/;"	f
@@ -163,7 +164,6 @@ repo-list	functions/workon.sh	/^    repo-list() {$/;"	f
 return	snippets/python/tox.ini	/^mypy-init-return = true$/;"	k	section:flake8
 returning	snippets/python/tox.ini	/^suppress-none-returning = true$/;"	k	section:flake8
 s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
-site	scripts/site	/^site() {$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
 the	README.md	/^# the $/;"	c

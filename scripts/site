@@ -9,14 +9,14 @@ list() {
 }
 
 usage() {
-    echo "Usage: site list|usage|<snippet-name>"
+    echo "Usage: post list|usage|<snippet-name>"
 }
 
-site() {
+post() {
     # check we got an argument
     [[ -z $1 ]] && usage && exit 1
 
-    local post="$BLOGPOSTS/$1"
+    local p="$BLOGPOSTS/$1"
 
     cd "$SITEREPO"
     # launch hugo server
@@ -26,10 +26,11 @@ site() {
     trap "killall background" EXIT
 
     # open the post in the browser
-    xdg-open "http://localhost:1313/projects/$1" &> /dev/null &
+    # strip the .md extension
+    # xdg-open "http://localhost:1313/projects/${1%.*}" &> /dev/null &
 
     # open the post in the editor
-    $EDITOR "$post"
+    $EDITOR "$p"
 }
 
 # --------------------------------- completion ---------------------------------
@@ -44,6 +45,6 @@ fi
 case "$1" in
     list) list ;;
     usage) usage ;;
-    *) site "$1" ;;
+    *) post "$1" ;;
 esac
 
