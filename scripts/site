@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 # ---------------------------------- the code ----------------------------------
-[[ -z $BLOGPOSTS ]] && echo "BLOGPOSTS directory undefined" && exit 1
+[[ -z $SITEREPO ]] && echo "SITEREPO directory undefined" && exit 1
+BLOGPOSTS="$SITEREPO/content/projects"
 
 list() {
     find "$BLOGPOSTS" -maxdepth 2 -mindepth 2 -not -path "*/.*" \
@@ -15,8 +16,9 @@ site() {
     # check we got an argument
     [[ -z $1 ]] && usage && exit 1
 
-
     local post="$BLOGPOST/$1"
+
+    # launch hugo server if it's not running
 
     # open the post in the editor
     $EDITOR "$post"
