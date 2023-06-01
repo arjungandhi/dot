@@ -12,6 +12,13 @@ usage() {
     echo "Usage: post list|usage|<snippet-name>"
 }
 
+cleanup() {
+        local pids=$(jobs -pr)
+        [ -n "$pids" ] && kill $pids
+}
+trap "cleanup" INT QUIT TERM EXIT [...]
+
+
 post() {
     # check we got an argument
     [[ -z $1 ]] && usage && exit 1
@@ -27,8 +34,6 @@ post() {
     local url="http://localhost:1313/$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
     xdg-open "$url" &> /dev/null  &
 
-    # kill hugo server when we exit
-    trap "killall background" EXIT
     # open the post in the editor
     $EDITOR "$p"
 }
