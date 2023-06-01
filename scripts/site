@@ -26,7 +26,7 @@ site() {
     trap "killall background" EXIT
 
     # open the post in the browser
-    xdg-open "http://localhost:1313/$1" &> /dev/null &
+    xdg-open "http://localhost:1313/projects/$1" &> /dev/null &
 
     # open the post in the editor
     $EDITOR "$post"
