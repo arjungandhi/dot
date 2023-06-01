@@ -27,8 +27,8 @@ post() {
 
     # open the post in the browser
     # strip the .md extension
-    # xdg-open "http://localhost:1313/projects/${1%.*}" &> /dev/null &
-
+    local url="http://localhost:1313/$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
+    xdg-open "$url"
     # open the post in the editor
     $EDITOR "$p"
 }
