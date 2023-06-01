@@ -12,14 +12,9 @@ usage() {
     echo "Usage: post list|usage|<snippet-name>"
 }
 
-cleanup() {
-        local pids=$(jobs -pr)
-        [ -n "$pids" ] && kill $pids
-}
-trap "cleanup" INT QUIT TERM EXIT [...]
-
-
 post() {
+    trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+
     # check we got an argument
     [[ -z $1 ]] && usage && exit 1
 

@@ -129,7 +129,6 @@ autocommit	scripts/autocommit	/^autocommit() {$/;"	f
 autofmt	config/nvim/init.vim	/^augroup autofmt$/;"	a
 b:current_syntax	config/nvim/syntax/proto.vim	/^let b:current_syntax = "proto"/;"	v
 changed	scripts/changed	/^changed () {$/;"	f
-cleanup	scripts/post	/^cleanup() {$/;"	f
 clone	scripts/clone	/^clone() {$/;"	f
 did_proto_syn_inits	config/nvim/syntax/proto.vim	/^    let did_proto_syn_inits = 1$/;"	v
 exclude	snippets/python/tox.ini	/^exclude =$/;"	k	section:flake8
