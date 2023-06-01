@@ -131,6 +131,7 @@ autocmd BufNewFile,BufRead $SNIPPETS/yaml/* set filetype=yaml
 autocmd BufNewFile,BufRead $SNIPPETS/kube/* set filetype=helm
 autocmd BufNewFile,BufRead $SNIPPETS/proto/* set filetype=proto
 autocmd BufNewFile,BufRead $SNIPPETS/go/* set filetype=go    
+autocmd BufNewFile,BufRead $SNIPPETS/hugo/* set filetype=markdown
 
 """ Custom Functions
 " Trim Whitespaces
