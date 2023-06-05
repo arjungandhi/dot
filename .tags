@@ -92,6 +92,7 @@ About	snippets/md/README.md	/^# About$/;"	c
 Description	services/watch-dot.service	/^Description=Watches the dot file repo for changes and commits them$/;"	k	section:Unit
 Description	services/watch-monkey.service	/^Description=Watches the monkey file repo for changes and commits them$/;"	k	section:Unit
 Description	services/watch-site.service	/^Description=Watches the arjungandhi.com file repo for changes and commits them$/;"	k	section:Unit
+Dot	README.md	/^# Dot$/;"	c
 ExecStart	services/watch-dot.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
 ExecStart	services/watch-monkey.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
 ExecStart	services/watch-site.service	/^ExecStart=\/home\/arjun\/repos\/github.com\/arjungandhi\/dot\/scripts\/autocommit \/home\/arjun\//;"	k	section:Service
@@ -175,7 +176,6 @@ returning	snippets/python/tox.ini	/^suppress-none-returning = true$/;"	k	section
 s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
-the	README.md	/^# the $/;"	c
 usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
 usage	scripts/post	/^usage() {$/;"	f
