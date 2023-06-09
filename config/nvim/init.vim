@@ -104,7 +104,6 @@ augroup end
 
 augroup python_linting
 	autocmd!
-
 	autocmd FileType python compiler flake8
 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
 	autocmd QuickFixCmdPost [^l]* cwindow
