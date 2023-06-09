@@ -106,7 +106,7 @@ augroup python_linting
 	autocmd FileType python compiler flake8
 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
 	autocmd QuickFixCmdPost [^l]* cwindow
-  autocmd Filetype python AutoFormatBuffer black
+    " autocmd Filetype python AutoFormatBuffer black
 augroup end
 
 " md 
