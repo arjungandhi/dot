@@ -99,6 +99,7 @@ augroup autofmt
   autocmd FileType javascript,typescript AutoFormatBuffer clang-format
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType go AutoFormatBuffer gofmt  
+  autocmd Filetype python AutoFormatBuffer black
 augroup end
 
 augroup python_linting
@@ -106,7 +107,6 @@ augroup python_linting
 	autocmd FileType python compiler flake8
 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
 	autocmd QuickFixCmdPost [^l]* cwindow
-    " autocmd Filetype python AutoFormatBuffer black
 augroup end
 
 " md 
@@ -202,9 +202,6 @@ endif
 " Python
 let g:python3_host_prog = '/usr/bin/python'
 let g:pydocstring_doq_path = '/home/arjun/.local/bin/doq'
-let g:isort_vim_options = join([
-	\ '--profile black',
-	\ ], ' ')
 
 " set node js path for copilot
 let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
