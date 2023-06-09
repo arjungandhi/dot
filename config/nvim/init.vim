@@ -99,7 +99,6 @@ augroup autofmt
   autocmd FileType javascript,typescript AutoFormatBuffer clang-format
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType go AutoFormatBuffer gofmt  
-  " autocmd Filetype python AutoFormatBuffer black
 augroup end
 
 augroup python_linting
@@ -107,6 +106,7 @@ augroup python_linting
 	autocmd FileType python compiler flake8
 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
 	autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd Filetype python AutoFormatBuffer black
 augroup end
 
 " md 
