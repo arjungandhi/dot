@@ -99,6 +99,7 @@ augroup autofmt
   autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
   autocmd FileType go AutoFormatBuffer gofmt  
   autocmd Filetype python AutoFormatBuffer black
+  autocmd Filetype python AutoFormatBuffer isort
 augroup end
 
 augroup python_linting
