@@ -97,8 +97,8 @@ set splitright
 
 augroup autofmt
   autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType javascript,typescript AutoFormatBuffer clang-format
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType proto AutoFormatBuffer clang-format
+  autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
   autocmd FileType go AutoFormatBuffer gofmt  
   autocmd Filetype python AutoFormatBuffer black
   autocmd Filetype python AutoFormatBuffer isort
