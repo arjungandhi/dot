@@ -101,6 +101,7 @@ augroup autofmt
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType go AutoFormatBuffer gofmt  
   autocmd Filetype python AutoFormatBuffer black
+  autocmd Filetype python AutoFormatBuffer isort
 augroup end
 
 augroup python_linting
