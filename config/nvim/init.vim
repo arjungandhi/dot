@@ -28,8 +28,6 @@ Plug 'dkarter/bullets.vim'
 Plug 'arcticicestudio/nord-vim'
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
-" Python - isort
-Plug 'brentyi/isort.vim'
 " Go
 Plug 'fatih/vim-go'
 " Helm
