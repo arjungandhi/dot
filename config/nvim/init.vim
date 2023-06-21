@@ -102,7 +102,7 @@ augroup autofmt
 augroup end
 
 augroup python_linting
-    autocmd FileType python FormatBuffer isort
+    autocmd FileType python :FormatBuffer isort
 	autocmd FileType python compiler flake8
 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
 	autocmd QuickFixCmdPost [^l]* cwindow
