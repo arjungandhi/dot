@@ -141,7 +141,6 @@ g:cursorhold_updatetime	config/nvim/init.vim	/^let g:cursorhold_updatetime = 100
 g:fzf_layout	config/nvim/init.vim	/^let g:fzf_layout = { 'down': '40%' }$/;"	v
 g:gutentags_ctags_tagfile	config/nvim/init.vim	/^let g:gutentags_ctags_tagfile = '.tags'$/;"	v
 g:gutentags_file_list_command	config/nvim/init.vim	/^    let g:gutentags_file_list_command = 'rg --files'$/;"	v
-g:isort_vim_options	config/nvim/init.vim	/^let g:isort_vim_options = join([$/;"	v
 g:pydocstring_doq_path	config/nvim/init.vim	/^let g:pydocstring_doq_path = '\/home\/arjun\/.local\/bin\/doq'$/;"	v
 g:python3_host_prog	config/nvim/init.vim	/^let g:python3_host_prog = '\/usr\/bin\/python'$/;"	v
 get_dockerctx	config/i3status/wrapper.py	/^def get_dockerctx():$/;"	f
