@@ -1,4 +1,10 @@
 #!/usr/bin/bash
 
+while true
+do
+clear
+echo "$@", Press Ctrl+C to exit
 $($@)
+sleep 1
+done
 
