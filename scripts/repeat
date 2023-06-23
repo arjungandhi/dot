@@ -3,7 +3,7 @@
 while true
 do
 clear
-echo "$@", Press Ctrl+C to exit
+echo "Command: $@" '| Press Ctrl+C to exit'
 $($@)
 sleep 1
 done
