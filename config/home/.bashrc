@@ -231,6 +231,10 @@ alias knowledge="cd $KNOWLEDGE"
 alias k=kubectl
 complete -o default -F __start_kubectl k
 
+# gcalcli -> cal
+alias cal=gcalcli
+
+
 
 # ------------------------------ program configs ------------------------------
 # pdm
