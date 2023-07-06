@@ -39,7 +39,6 @@
 !_TAG_KIND_DESCRIPTION!Vim	m,map	/maps/
 !_TAG_KIND_DESCRIPTION!Vim	n,filename	/vimball filename/
 !_TAG_KIND_DESCRIPTION!Vim	v,variable	/variable definitions/
-!_TAG_KIND_DESCRIPTION!Yaml	a,anchor	/anchors/
 !_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
@@ -50,7 +49,6 @@
 !_TAG_PARSER_VERSION!Sh	0.0	/current.age/
 !_TAG_PARSER_VERSION!SystemdUnit	0.0	/current.age/
 !_TAG_PARSER_VERSION!Vim	0.0	/current.age/
-!_TAG_PARSER_VERSION!Yaml	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
 !_TAG_PROC_CWD	/home/arjun/repos/github.com/arjungandhi/dot/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
@@ -70,7 +68,6 @@
 !_TAG_ROLE_DESCRIPTION!SystemdUnit!unit	Requires	/referred in Requires key/
 !_TAG_ROLE_DESCRIPTION!SystemdUnit!unit	WantedBy	/referred in WantedBy key/
 !_TAG_ROLE_DESCRIPTION!SystemdUnit!unit	Wants	/referred in Wants key/
-!_TAG_ROLE_DESCRIPTION!Yaml!anchor	alias	/alias/
 <C-H>	config/nvim/init.vim	/^nnoremap <C-H> <C-W><C-H>$/;"	m
 <C-J>	config/nvim/init.vim	/^nnoremap <C-J> <C-W><C-J>$/;"	m
 <C-K>	config/nvim/init.vim	/^nnoremap <C-K> <C-W><C-K>$/;"	m
