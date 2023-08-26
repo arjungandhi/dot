@@ -36,7 +36,6 @@ Plug 'towolf/vim-helm'
 Plug 'hashivim/vim-terraform'
 " jupyter notebooks
 Plug 'goerz/jupytext.vim'
-" coc
 
 
 call plug#end()
