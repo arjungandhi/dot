@@ -193,9 +193,6 @@ nmap <leader>fs :SNIPPETS<CR>
 " fzf
 let g:fzf_layout = { 'down': '40%' }
 
-" overwrite :W to save all buffers
-command! -bar W wa
-
 " Gutentags
 let g:gutentags_ctags_tagfile = '.tags'
 if executable('rg')
@@ -219,4 +216,7 @@ let g:context_nvim_no_redraw = 1
 autocmd VimEnter * :TSEnable highlight
 autocmd VimEnter * :TSEnable indent
 
+" set up calendar
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
 
