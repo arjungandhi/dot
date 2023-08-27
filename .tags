@@ -121,7 +121,6 @@ Type	services/watch-site.service	/^Type=simple$/;"	k	section:Service
 Unit	services/watch-dot.service	/^[Unit]$/;"	s
 Unit	services/watch-monkey.service	/^[Unit]$/;"	s
 Unit	services/watch-site.service	/^[Unit]$/;"	s
-W	config/nvim/init.vim	/^command! -bar W wa$/;"	c
 WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-monkey.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-site.service	/^WantedBy=default.target$/;"	k	section:Install
