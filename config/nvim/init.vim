@@ -39,6 +39,8 @@ Plug 'github/copilot.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " nerd tree
 Plug 'preservim/nerdtree'
+" calendar
+Plug 'itchyny/calendar.vim' 
 
 
 call plug#end()
