@@ -15,3 +15,9 @@ services=$(ls $SCRIPTPATH/*.service)
 for service in $services; do
     systemctl --user enable --now $service
 done
+
+# check for certain programs and enable the services
+# if they are installed
+
+# systemctl --user enable --now autovdirsyncer.service
+
