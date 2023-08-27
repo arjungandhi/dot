@@ -61,7 +61,6 @@ set autowrite
 
 " colorscheme nord
 colorscheme nord
-set background=dark
 
 " set the path to where we opened vim
 set path+=**
