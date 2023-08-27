@@ -40,7 +40,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " nerd tree
 Plug 'preservim/nerdtree'
 " calendar
-Plug 'itchyny/calendar.vim' 
+" Come back to this
+" Plug 'itchyny/calendar.vim' 
 
 
 call plug#end()
@@ -217,9 +218,9 @@ autocmd VimEnter * :TSEnable highlight
 autocmd VimEnter * :TSEnable indent
 
 " set up calendar
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
-let g:calendar_view = 'day_4'
-" source the credentials file
-" see readme if you need to do this again
-source ~/.cache/calendar.vim/credentials.vim
+" let g:calendar_google_calendar = 1
+" let g:calendar_google_task = 1
+" let g:calendar_view = 'day_4'
+" " source the credentials file
+" " see readme if you need to do this again
+" source ~/.cache/calendar.vim/credentials.vim
