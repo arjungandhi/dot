@@ -1,24 +1,29 @@
 """ Vim-Plug
 call plug#begin()
-" copilot
-Plug 'github/copilot.vim'
+" Vim Mods
 " tabline at top for buggers
 Plug 'ap/vim-buftabline'
-" tree sitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" nerd tree
-Plug 'preservim/nerdtree'
+" sensible defaults
+Plug 'tpope/vim-sensible'
+" line text obj
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+
+
 " complliers for languages
 Plug 'konfekt/vim-compilers'
 " google code fmt
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-" sensible defaults
-Plug 'tpope/vim-sensible'
-" line text obj
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
+" Go
+Plug 'fatih/vim-go'
+" Helm
+Plug 'towolf/vim-helm'
+" Terraform
+Plug 'hashivim/vim-terraform'
+
+" Useful vim modz
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -28,14 +33,12 @@ Plug 'dkarter/bullets.vim'
 Plug 'arcticicestudio/nord-vim'
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
-" Go
-Plug 'fatih/vim-go'
-" Helm
-Plug 'towolf/vim-helm'
-" Terraform
-Plug 'hashivim/vim-terraform'
-" jupyter notebooks
-Plug 'goerz/jupytext.vim'
+" copilot
+Plug 'github/copilot.vim'
+" tree sitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" nerd tree
+Plug 'preservim/nerdtree'
 
 
 call plug#end()
