@@ -39,5 +39,5 @@ case "$1" in
     list) list ;;
     usage) usage ;;
     today) today ;;
-    *) today ;;
+    *) list ;;
 esac
