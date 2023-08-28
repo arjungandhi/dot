@@ -1,0 +1,41 @@
+#!/usr/bin/bash
+# ---------------------------------- the code ----------------------------------
+[[ -z $SNIPPETS ]] && echo "SNIPPETS directory undefined" && exit 1
+
+list() {
+    find "$SNIPPETS" -maxdepth 2 -mindepth 2 -not -path "*/.*" \
+    | rev | cut -d '/' -f 1-2 | rev 
+}
+
+usage() {
+    echo "Usage: snip list|usage|<snippet-name>"
+}
+
+snip() {
+    # check we got an argument
+    [[ -z $1 ]] && usage && exit 1
+
+
+    local snippet="$SNIPPETS/$1"
+    # find the snippet we want and check its readable
+    # check that we dont have more than 1 file 
+    [[ ! -r $snippet ]] && echo "Snippet $snippet not found" && exit 1
+   
+    # print the snippet
+    cat "$snippet"
+}
+
+# --------------------------------- completion ---------------------------------
+
+
+if [[ -n $COMP_LINE ]]; then
+    prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
+    list | grep "$prefix" 
+    exit
+fi
+
+case "$1" in
+    list) list ;;
+    usage) usage ;;
+    *) snip "$1" ;;
+esac
