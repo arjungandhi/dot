@@ -8,7 +8,9 @@ check_khal() {
     fi
 }
 
+
 today() {
+    check_khal
     khal list --format '{cyan-bold}{start-end-time-style} {calendar-color}{title}{repeat-symbol}' --day-format '{yellow}{name}, {date}' --exclude-calendar 'Pattern Updates' --exclude-calendar 'Sneha'
 }
 
