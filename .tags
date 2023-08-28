@@ -176,6 +176,7 @@ s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
 today	scripts/kal	/^today() {$/;"	f
+upcoming	scripts/kal	/^upcoming() {$/;"	f
 usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/kal	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
