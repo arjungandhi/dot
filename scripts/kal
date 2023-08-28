@@ -21,7 +21,7 @@ today() {
 
 
 usage() {
-    echo "Usage: $0 [today|list]"
+    echo "Usage: $(basename $0) [today|list]"
 }
 
 # --------------------------------- completion ---------------------------------
