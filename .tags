@@ -155,6 +155,7 @@ license	scripts/license	/^license() {$/;"	f
 line	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v
 line	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 list	scripts/clone	/^list() {$/;"	f
+list	scripts/kal	/^list() {$/;"	f
 list	scripts/license	/^list() {$/;"	f
 list	scripts/post	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
@@ -176,7 +177,6 @@ s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
 today	scripts/kal	/^today() {$/;"	f
-upcoming	scripts/kal	/^upcoming() {$/;"	f
 usage	scripts/clone	/^usage() {$/;"	f
 usage	scripts/kal	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f

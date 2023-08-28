@@ -9,7 +9,7 @@ check_khal() {
 }
 
 
-upcoming() {
+list() {
     check_khal
     khal list --format '{cyan-bold}{start-end-time-style} {calendar-color}{title}{repeat-symbol}' --day-format '{yellow}{name}, {date}' --exclude-calendar 'Pattern Updates' --exclude-calendar 'Sneha'
 }
@@ -24,7 +24,7 @@ usage() {
 }
 
 # --------------------------------- completion ---------------------------------
-opts="upcoming today usage"
+opts="list today usage"
 if [[ -n $COMP_LINE ]]; then
     prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
     results=$(compgen -W "$opts" -- "$prefix")
@@ -35,8 +35,8 @@ if [[ -n $COMP_LINE ]]; then
 fi
 
 case "$1" in
-    upcoming) upcoming ;;
+    list) list ;;
     usage) usage ;;
     today) today ;;
-    *) upcoming ;;
+    *) today ;;
 esac
