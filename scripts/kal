@@ -35,7 +35,7 @@ if [[ -n $COMP_LINE ]]; then
 fi
 
 case "$1" in
-    upcoming) upcomping ;;
+    upcoming) upcoming ;;
     usage) usage ;;
     today) today ;;
     *) upcoming ;;
