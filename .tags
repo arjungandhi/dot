@@ -129,7 +129,7 @@ autocommit	scripts/autocommit	/^autocommit() {$/;"	f
 autofmt	config/nvim/init.vim	/^augroup autofmt$/;"	a
 b:current_syntax	config/nvim/syntax/proto.vim	/^let b:current_syntax = "proto"/;"	v
 changed	scripts/changed	/^changed () {$/;"	f
-check_khal	scripts/cal	/^check_khal() {$/;"	f
+check_khal	scripts/kal	/^check_khal() {$/;"	f
 clone	scripts/clone	/^clone() {$/;"	f
 did_proto_syn_inits	config/nvim/syntax/proto.vim	/^    let did_proto_syn_inits = 1$/;"	v
 exclude	snippets/python/tox.ini	/^exclude =$/;"	k	section:flake8
@@ -175,9 +175,9 @@ returning	snippets/python/tox.ini	/^suppress-none-returning = true$/;"	k	section
 s:find_files	config/nvim/init.vim	/^function! s:find_files()$/;"	f
 snip	scripts/snip	/^snip() {$/;"	f
 style	snippets/python/tox.ini	/^import-order-style = google$/;"	k	section:flake8
-today	scripts/cal	/^today() {$/;"	f
-usage	scripts/cal	/^usage() {$/;"	f
+today	scripts/kal	/^today() {$/;"	f
 usage	scripts/clone	/^usage() {$/;"	f
+usage	scripts/kal	/^usage() {$/;"	f
 usage	scripts/license	/^usage() {$/;"	f
 usage	scripts/post	/^usage() {$/;"	f
 usage	scripts/prs	/^usage() {$/;"	f
