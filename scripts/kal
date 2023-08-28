@@ -22,7 +22,10 @@ usage() {
 opts="today usage"
 if [[ -n $COMP_LINE ]]; then
     prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
-    COMPREPLY=($(compgen -W "$opts" -- "$prefix"))
+    results=$(compgen -W "$opts" -- "$prefix")
+    for i in $results; do
+        echo "$i"
+    done
     exit
 fi
 
