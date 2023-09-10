@@ -161,7 +161,6 @@ list	scripts/post	/^list() {$/;"	f
 list	scripts/snip	/^list() {$/;"	f
 mapleader	config/nvim/init.vim	/^let mapleader=","$/;"	v
 names	snippets/python/tox.ini	/^application-import-names = flake8$/;"	k	section:flake8
-new_filter	scripts/changed	/^new_filter () {$/;"	f
 onchange	scripts/onchange	/^onchange () {$/;"	f
 post	scripts/post	/^post() {$/;"	f
 prefix	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"	v

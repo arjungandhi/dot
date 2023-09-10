@@ -1,36 +1,19 @@
 #!/usr/bin/env bash
 
-# new_filter is a filter that takes a list of files from stdin, and a file and
-# outputs the files that are newer than the file.
-new_filter () {
-  local file="$1"
-  while read line; do
-    if [[ "$line" -nt "$file" ]]; then
-      echo "$line"
-    fi
-  done
-}
-
 ## Returns the full path to any changed files in the current directory
-## or any subdirectories recursively one to a line. Ignores files
-## that are ignored by Git when working in a Git directory.
-changed () {
-  local dir="${PWD}"                            # Store the current working directory
-  local tmpname="onchange${dir//\//-}"          # Create a unique name for the temporary file
-  local tmp="/tmp/${tmpname}"                   # Set the path of the temporary file
-  local git_dir="$(git rev-parse --git-dir 2>/dev/null)"  # Check if in a Git directory
+## or any subdirectories recursively one to a line. Useful for detecting
+## changes and taking action (see onchange).
 
+changed () {
+  local dir="${PWD}"
+  local tmpname="onchange${dir//\//-}"
+  local tmp="/tmp/${tmpname}"
   if [[ ! -e "${tmp}" ]]; then
-      find "${dir}" -type f  # Find all files in the directory
+    find "${dir}" -type f -not -path '*testdata*'
   else
-    if [[ -n "${git_dir}" ]]; then             
-      git ls-files | new_filter "${tmp}"
-    else
-      find "${dir}" -type f  | new_filter "${tmp}"
-    fi
+    find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*'
   fi
-  touch "${tmp}"                                # Update the timestamp of the temporary file
+  touch "${tmp}"
 }
 
 changed "$@"
-
