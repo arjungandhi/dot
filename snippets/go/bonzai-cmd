@@ -1,0 +1,8 @@
+var Cmd = &bonzai.Command{
+	Name:     "name",
+	Commands: []*bonzai.Cmd{help.Cmd},
+	Call: func(cmd *bonzai.Cmd, args ...string) error {
+		fmt.Printf("zet is running!")
+		return nil
+	},
+}
