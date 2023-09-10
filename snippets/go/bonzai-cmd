@@ -1,3 +1,7 @@
+import (
+	bonzai "github.com/rwxrob/bonzai/z"
+)
+
 var Cmd = &bonzai.Command{
 	Name:     "name",
 	Commands: []*bonzai.Cmd{help.Cmd},
