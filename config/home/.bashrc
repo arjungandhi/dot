@@ -190,6 +190,7 @@ for i in ${owncomp[@]}; do complete -C $i $i; done
 _have gh && . <(gh completion -s bash)
 _have pattern && . <(pattern completion bash)
 _have kubectl && source <(kubectl completion bash)
+_have docker && source <(docker completion bash)
 
 complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform
