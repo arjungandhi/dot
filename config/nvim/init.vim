@@ -217,10 +217,3 @@ let g:context_nvim_no_redraw = 1
 autocmd VimEnter * :TSEnable highlight
 autocmd VimEnter * :TSEnable indent
 
-" set up calendar
-" let g:calendar_google_calendar = 1
-" let g:calendar_google_task = 1
-" let g:calendar_view = 'day_4'
-" " source the credentials file
-" " see readme if you need to do this again
-" source ~/.cache/calendar.vim/credentials.vim
