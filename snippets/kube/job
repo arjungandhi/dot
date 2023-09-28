@@ -1,3 +1,4 @@
+{{ if .Values.<app_name>.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -15,4 +16,4 @@ spec:
       imagePullSecrets:
         - name: pattern.docker.credentials
   backoffLimit: 4
-
+{{ end }}
