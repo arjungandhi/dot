@@ -2,35 +2,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  # if you need multiple config maps you can do something like so
-  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<app_name>
-  # optionally you can group config maps logically and make them more
-  # based on whats contained in them ex
-  # name: {{ .Release.Name }}-{{ .Chart.Name }}-<config_type>
-  name: {{ .Release.Name }}-{{ .Chart.Name}}
+  name: {{ .Release.Name }}-<app_name>
   labels:
     # this is the label that will be used to match the deployment to the service
-    app: {{ .Release.Name }}-{{ .Chart.Name }}
+    app: {{ .Release.Name }}-<app_name>
 spec:
   replicas: 1
   selector:
     matchLabels:
       # this should match the labels in the pod template
-      app: {{ .Release.Name }}-{{ .Chart.Name }}
+      app: {{ .Release.Name }}-<app_name>
   template:
     metadata:
       labels:
         # this should match the match_labels above
-        app: {{ .Release.Name }}-{{ .Chart.Name }}
+        app: {{ .Release.Name }}-<app_name>
     spec:
       containers:
-      - name: {{ .Release.Name }}-{{ .Chart.Name }}
+      - name: {{ .Release.Name }}-<app_name>
         image: {{ .Values.image.name }}:{{ .Values.image.tag }}
         ports:
         - containerPort: {{ .Values.port }}
         envFrom:
         - configMapRef:
-            name: {{ .Release.Name }}-{{ .Chart.Name }}
+            name: {{ .Release.Name }}-<app_name>
       imagePullSecrets:
         - name: pattern.docker.credentials
 {{ end }}
