@@ -1,3 +1,4 @@
+{{ if .Values.<app_name>.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,3 +33,4 @@ spec:
             name: {{ .Release.Name }}-{{ .Chart.Name }}
       imagePullSecrets:
         - name: pattern.docker.credentials
+{{ end }}
