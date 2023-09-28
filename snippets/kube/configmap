@@ -1,3 +1,4 @@
+{{ if .Values.<app_name>.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -11,4 +12,4 @@ data:
     # everything here needs to be a string
     # make sure to wrap bools/nums in single quotes
     KEY: 'VALUE'
-
+{{ end }}
