@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-<app_name>
-        image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+        image: "{{ .Values.<app_name>.image.repo }}:{{ .Values.<app_name>.tag }}"
         ports:
         - containerPort: {{ .Values.port }}
         envFrom:
