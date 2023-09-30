@@ -189,6 +189,8 @@ for i in ${owncomp[@]}; do complete -C $i $i; done
 # other stuff
 _have gh && . <(gh completion -s bash)
 _have pattern && . <(pattern completion bash)
+_have molecule && . <(molecule completion bash)
+_have atom && . <(atom completion bash)
 _have kubectl && source <(kubectl completion bash)
 _have docker && source <(docker completion bash)
 
