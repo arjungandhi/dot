@@ -1,26 +1,5 @@
 #!/usr/bin/bash
+pattern bazel bump
 
-# --------------------------------- completion ---------------------------------
-
-options=(
-    'hours'
-    'minutes'
-    'date'
-    'seconds'
-    'ns'
-)
-
-if [[ -n $COMP_LINE ]]; then
-    prefix=$(echo "$COMP_LINE" | cut -d " " -f 2)
-    for option in "${options[@]}"; do
-        if [[ $option == $prefix* ]]; then
-            echo "$option"
-        fi
-    done
-    exit
-fi
-
-mode=${1:-'seconds'}
-
-date -I$mode
-
+git add MODULE.bazel
+git commit -m "Bump bazel version"
