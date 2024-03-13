@@ -214,7 +214,7 @@ alias ssh="kitty +kitten ssh"
 alias icat="kitty +kitten icat"
 
 # alias both vi and vim to nvim
-# alias vi=nvim
+alias vi=nvim
 alias vim=nvim
 
 # temp
