@@ -106,12 +106,12 @@ augroup autofmt
   autocmd Filetype python AutoFormatBuffer black
 augroup end
 
-augroup python_linting
-    autocmd BufWritePre *.py FormatCode isort
-	autocmd FileType python compiler flake8
-	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
-	autocmd QuickFixCmdPost [^l]* cwindow
-augroup end
+" augroup python_linting
+"     autocmd BufWritePre *.py FormatCode isort
+" 	autocmd FileType python compiler flake8
+" 	autocmd BufWritePost *.py silent make! <afile> | silent redraw!
+" 	autocmd QuickFixCmdPost [^l]* cwindow
+" augroup end
 
 " md 
 autocmd FileType markdown setlocal spell spelllang=en_us
