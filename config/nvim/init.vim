@@ -103,12 +103,18 @@ augroup autofmt
   autocmd FileType proto AutoFormatBuffer clang-format
   autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
   autocmd FileType go AutoFormatBuffer gofmt  
+augroup end
+
+augroup python
   autocmd Filetype python AutoFormatBuffer black
   autocmd BufWritePre python FormatCode isort
   autocmd FileType python compiler flake8
   autocmd BufWritePost python silent make! <afile> | silent redraw!
   autocmd QuickFixCmdPost [^l] cwindow
 augroup end
+
+
+
 
 " md 
 autocmd FileType markdown setlocal spell spelllang=en_us
