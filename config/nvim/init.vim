@@ -98,15 +98,14 @@ set splitright
 
 """ Filetype-Specific Configurations
 
-augroup autofmt
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType proto AutoFormatBuffer clang-format
-  autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
-  autocmd FileType go AutoFormatBuffer gofmt  
-  autocmd Filetype python AutoFormatBuffer black
-augroup end
+autocmd FileType bzl AutoFormatBuffer buildifier
+autocmd FileType proto AutoFormatBuffer clang-format
+autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
+autocmd FileType go AutoFormatBuffer gofmt  
+
 
 augroup python
+  autocmd Filetype python AutoFormatBuffer black
   autocmd BufWritePre python FormatCode isort
   autocmd FileType python compiler flake8
   autocmd BufWritePost python silent make! <afile> | silent redraw!
