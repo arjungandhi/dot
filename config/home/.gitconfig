@@ -1,0 +1,30 @@
+[init]
+	defaultBranch = main
+[user]
+	email = contact@arjungandhi.com
+	name = Arjun Gandhi
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[submodule]
+	recurse = true
+[push]
+	autoSetupRemote = true
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
+[alias]
+	sfix = !git submodule sync --recursive && git submodule update --init --recursive
+	gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[core]
+	excludesfile = /home/arjun/.gitignore
+[remote "origin"]
+	prune = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
