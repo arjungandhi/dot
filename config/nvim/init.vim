@@ -97,19 +97,13 @@ set splitbelow
 set splitright
 
 """ Filetype-Specific Configurations
-
 autocmd FileType bzl AutoFormatBuffer buildifier
 autocmd FileType proto AutoFormatBuffer clang-format
 autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
 autocmd FileType go AutoFormatBuffer gofmt  
-autocmd Filetype python AutoFormatBuffer black
-autocmd BufWritePre python FormatCode isort
-autocmd FileType python compiler flake8
-autocmd BufWritePost python silent make! <afile> | silent redraw!
+
+autocmd Filetype python AutoFormatBuffer black | AutoFormatBuffer isort | compiler flake8 | silent make! <afile> | silent redraw!
 autocmd QuickFixCmdPost [^l] cwindow
-
-
-
 
 " md 
 autocmd FileType markdown setlocal spell spelllang=en_us
