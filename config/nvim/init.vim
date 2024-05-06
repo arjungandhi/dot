@@ -102,8 +102,9 @@ autocmd FileType proto AutoFormatBuffer clang-format
 autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
 autocmd FileType go AutoFormatBuffer gofmt  
 
-autocmd Filetype python AutoFormatBuffer black | AutoFormatBuffer isort | compiler flake8 | silent make! <afile> | silent redraw!
-autocmd QuickFixCmdPost [^l] cwindow
+autocmd Filetype python AutoFormatBuffer black | AutoFormatBuffer isort 
+" compiler flake8 | silent make! <afile> | silent redraw!
+" autocmd QuickFixCmdPost [^l] cwindow
 
 " md 
 autocmd FileType markdown setlocal spell spelllang=en_us
