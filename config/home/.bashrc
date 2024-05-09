@@ -234,12 +234,8 @@ alias k=kubectl
 complete -o default -F __start_kubectl k
 
 # ------------------------------ program configs ------------------------------
-# pdm
-if [ -n "$PYTHONPATH" ]; then
-    export PYTHONPATH='/usr/lib/python3.10/site-packages/pdm/pep582':$PYTHONPATH
-else
-    export PYTHONPATH='/usr/lib/python3.10/site-packages/pdm/pep582'
-fi
+# gcloud cli
+source /etc/profile.d/google-cloud-cli.sh 
 
 # nodenev init
 eval "$(nodenv init -)"
