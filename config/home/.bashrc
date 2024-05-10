@@ -31,9 +31,9 @@ export LISTDIR=/home/arjun/repos/github.com/arjungandhi/monkey/lists
 export DARWINDIR=/home/arjun/repos/github.com/arjungandhi/darwin-tree
 export PATTERN_DEV_NAMESPACE=monkey
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
-export ANDROID_HOME=/home/arjun/.android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export ANDROID_HOME=/home/arjun/.android/Sdk
+# export PATH=$PATH:$ANDROID_HOME/emulator
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # variables for cd
 export pp="/home/arjun/repos/github.com/Pattern-Labs/vault/02 - Getting Sh!t Done/01 - Engineering/03 - What People Are Doing/monkey"
