@@ -101,9 +101,11 @@ autocmd FileType bzl AutoFormatBuffer buildifier
 autocmd FileType proto AutoFormatBuffer clang-format
 autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
 autocmd FileType go AutoFormatBuffer gofmt  
-autocmd FileType python AutoFormatBuffer black
 
 " python
+" run black on save then compile flake8 and show errors
+" then run make to show errors in quickfix
+autocmd FileType python AutoFormatBuffer black
 autocmd FileType python compiler flake8
 autocmd BufWritePost python silent make! <afile> | silent redraw!
 autocmd QuickFixCmdPost [^l] cwindow
