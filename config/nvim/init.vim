@@ -101,7 +101,7 @@ autocmd FileType bzl AutoFormatBuffer buildifier
 autocmd FileType proto AutoFormatBuffer clang-format
 autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
 autocmd FileType go AutoFormatBuffer gofmt  
-autocmd FileType python AutoFormatBuffer black
+" autocmd FileType python AutoFormatBuffer black
 autocmd FileType python AutoFormatBuffer isort
 
 " python
