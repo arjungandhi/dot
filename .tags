@@ -182,7 +182,6 @@ prefix	config/i3status/wrapper.py	/^            line, prefix = line[1:], ","$/;"
 prefix	config/i3status/wrapper.py	/^        line, prefix = read_line(), ""$/;"	v
 print_line	config/i3status/wrapper.py	/^def print_line(message):$/;"	f
 print_x	scripts/hline	/^print_x() {$/;"	f
-python	config/nvim/init.vim	/^augroup python$/;"	a
 radius	config/picom/picom.conf	/^shadow-radius = 7;$/;"	k
 rate	config/picom/picom.conf	/^refresh-rate = 0$/;"	k
 read_line	config/i3status/wrapper.py	/^def read_line():$/;"	f
