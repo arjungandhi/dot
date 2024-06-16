@@ -177,9 +177,10 @@ docker-purge-all() {
 }
 
 
-# source the functions
-source $FUNCTIONS/workon.sh
-
+# source the functions (all files in the functions directory)
+for file in $FUNCTIONS/*.sh; do
+  _source_if "$file"
+done
  
 # ----------------- source external dependenices / completion -----------------
 #enable tab completion
