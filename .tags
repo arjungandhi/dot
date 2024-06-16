@@ -125,6 +125,7 @@ Unit	services/watch-site.service	/^[Unit]$/;"	s
 WantedBy	services/watch-dot.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-monkey.service	/^WantedBy=default.target$/;"	k	section:Install
 WantedBy	services/watch-site.service	/^WantedBy=default.target$/;"	k	section:Install
+_mage_completions	functions/mage-completion.sh	/^_mage_completions()$/;"	f
 any	snippets/python/tox.ini	/^allow-star-arg-any = true$/;"	k	section:flake8
 autocommit	scripts/autocommit	/^autocommit() {$/;"	f
 b:current_syntax	config/nvim/syntax/proto.vim	/^let b:current_syntax = "proto"/;"	v
