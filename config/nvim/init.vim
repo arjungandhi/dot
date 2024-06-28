@@ -135,6 +135,7 @@ autocmd BufNewFile,BufRead $SNIPPETS/kube/* set filetype=helm
 autocmd BufNewFile,BufRead $SNIPPETS/proto/* set filetype=proto
 autocmd BufNewFile,BufRead $SNIPPETS/go/* set filetype=go    
 autocmd BufNewFile,BufRead $SNIPPETS/hugo/* set filetype=markdown
+autocmd BufNewFile,BufRead $SNIPPETS/bazel/* set filetype=bzl
 
 """ Custom Functions
 " Trim Whitespaces
