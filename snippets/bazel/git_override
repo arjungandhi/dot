@@ -1,1 +1,5 @@
-git_override(module_name="module_name", remote="https://github.com/Pattern-Labs/repo_name.git, commit = "")
+git_override(
+    module_name = "module_name",
+    remote = "https://github.com/Pattern-Labs/repo_name.git",
+    commit = "",
+)
