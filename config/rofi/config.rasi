@@ -1,0 +1,5 @@
+configuration {
+	font: "Roboto 12";
+}
+
+@theme "nord"
