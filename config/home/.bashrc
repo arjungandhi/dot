@@ -12,26 +12,22 @@ _source_if() { [[ -r "$1" ]] && source "$1"; }
 # --------------------------- source bash variables ---------------------------
 
 export EDITOR=nvim
-export AWS_PROFILE=pattern
-export DOCKER_BUILD_CONTEXT=default
-export DOCKER_CLOUD_DEPLOYMENT_CONTEXT=pattern-aws
-export DOCKER_DEPLOYMENT_CONTEXT=pattern-aws
 export DOCKER_BUILDKIT=1
-export GOPATH=/home/$USER/.go
+export GOPATH=$HOME/.go
 export GOPRIVATE=github.com/Pattern-Labs
-export SNIPPETS=/home/$USER/repos/github.com/arjungandhi/dot/snippets
-export SITEREPO=/home/$USER/repos/github.com/arjungandhi/arjungandhi.com
-export SCRIPTS=/home/$USER/repos/github.com/arjungandhi/dot/scripts
-export NOTES=/home/$USER/repos/github.com/arjungandhi/dot/vault
-export WORKSPACE=/home/$USER/repos/github.com
-export REPOS=/home/$USER/repos
-export FUNCTIONS=/home/$USER/repos/github.com/arjungandhi/dot/functions
-export ZETDIR=/home/$USER/repos/github.com/arjungandhi/monkey/notes
-export LISTDIR=/home/$USER/repos/github.com/arjungandhi/monkey/lists
-export DARWINDIR=/home/$USER/repos/github.com/arjungandhi/darwin-tree
+export SNIPPETS=$HOME/repos/github.com/arjungandhi/dot/snippets
+export SITEREPO=$HOME/repos/github.com/arjungandhi/arjungandhi.com
+export SCRIPTS=$HOME/repos/github.com/arjungandhi/dot/scripts
+export NOTES=$HOME/repos/github.com/arjungandhi/dot/vault
+export WORKSPACE=$HOME/repos/github.com
+export REPOS=$HOME/repos
+export FUNCTIONS=$HOME/repos/github.com/arjungandhi/dot/functions
+export ZETDIR=$HOME/repos/github.com/arjungandhi/monkey/notes
+export LISTDIR=$HOME/repos/github.com/arjungandhi/monkey/lists
+export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
 export PATTERN_DEV_NAMESPACE=monkey
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
-export ANDROID_HOME=/home/$USER/.android/sdk
+export ANDROID_HOME=$HOME/.android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
