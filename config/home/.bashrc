@@ -17,26 +17,25 @@ export DOCKER_BUILD_CONTEXT=default
 export DOCKER_CLOUD_DEPLOYMENT_CONTEXT=pattern-aws
 export DOCKER_DEPLOYMENT_CONTEXT=pattern-aws
 export DOCKER_BUILDKIT=1
-export GOPATH=/home/arjun/.go
+export GOPATH=/home/$USER/.go
 export GOPRIVATE=github.com/Pattern-Labs
-export SNIPPETS=/home/arjun/repos/github.com/arjungandhi/dot/snippets
-export SITEREPO=/home/arjun/repos/github.com/arjungandhi/arjungandhi.com
-export SCRIPTS=/home/arjun/repos/github.com/arjungandhi/dot/scripts
-export NOTES=/home/arjun/repos/github.com/arjungandhi/dot/vault
-export WORKSPACE=/home/arjun/repos/github.com
-export REPOS=/home/arjun/repos
-export FUNCTIONS=/home/arjun/repos/github.com/arjungandhi/dot/functions
-export ZETDIR=/home/arjun/repos/github.com/arjungandhi/monkey/notes
-export LISTDIR=/home/arjun/repos/github.com/arjungandhi/monkey/lists
-export DARWINDIR=/home/arjun/repos/github.com/arjungandhi/darwin-tree
+export SNIPPETS=/home/$USER/repos/github.com/arjungandhi/dot/snippets
+export SITEREPO=/home/$USER/repos/github.com/arjungandhi/arjungandhi.com
+export SCRIPTS=/home/$USER/repos/github.com/arjungandhi/dot/scripts
+export NOTES=/home/$USER/repos/github.com/arjungandhi/dot/vault
+export WORKSPACE=/home/$USER/repos/github.com
+export REPOS=/home/$USER/repos
+export FUNCTIONS=/home/$USER/repos/github.com/arjungandhi/dot/functions
+export ZETDIR=/home/$USER/repos/github.com/arjungandhi/monkey/notes
+export LISTDIR=/home/$USER/repos/github.com/arjungandhi/monkey/lists
+export DARWINDIR=/home/$USER/repos/github.com/arjungandhi/darwin-tree
 export PATTERN_DEV_NAMESPACE=monkey
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
-export ANDROID_HOME=/home/arjun/.android/sdk
+export ANDROID_HOME=/home/$USER/.android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # variables for cd
-export pp="/home/arjun/repos/github.com/Pattern-Labs/vault/02 - Getting Sh!t Done/01 - Engineering/03 - What People Are Doing/monkey"
 export snippets=$SNIPPETS
 export notes=$SCRIPTS
 
@@ -201,7 +200,7 @@ _have docker && . <(docker completion bash)
 complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform
 
-_have fzf && source /usr/share/fzf/completion.bash
+# _have fzf && source /usr/share/fzf/completion.bash
 
 # ---------------------------------- aliases ----------------------------------
 # ls 
@@ -239,13 +238,13 @@ complete -o default -F __start_kubectl k
 
 # ------------------------------ program configs ------------------------------
 # gcloud cli
-source /etc/profile.d/google-cloud-cli.sh 
+# source /etc/profile.d/google-cloud-cli.sh 
 
 # nodenev init
-eval "$(nodenv init -)"
+# eval "$(nodeenv init -)"
 
 # yarn global bin
-export PATH="$PATH:$(yarn global bin)"
+_have yarn && export PATH="$PATH:$(yarn global bin)"
 
 # thefuck
 eval $(thefuck --alias)
@@ -258,4 +257,10 @@ if [[ -f /opt/pattern/bin/pattern_user_env.sh ]]; then
     . /opt/pattern/bin/pattern_user_env.sh
 fi
 
+# cargo
 . "$HOME/.cargo/env"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,16 +1,18 @@
 #!/usr/bin/bash
-
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+# make a env file in /opt/monkey/services/env
+sudo mkdir -p /opt/monkey/services
+sudo chown -R monkey /opt/monkey/
+echo "HOME=$HOME" > /opt/monkey/services/env
 
 loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
 cp $SCRIPTPATH/*.service ~/.config/systemd/user
 
 # enable the servces
-#
 # Get the list of services in the directory
 services=$(ls $SCRIPTPATH/*.service)
-
 
 for service in $services; do
     systemctl --user enable --now $service

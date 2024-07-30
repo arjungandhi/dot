@@ -7,7 +7,7 @@
 #
 # To use it, ensure your ~/.i3status.conf contains this line:
 #     output_format = "i3bar"
-# in the 'general' section. Then, in your ~/.i3/config, use: status_command i3status | ~/i3status/contrib/wrapper.py In the 'bar' section.
+# in the 'general' section. Then, in your ~/.i3/config, use: status_command i3status | ~/.config/i3status/wrapper.py In the 'bar' section.
 #
 # In its current version it will display the cpu frequency governor, but you
 # are free to change it to display whatever you like, see the comment in the
@@ -27,18 +27,27 @@ import subprocess
 
 
 def get_kubectx():
-    status = subprocess.check_output(["kubectx", "-c"])
-    return status.decode("utf-8").strip()
+    try:
+        status = subprocess.check_output(["kubectx", "-c"])
+        return status.decode("utf-8").strip()
+    except:
+        return ""
 
 
 def get_kubens():
-    status = subprocess.check_output(["kubens", "-c"])
-    return status.decode("utf-8").strip()
+    try:
+        status = subprocess.check_output(["kubens", "-c"])
+        return status.decode("utf-8").strip()
+    except:
+        return ""
 
 
 def get_dockerctx():
-    status = subprocess.check_output(["docker", "context", "show"])
-    return status.decode("utf-8").strip()
+    try:
+        status = subprocess.check_output(["docker", "context", "show"])
+        return status.decode("utf-8").strip()
+    except:
+        return ""
 
 
 def print_line(message):

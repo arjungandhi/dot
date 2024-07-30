@@ -5,7 +5,8 @@ Description=Watches the monkey file repo for changes and commits them
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/home/arjun/repos/github.com/arjungandhi/dot/scripts/autocommit /home/arjun/repos/github.com/arjungandhi/monkey
+EnvironmentFile=/opt/monkey/services/env
+ExecStart=$HOME/repos/github.com/arjungandhi/dot/scripts/autocommit $HOME/repos/github.com/arjungandhi/monkey
 
 [Install]
 WantedBy=default.target

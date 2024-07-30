@@ -14,13 +14,13 @@
 [blame]
 	ignoreRevsFile = .git-blame-ignore-revs
 [alias]
-	sfix = !git submodule sync --recursive && git submodule update --init --recursive
+	sfix = ! git submodule sync --recursive && git submodule update --init --recursive
 	gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
     tree = ! git log --graph --oneline --all --decorate
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [core]
-	excludesfile = /home/arjun/.gitignore
+	excludesFile = ~/.gitignore
 [remote "origin"]
 	prune = true
 [filter "lfs"]

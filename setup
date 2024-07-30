@@ -10,3 +10,4 @@ ln -sf "$DIR/.bashrc" "$HOME/.bashrc"
 
 # call setup in config
 $DIR/config/setup
+$DIR/services/setup
