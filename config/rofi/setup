@@ -6,8 +6,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # make sure the directory exists
-mkdir -p ~/.config/i3status
+mkdir -p ~/.config/rofi
 
 # create symlinks
-ln -sf $DIR/config ~/.config/i3status/config
-ln -sf $DIR/wrapper.py ~/.config/i3status/wrapper.py
+ln -sf $DIR/config.rasi ~/.config/rofi/config.rasi
+ln -sf $DIR/nord.rasi ~/.config/rofi/nord.rasi
