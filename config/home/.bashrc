@@ -234,10 +234,10 @@ complete -o default -F __start_kubectl k
 
 # ------------------------------ program configs ------------------------------
 # gcloud cli
-# source /etc/profile.d/google-cloud-cli.sh 
+source /etc/profile.d/google-cloud-cli.sh 
 
 # nodenev init
-# eval "$(nodeenv init -)"
+eval "$(nodenv init -)"
 
 # yarn global bin
 _have yarn && export PATH="$PATH:$(yarn global bin)"
