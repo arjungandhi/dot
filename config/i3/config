@@ -51,6 +51,10 @@ for_window [class="obsidian"] move to workspace $wsn
 # move scratchterm to scratchpad
 for_window [title="scratchterm"] move scratchpad
 
+# set float size
+floating_minimum_size 450 x 450
+floating_maximum_size 1500 x 1500
+
 
 #brightness control
 bindsym XF86MonBrightnessUp exec light -A 10 && $refresh_i3status

@@ -27,6 +27,7 @@ Plug 'hashivim/vim-terraform'
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 " bullets
 Plug 'dkarter/bullets.vim'
 " nord theme
@@ -34,7 +35,7 @@ Plug 'arcticicestudio/nord-vim'
 " ctags
 Plug 'ludovicchabant/vim-gutentags'
 " copilot
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " nerd tree
@@ -101,6 +102,7 @@ autocmd FileType bzl AutoFormatBuffer buildifier
 autocmd FileType proto AutoFormatBuffer clang-format
 autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
 autocmd FileType go AutoFormatBuffer gofmt  
+autocmd FileType rust AutoFormatBuffer rustfmt
 
 " python
 " run black on save then compile flake8 and show errors
@@ -206,7 +208,7 @@ let g:python3_host_prog = '/usr/bin/python'
 let g:pydocstring_doq_path = '/home/arjun/.local/bin/doq'
 
 " set node js path for copilot
-let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
+" let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
 
 " FixCursorHold for better performance
 let g:cursorhold_updatetime = 100
@@ -218,3 +220,9 @@ let g:context_nvim_no_redraw = 1
 autocmd VimEnter * :TSEnable highlight
 autocmd VimEnter * :TSEnable indent
 
+" easy align
+"" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

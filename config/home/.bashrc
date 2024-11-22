@@ -25,11 +25,14 @@ export FUNCTIONS=$HOME/repos/github.com/arjungandhi/dot/functions
 export ZETDIR=$HOME/repos/github.com/arjungandhi/monkey/notes
 export LISTDIR=$HOME/repos/github.com/arjungandhi/monkey/lists
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
+export ATPDIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export PATTERN_DEV_NAMESPACE=monkey
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export ANDROID_HOME=$HOME/.android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+# temporary until I can resolve the .profile nonsense
+export PATH=$PATH:$HOME/.local/bin
 
 # variables for cd
 export snippets=$SNIPPETS
@@ -183,7 +186,7 @@ if [ -f /etc/bash_completion ]; then
   source /etc/bash_completion
 fi
 # source stuff that has inbuilt completion
-owncomp=(snip list workon prs license zet excalidraw darwin date_iso branch post kal)
+owncomp=(snip list workon prs license zet excalidraw darwin date_iso branch post kal money)
 for i in ${owncomp[@]}; do complete -C $i $i; done
 # other stuff
 _have gh && . <(gh completion -s bash)
@@ -256,7 +259,3 @@ fi
 # cargo
 . "$HOME/.cargo/env"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

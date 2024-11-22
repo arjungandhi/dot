@@ -51,7 +51,7 @@
 !_TAG_PARSER_VERSION!SystemdUnit	0.0	/current.age/
 !_TAG_PARSER_VERSION!Vim	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/arjun/repos/github.com/arjungandhi/dot/	//
+!_TAG_PROC_CWD	/home/monkey/repos/github.com/arjungandhi/dot/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -169,13 +169,14 @@ flake8	snippets/python/tox.ini	/^[flake8]$/;"	s
 focused	config/picom/picom.conf	/^mark-ovredir-focused = true;$/;"	k
 focused	config/picom/picom.conf	/^mark-wmwin-focused = true;$/;"	k
 g:context_nvim_no_redraw	config/nvim/init.vim	/^let g:context_nvim_no_redraw = 1$/;"	v
-g:copilot_node_command	config/nvim/init.vim	/^let g:copilot_node_command = '~\/.nodenv\/versions\/16.17.0\/bin\/node'$/;"	v
 g:cursorhold_updatetime	config/nvim/init.vim	/^let g:cursorhold_updatetime = 100$/;"	v
 g:fzf_layout	config/nvim/init.vim	/^let g:fzf_layout = { 'down': '40%' }$/;"	v
 g:gutentags_ctags_tagfile	config/nvim/init.vim	/^let g:gutentags_ctags_tagfile = '.tags'$/;"	v
 g:gutentags_file_list_command	config/nvim/init.vim	/^    let g:gutentags_file_list_command = 'rg --files'$/;"	v
 g:pydocstring_doq_path	config/nvim/init.vim	/^let g:pydocstring_doq_path = '\/home\/arjun\/.local\/bin\/doq'$/;"	v
 g:python3_host_prog	config/nvim/init.vim	/^let g:python3_host_prog = '\/usr\/bin\/python'$/;"	v
+ga	config/nvim/init.vim	/^nmap ga <Plug>(EasyAlign)$/;"	m
+ga	config/nvim/init.vim	/^xmap ga <Plug>(EasyAlign)$/;"	m
 get_dockerctx	config/i3status/wrapper.py	/^def get_dockerctx():$/;"	f
 get_kubectx	config/i3status/wrapper.py	/^def get_kubectx():$/;"	f
 get_kubens	config/i3status/wrapper.py	/^def get_kubens():$/;"	f

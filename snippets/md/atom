@@ -1,0 +1,24 @@
+# ATOM_NAME
+
+in one sentance what is the atom responsible for
+
+## Services
+
+| Topic | Request Type | Response Type | Description |
+| --    | --           | --            | --          |
+
+## Subscriptions/Requests
+
+| Topic | Message Type | Description |
+| --    | --           | --          |
+
+
+## Publishes
+
+| Topic | Message Type | Description |
+| --    | --           | --          |
+
+
+# Details
+
+How does the atom do what it do.

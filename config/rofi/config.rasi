@@ -1,5 +1,15 @@
 configuration {
-	font: "Roboto 12";
+	font: "Roboto Mono 16";
+    line-margin: 10;
+}
+
+listview {
+	lines: 6;
+	columns: 2;
+}
+
+window {
+	width: 30%;
 }
 
 @theme "nord"
