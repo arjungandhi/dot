@@ -17,6 +17,7 @@ for service in $services; do
     echo "Processing $service"
     cat $service | envsubst > ~/.config/systemd/user/$(basename $service)
     # enable the servces
-    systemctl --user enable --now $service
+    systemctl --user enable $(basename $service)
+    systemctl --user start $(basename $service)
 done
 
