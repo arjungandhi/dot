@@ -1,9 +1,6 @@
-import (
-	bonzai "github.com/rwxrob/bonzai/z"
-)
-
-var Cmd = &bonzai.Command{
+var Cmd = &bonzai.Cmd{
 	Name:     "name",
+	Summary:  "summary",
 	Commands: []*bonzai.Cmd{help.Cmd},
 	Call: func(cmd *bonzai.Cmd, args ...string) error {
 		fmt.Printf("name is running!")

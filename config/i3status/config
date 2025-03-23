@@ -16,6 +16,7 @@ general {
 
 order += "cpu_usage"
 order += "cpu_temperature 0"
+order += "memory"
 order += "disk /"
 order += "disk /data"
 order += "wireless _first_"
@@ -31,6 +32,10 @@ cpu_usage {
 
 cpu_temperature 0 {
         format = " T: %degrees ºC "
+}
+
+memory {
+        format = " wam %percentage_used "
 }
 
 

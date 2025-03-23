@@ -8,7 +8,13 @@ echo "HOME=$HOME" > /opt/monkey/services/env
 
 loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
-cp $SCRIPTPATH/*.service ~/.config/systemd/user
+# for each file in the directory that ends with .service
+# replace the env variables and write to ~/.config/systemd/user
+for file in $SCRIPTPATH/*.service; do
+    echo "Processing $file"
+    cat $file | envsubst > ~/.config/systemd/user/$(basename $file)
+done
+
 
 # enable the servces
 # Get the list of services in the directory
@@ -17,9 +23,4 @@ services=$(ls $SCRIPTPATH/*.service)
 for service in $services; do
     systemctl --user enable --now $service
 done
-
-# check for certain programs and enable the services
-# if they are installed
-
-# systemctl --user enable --now autovdirsyncer.service
 

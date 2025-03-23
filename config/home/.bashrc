@@ -24,10 +24,12 @@ export REPOS=$HOME/repos
 export FUNCTIONS=$HOME/repos/github.com/arjungandhi/dot/functions
 export ZETDIR=$HOME/repos/github.com/arjungandhi/monkey/notes
 export LISTDIR=$HOME/repos/github.com/arjungandhi/monkey/lists
+export ATP_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
+export TODO_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
-export ATPDIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export PATTERN_DEV_NAMESPACE=monkey
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
+export OLLAMA_MODEL="llama3.2"
 export ANDROID_HOME=$HOME/.android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
@@ -186,7 +188,7 @@ if [ -f /etc/bash_completion ]; then
   source /etc/bash_completion
 fi
 # source stuff that has inbuilt completion
-owncomp=(snip list workon prs license zet excalidraw darwin date_iso branch post kal money)
+owncomp=(snip list workon prs license zet excalidraw darwin date_iso branch post kal money atp)
 for i in ${owncomp[@]}; do complete -C $i $i; done
 # other stuff
 _have gh && . <(gh completion -s bash)
@@ -227,9 +229,17 @@ alias scripts="cd $SCRIPTS"
 # snippets
 alias snippets="cd $SNIPPETS"
 
+# bazel -> bazelisk
+alias bazel=bazelisk
+
 # knowledge
 # note this is a temporary thing as we work out the organization of our knowledge base
 alias knowledge="cd $KNOWLEDGE"
+
+# alias todo.sh -> t
+alias t="todo.sh"
+# complete -F _todo t
+
 
 # kubectl -> k
 alias k=kubectl
@@ -258,4 +268,3 @@ fi
 
 # cargo
 . "$HOME/.cargo/env"
-

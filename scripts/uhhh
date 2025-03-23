@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+ollama run $OLLAMA_MODEL $@ --keepalive 5m --nowordwrap
+

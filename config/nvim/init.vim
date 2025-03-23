@@ -10,18 +10,21 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 
 
+" lsp
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+
 " complliers for languages
+" compilers? 
 Plug 'konfekt/vim-compilers'
 " google code fmt
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
-" Go
-Plug 'fatih/vim-go'
-" Helm
-Plug 'towolf/vim-helm'
-" Terraform
-Plug 'hashivim/vim-terraform'
+
+" Github Copilot
+Plug 'github/copilot.vim'
 
 " Useful vim modz
 " fzf
@@ -32,10 +35,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'dkarter/bullets.vim'
 " nord theme
 Plug 'arcticicestudio/nord-vim'
-" ctags
-Plug 'ludovicchabant/vim-gutentags'
-" copilot
-" Plug 'github/copilot.vim'
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " nerd tree
@@ -93,7 +92,6 @@ nnoremap <C-P> :bp<CR>
 
 
 " set split opening
-
 set splitbelow
 set splitright
 
@@ -111,9 +109,6 @@ autocmd FileType python AutoFormatBuffer black
 autocmd FileType python compiler flake8
 autocmd BufWritePost python silent make! <afile> | silent redraw!
 autocmd QuickFixCmdPost [^l] cwindow
-
-
-
 
 " md 
 autocmd FileType markdown setlocal spell spelllang=en_us
@@ -138,6 +133,8 @@ autocmd BufNewFile,BufRead $SNIPPETS/proto/* set filetype=proto
 autocmd BufNewFile,BufRead $SNIPPETS/go/* set filetype=go    
 autocmd BufNewFile,BufRead $SNIPPETS/hugo/* set filetype=markdown
 autocmd BufNewFile,BufRead $SNIPPETS/bazel/* set filetype=bzl
+autocmd BufNewFile,BufRead $ATP_DIR/project/* set filetype=todotxt
+autocmd BufNewFile,BufRead $ATP_DIR/todo/* set filetype=todotxt
 
 """ Custom Functions
 " Trim Whitespaces
@@ -197,18 +194,9 @@ nmap <leader>fs :SNIPPETS<CR>
 " fzf
 let g:fzf_layout = { 'down': '40%' }
 
-" Gutentags
-let g:gutentags_ctags_tagfile = '.tags'
-if executable('rg')
-    let g:gutentags_file_list_command = 'rg --files'
-endif
-
 " Python
 let g:python3_host_prog = '/usr/bin/python'
 let g:pydocstring_doq_path = '/home/arjun/.local/bin/doq'
-
-" set node js path for copilot
-" let g:copilot_node_command = '~/.nodenv/versions/16.17.0/bin/node'
 
 " FixCursorHold for better performance
 let g:cursorhold_updatetime = 100
@@ -226,3 +214,103 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+
+" LSP config
+lua <<EOF
+-- Reserve a space in the gutter
+-- This will avoid an annoying layout shift in the screen
+vim.opt.signcolumn = 'yes'
+
+-- Add cmp_nvim_lsp capabilities settings to lspconfig
+-- This should be executed before you configure any language server
+local lspconfig_defaults = require('lspconfig').util.default_config
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lspconfig_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
+
+-- This is where you enable features that only work
+-- if there is a language server active in the file
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = {buffer = event.buf}
+
+    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  end,
+})
+
+
+-- Actual LSP Servers
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+require'lspconfig'.pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+          pycodestyle = {
+              enabled = false
+          },
+          ruff = {
+              enabled = true,  -- Enable the plugin
+              formatEnabled = true,  -- Enable formatting using ruffs formatter
+              executable = "/usr/bin/ruff",  -- Custom path to ruff
+              extendSelect = { "I" },  -- Rules that are additionally used by ruff
+              format = { "I" },  -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
+              severities = { ["D212"] = "I" },  -- Optional table of rules where a custom severity is desired
+              lineLength = 88,  -- Line length to pass to ruff checking and formatting
+          }, 
+        }
+      }
+    }
+}
+require'lspconfig'.gopls.setup{}
+require'lspconfig'.eslint.setup{}
+require'lspconfig'.ts_ls.setup{
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+        languages = {"javascript", "typescript", "vue"},
+      },
+    },
+  },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue",
+  },
+}
+
+require'lspconfig'.terraformls.setup{}
+
+-- cmp
+local cmp = require('cmp')
+
+cmp.setup({
+  sources = {
+    {name = 'nvim_lsp'},
+  },
+  snippet = {
+    expand = function(args)
+      -- You need Neovim v0.10 to use vim.snippet
+      vim.snippet.expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+  ['<Tab>'] = cmp.mapping.confirm({ select = true}),
+  }),
+})
+
+EOF
