@@ -12,5 +12,5 @@ ln -sf "$DIR/.gitconfig" "$HOME/.gitconfig"
 # .bashrc
 ln -sf "$DIR/.bashrc" "$HOME/.bashrc"
 
-
-
+# .todo.cfg
+ln -sf "$DIR/.todo.cfg" "$HOME/.todo.cfg"
