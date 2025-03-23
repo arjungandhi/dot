@@ -13,7 +13,7 @@ mkdir -p ~/.config/systemd/user
 services=$(ls $SCRIPTPATH/*.service)
 # for each file in the directory that ends with .service
 # replace the env variables and write to ~/.config/systemd/user
-for service in $services; do
+for file in $services; do
     echo "Processing $file"
     cat $file | envsubst > ~/.config/systemd/user/$(basename $file)
 done
