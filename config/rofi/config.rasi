@@ -1,5 +1,5 @@
 configuration {
-	font: "Roboto Mono 16";
+	font: "RobotMono Nerd Font 16";
     line-margin: 10;
 }
 
