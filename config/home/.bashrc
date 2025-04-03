@@ -197,7 +197,6 @@ _have molecule && . <(molecule completion bash)
 _have atom && . <(atom completion bash)
 _have kubectl && . <(kubectl completion bash)
 _have docker && . <(docker completion bash)
-_have bazel && . <(bazel completion bash)
 
 complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform
