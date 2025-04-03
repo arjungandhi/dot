@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 tag=$(git describe --tags --dirty --long)
 echo "Building molecule with tag: $tag"
-bazel run --compilation_mode=opt :push  --stamp --embed_label=$tag
+bazel run --compilation_mode=opt :push  --stamp --embed_label=$tag $@
 
 
