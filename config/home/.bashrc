@@ -197,6 +197,7 @@ _have molecule && . <(molecule completion bash)
 _have atom && . <(atom completion bash)
 _have kubectl && . <(kubectl completion bash)
 _have docker && . <(docker completion bash)
+_have bazel && . <(bazel completion bash)
 
 complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform
@@ -239,7 +240,6 @@ alias knowledge="cd $KNOWLEDGE"
 # alias todo.sh -> t
 alias t="todo.sh"
 # complete -F _todo t
-
 
 # kubectl -> k
 alias k=kubectl
