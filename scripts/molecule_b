@@ -1,3 +1,4 @@
 #!/usr/bin/bash
+bazel run --compilation_mode=opt //:push  --stamp --embed_label=$(git describe --tags --dirty --long)
 
 
