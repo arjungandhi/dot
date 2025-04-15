@@ -29,7 +29,7 @@ exec --no-startup-id dunst
 #compositor
 exec --no-startup-id picom
 #setting background image
-exec --no-startup-id feh --randomize --bg-scale /etc/background_images/*
+exec --no-startup-id feh --randomize --bg-scale /home/$USER/repos/github.com/arjungandhi/monkey/wallpaper/*
 #backlight stuff
 exec --no-startup-id clight
 # scratch term
