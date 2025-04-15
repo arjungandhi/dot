@@ -56,7 +56,6 @@ for_window [title="scratchterm"] move scratchpad
 floating_minimum_size 450 x 450
 floating_maximum_size 1500 x 1500
 
-
 #brightness control
 bindsym XF86MonBrightnessUp exec light -A 10 && $refresh_i3status
 bindsym XF86MonBrightnessDown exec light -U 10 && $refresh_i3status
