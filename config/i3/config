@@ -57,10 +57,10 @@ floating_minimum_size 450 x 450
 floating_maximum_size 1500 x 1500
 
 #brightness control
-bindsym XF86MonBrightnessUp exec light -A 10 && $refresh_i3status
-bindsym XF86MonBrightnessDown exec light -U 10 && $refresh_i3status
-bindsym $mod+XF86MonBrightnessUp exec light -A 1 && $refresh_i3status
-bindsym $mod+XF86MonBrightnessDown exec light -U 1 && $refresh_i3status
+bindsym XF86MonBrightnessUp exec brightnessctl set +10% && $refresh_i3status
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%- && $refresh_i3status
+bindsym $mod+XF86MonBrightnessUp exec brightnessctl set +1% && $refresh_i3status
+bindsym $mod+XF86MonBrightnessDown exec brightnessctl set 1%- && $refresh_i3status
 
 # pip 
 # exec "i3-msg 'floating toggle; sticky toggle; resize shrink width 10000px; resize grow width 300px; resize shrink height 10000px; resize grow height 250px;move position 1620px 880px;'"
