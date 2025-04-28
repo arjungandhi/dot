@@ -27,7 +27,7 @@ export LISTDIR=$HOME/repos/github.com/arjungandhi/monkey/lists
 export ATP_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export TODO_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
-export JUPYTER_DD_API_KEY="c8f50944875de920b2cc701376ef9841"
+export JUPYTER_DD_API_KEY=$(cat ~/
 export JUPYTER_DD_APP_KEY="ec879bf2132b910352cb092d244ccc66afb33871"
 
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
