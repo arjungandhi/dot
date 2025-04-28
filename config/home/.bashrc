@@ -27,7 +27,8 @@ export LISTDIR=$HOME/repos/github.com/arjungandhi/monkey/lists
 export ATP_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export TODO_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
-export PATTERN_DEV_NAMESPACE=monkey
+export JUPYTER_DD_API_KEY="c8f50944875de920b2cc701376ef9841"
+
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export OLLAMA_MODEL="llama3.2"
 export ANDROID_HOME=$HOME/.android/sdk
@@ -35,6 +36,7 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 # temporary until I can resolve the .profile nonsense
 export PATH=$PATH:$HOME/.local/bin
+
 
 # variables for cd
 export snippets=$SNIPPETS
