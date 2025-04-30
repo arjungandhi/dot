@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+search="$1"
+replace="$2"
+
+if [[ -z "$search" || -z "$replace" ]]; then
+  echo "Usage: $0 <search_term> <replace_term>"
+  exit 1
+fi
+
+# Use ripgrep to find all files containing the term
+rg -l "$search" | while read -r file; do
+  awk -v s="$search" -v r="$replace" -v f="$file" '
+    {
+      line = $0
+      while (match(line, s)) {
+        prefix = substr(line, 1, RSTART - 1)
+        matched = substr(line, RSTART, RLENGTH)
+        suffix = substr(line, RSTART + RLENGTH)
+        printf("File: %s\n> %s[%s]%s\nReplace? [y/N]: ", f, prefix, matched, suffix) > "/dev/tty"
+        getline ans < "/dev/tty"
+        if (tolower(ans) == "y") {
+          line = prefix r suffix
+        } else {
+          line = prefix matched suffix
+        }
+      }
+      print line
+    }
+  ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+done
+
+
