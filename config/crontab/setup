@@ -4,6 +4,14 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # make sure crontab is installed
+if ! command -v crontab &> /dev/null
+then
+    echo "crontab could not be found, please install it first"
+    exit
+fi
+
+# install file from this directory to crontab
+cat $DIR/monkey | crontab -u $USER -
 
 
 
