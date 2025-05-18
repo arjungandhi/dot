@@ -222,6 +222,9 @@ lua <<EOF
 -- This will avoid an annoying layout shift in the screen
 vim.opt.signcolumn = 'yes'
 
+-- Enable LSP diagnostics
+vim.diagnostic.config({virtual_text = true})
+
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
