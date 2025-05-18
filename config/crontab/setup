@@ -9,4 +9,4 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 mkdir -p /var/spool/cron
 
 # create symlinks
-ln -sf $DIR/* /var/spool/cron
+ln -sf $DIR/monkey /var/spool/cron/monkey
