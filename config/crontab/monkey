@@ -1,0 +1,6 @@
+0 0 * * 1-5 source /home/monkey/.bashrc; atp todo add "(A)post daily standup @pattern"
+0 0 * * 5 source /home/monkey/.bashrc; atp todo add "pull pulse and copilot metrics for weekly @pattern"
+0 0 * * 5 source /home/monkey/.bashrc; atp todo add "generate release notes for weekly @pattern"
+0 0 * * 5 source /home/monkey/.bashrc; atp todo add "send weekly progress updates @pattern"
+0 0 1 * * source /home/monkey/.bashrc; atp todo add "bhallu medicine @chores"
+0 0 * * 1 source /home/monkey/.bashrc; atp todo add "weekly groceries @chores"
