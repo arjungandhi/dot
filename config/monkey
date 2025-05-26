@@ -1,0 +1,9 @@
+0 0 * * 1-5 /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper atp todo add "(A)post daily standup @pattern"
+0 0 * * 5 /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper atp todo add "pull pulse and copilot metrics for weekly @pattern"
+0 0 * * 5 /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper atp todo add "generate release notes for weekly @pattern"
+0 0 * * 5 /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper atp todo add "pre sort github issues for weekly @pattern"
+0 0 * * 5 /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper atp todo add "send weekly progress updates @pattern"
+0 0 1 * * /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper atp todo add "bhallu medicine @chores"
+0 0 * * 1 /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper atp todo add "weekly groceries @chores"
+0 * * * * /home/monkey/repos/github.com/arjungandhi/dot/scripts/cron-wrapper crontab -l > $REPOS/github.com/arjungandhi/dot/config/monkey
+
