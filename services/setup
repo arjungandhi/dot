@@ -11,7 +11,7 @@ mkdir -p ~/.config/systemd/user
 
 # copy all service and timer files to ~/.config/systemd/user
 files = $(find $SCRIPTPATH -type f -name "*.service" -o -name "*.timer")
-cat $files
+echo $files
 for file in $files; do
     echo "Copying $file to ~/.config/systemd/user"
     cat $file | envsubst > ~/.config/systemd/user/$(basename $file)
