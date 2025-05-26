@@ -10,7 +10,7 @@ loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
 
 # for each file in the directory that ends with .service
-services=$(find $SCRIPTPATH/services -type f -name "*.service")
+services=$(find $SCRIPTPATH -type f -name "*.service")
 # replace the env variables and write to ~/.config/systemd/user
 for service in $services; do
     echo "Copying $service to ~/.config/systemd/user"
