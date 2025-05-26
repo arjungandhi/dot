@@ -3,9 +3,9 @@
 # Usage: cron-wrapper <command> 
 
 # read certain env var lines from .bashrc and export them here
-
 export HOME="/home/monkey"
-export $(grep -E '^(PATH|ATP_DIR|TODO_DIR|REPOS)=' ~/.bashrc | sed 's/^/export /')
+echo $(grep -E '^(PATH|ATP_DIR|TODO_DIR|REPOS)=' $HOME/.bashrc)
+
 
 "$@"
 
