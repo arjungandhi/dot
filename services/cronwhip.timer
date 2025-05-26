@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer to run cronwhip 5 minutes after boot
+
+[Timer]
+OnBootSec=5min
+AccuracySec=30s
+Unit=cronwhip-delay.service
+
+[Install]
+WantedBy=timers.target
