@@ -13,11 +13,10 @@ while IFS= read -r line; do
 done < /home/monkey/.bashrc
 
 
-# run the command with the specified user and environment variables
 # if the command fails echo an error message and exit with status 1
 command="$@"
-if ! su -c "$command" monkey; then
-    echo "Error: Command '$command' failed to execute as user 'monkey'."
+if ! eval "$command"; then
+    echo "Error: Command '$command' failed to execute."
     exit 1
 fi
 
