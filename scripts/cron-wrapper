@@ -4,7 +4,14 @@
 
 # read certain env var lines from .bashrc and export them here
 export HOME="/home/monkey"
-echo $(grep -E '^(PATH|ATP_DIR|TODO_DIR|REPOS)=' $HOME/.bashrc)
+
+# run any line with "export" in it from .bashrc
+while IFS= read -r line; do
+    if [[ $line == export* ]]; then
+        echo "Exporting: $line"
+        eval "$line"
+    fi
+done < /home/monkey/.bashrc
 
 
 "$@"
