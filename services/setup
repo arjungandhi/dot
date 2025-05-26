@@ -9,9 +9,8 @@ echo "HOME=$HOME" > /opt/monkey/services/env
 loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
 
-# copy all service and timer files to ~/.config/systemd/user
-files = $(find $SCRIPTPATH -type f -name "*.service" -o -name "*.timer")
-echo $files
+# copy all files that end with .service or .timer from the script directory
+files=$(find $SCRIPTPATH -type f \( -name "*.service" -o -name "*.timer" \))
 for file in $files; do
     echo "Copying $file to ~/.config/systemd/user"
     cat $file | envsubst > ~/.config/systemd/user/$(basename $file)
