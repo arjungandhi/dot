@@ -9,25 +9,12 @@ echo "HOME=$HOME" > /opt/monkey/services/env
 loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
 
-# copy all files that end with .service or .timer from the script directory
-files=$(find $SCRIPTPATH -type f \( -name "*.service" -o -name "*.timer" \))
-for file in $files; do
-    echo "Copying $file to ~/.config/systemd/user"
-    cat $file | envsubst > ~/.config/systemd/user/$(basename $file)
-done
-
-# enable the specific services
-services=(
-    $SCRIPTPATH/cronwhip.timer
-    $SCRIPTPATH/watch-dot.service
-    $SCRIPTPATH/watch-jupyter-backup.service
-    $SCRIPTPATH/watch-monkey.service
-    $SCRIPTPATH/watch-site.service
-)
-
 # for each file in the directory that ends with .service
+services=$(find $SCRIPTPATH/services -type f -name "*.service")
 # replace the env variables and write to ~/.config/systemd/user
 for service in $services; do
+    echo "Copying $service to ~/.config/systemd/user"
+    cat $service | envsubst > ~/.config/systemd/user/$(basename $service)
     echo "enableing $service"
     # enable the servces
     systemctl --user enable $(basename $service)
