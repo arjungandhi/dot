@@ -8,11 +8,17 @@ export HOME="/home/monkey"
 # run any line with "export" in it from .bashrc
 while IFS= read -r line; do
     if [[ $line == export* ]]; then
-        echo "Exporting: $line"
         eval "$line"
     fi
 done < /home/monkey/.bashrc
 
 
-"$@"
+# run the command with the specified user and environment variables
+# if the command fails echo an error message and exit with status 1
+command="$@"
+if ! su -c "$command" monkey; then
+    echo "Error: Command '$command' failed to execute as user 'monkey'."
+    exit 1
+fi
+
 
