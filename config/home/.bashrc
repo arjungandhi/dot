@@ -1,6 +1,17 @@
 #!bash shellcheck disable=SC1090
-# --------------------------- source bash variables ---------------------------
+# ----------------- check for interactive shell if not return -----------------
+case $- in
+*i*) ;; # interactive
+*) return ;; 
+esac
 
+# -------------------------- local utility functions --------------------------
+
+_have()      { type "$1" &>/dev/null; }
+_source_if() { [[ -r "$1" ]] && source "$1"; }
+
+
+# --------------------------- source bash variables ---------------------------
 export EDITOR=nvim
 export DOCKER_BUILDKIT=1
 export GOPATH=$HOME/.go
@@ -27,18 +38,6 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 # temporary until I can resolve the .profile nonsense
 export PATH=$PATH:$HOME/.local/bin
-
-# ----------------- check for interactive shell if not return -----------------
-case $- in
-*i*) ;; # interactive
-*) return ;; 
-esac
-
-# -------------------------- local utility functions --------------------------
-
-_have()      { type "$1" &>/dev/null; }
-_source_if() { [[ -r "$1" ]] && source "$1"; }
-
 
 # variables for cd
 export snippets=$SNIPPETS
