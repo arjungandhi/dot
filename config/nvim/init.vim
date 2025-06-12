@@ -9,7 +9,6 @@ Plug 'tpope/vim-sensible'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 
-
 " lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
@@ -42,7 +41,6 @@ Plug 'preservim/nerdtree'
 " calendar
 " Come back to this
 " Plug 'itchyny/calendar.vim' 
-
 
 call plug#end()
 
