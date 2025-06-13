@@ -1,1 +1,4 @@
-local_path_override(module_name="module_name", path="../path_to_local_repo")
+local_path_override(
+    module_name="module_name", 
+    path="../path_to_local_repo"
+)
