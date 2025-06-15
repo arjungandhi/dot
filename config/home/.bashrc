@@ -32,7 +32,7 @@ export JUPYTER_DD_API_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '
 export JUPYTER_DD_APP_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.app')
 
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
-export LOCAL_ENDPOINT=http://localhost:11434
+export LOCAL_ENDPOINT=http://localhost:11434/v1
 export OLLAMA_MODEL="llama3.2"
 export ANDROID_HOME=$HOME/.android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
