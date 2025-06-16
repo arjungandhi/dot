@@ -6,7 +6,7 @@ After=network.target
 Type=oneshot
 Environment="ATP_DIR=${ATP_DIR}"
 Environment="PATH=${SCRIPTS}:${GOPATH}/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
-ExecStart=atp todo recur
+ExecStart=${GOPATH}/bin/atp todo recur
 
 [Install]
 WantedBy=default.target
