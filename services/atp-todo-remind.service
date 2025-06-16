@@ -1,0 +1,9 @@
+[Unit]
+Description=ATP Todo Remind - Daily todo reminders
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="ATP_DIR=${HOME}/repos/github.com/arjungandhi/monkey/atp"
+Environment="PATH=${HOME}/repos/github.com/arjungandhi/dot/scripts:${HOME}/.go/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=${HOME}/repos/github.com/arjungandhi/dot/scripts/atp todo remind

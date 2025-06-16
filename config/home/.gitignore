@@ -6,3 +6,8 @@
 # Added by cargo
 /target
 
+# ai files 
+.claude/
+.opencode/
+CLAUDE.md
+

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run ATP Todo Recur daily
+Requires=atp-todo-recur.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
