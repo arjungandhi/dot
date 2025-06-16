@@ -9,15 +9,18 @@ echo "HOME=$HOME" > /opt/monkey/services/env
 loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
 
-# for each file in the directory that ends with .service
-services=$(find $SCRIPTPATH -type f -name "*.service")
+# for each file in the directory that ends with .service or .timer
+units=$(find $SCRIPTPATH -type f \( -name "*.service" -o -name "*.timer" \))
 # replace the env variables and write to ~/.config/systemd/user
-for service in $services; do
-    echo "Copying $service to ~/.config/systemd/user"
-    cat $service | envsubst > ~/.config/systemd/user/$(basename $service)
-    echo "enableing $service"
-    # enable the servces
-    systemctl --user enable $(basename $service)
-    systemctl --user start $(basename $service)
+for unit in $units; do
+    echo "Copying $unit to ~/.config/systemd/user"
+    cat $unit | envsubst > ~/.config/systemd/user/$(basename $unit)
+    echo "enabling $unit"
+    # enable the units
+    systemctl --user enable $(basename $unit)
+    # only start services, not timers (timers start automatically when enabled)
+    if [[ $unit == *.service ]]; then
+        systemctl --user start $(basename $unit)
+    fi
 done
 

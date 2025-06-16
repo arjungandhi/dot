@@ -1,0 +1,10 @@
+[Unit]
+Description=Run ATP Todo Remind daily
+Requires=atp-todo-remind.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
