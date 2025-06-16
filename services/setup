@@ -1,10 +1,18 @@
 #!/usr/bin/bash
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-# make a env file in /opt/monkey/services/env
+# extract relevant environment variables from bashrc
+source ~/.bashrc
+
+# make a env file in /opt/monkey/services/env  
 sudo mkdir -p /opt/monkey/services
 sudo chown -R monkey /opt/monkey/
-echo "HOME=$HOME" > /opt/monkey/services/env
+{
+    echo "HOME=$HOME"
+    echo "ATP_DIR=$ATP_DIR"
+    echo "SCRIPTS=$SCRIPTS"
+    echo "GOPATH=$GOPATH"
+} > /opt/monkey/services/env
 
 loginctl enable-linger $USER
 mkdir -p ~/.config/systemd/user
