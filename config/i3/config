@@ -108,6 +108,9 @@ bindsym $mod+Shift+w exec --no-startup-id i3-move-to-workspace
 # Rename/renumber workspace. Uses Super+Alt+n
 bindsym Mod1+Mod4+n exec --no-startup-id i3-rename-workspace
 
+# flameshot 
+bindsym $mod+c exec flameshot gui
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -143,6 +146,7 @@ bindsym $mod+space floating toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
 
 # focus the child container
 #bindsym $mod+d focus child
