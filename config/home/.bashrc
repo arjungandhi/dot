@@ -39,6 +39,10 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # temporary until I can resolve the .profile nonsense
 export PATH=$PATH:$HOME/.local/bin
 
+
+# give node js a bit more memory
+NODE_OPTIONS="--max_old_space_size=16384"
+
 # variables for cd
 export snippets=$SNIPPETS
 export notes=$SCRIPTS
