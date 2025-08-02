@@ -20,6 +20,23 @@ fi
 # - Read and update the ./context.txt file if it exists
 # - Do not output any other text other then the transformed input
 
+# Read stdin
+STDIN_INPUT=$(cat)
+
+# Create the transformed input
+TRANSFORMED_INPUT=$(cat << EOF
+USER INPUT:
+$STDIN_INPUT
+
+CONTEXT: ./context.txt
+
+INSTRUCTIONS:
+- Read and update the ./context.txt file if it exists, create one if it does not
+- Do not output any other text other than the transformed input
+EOF
+)
+
 # run claude with the input and prompt
 # transform_input | claude -p "prompt" 
+echo "$TRANSFORMED_INPUT" | claude -p "$PROMPT"
 
