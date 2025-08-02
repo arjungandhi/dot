@@ -5,13 +5,19 @@
 # echo "input" | claude-pipe prompt you want to feed claude > output.txt
 
 # get prompt user passsed in 
+PROMPT="$*"
+if [ -z "$PROMPT" ]; then
+    echo "Usage: echo 'input' | claude-pipe <prompt>" >&2
+    exit 1
+fi
 
 
 # setup the input into claude as so
+# USER INPUT:
 # <stdin>
-# CONTEXT ./context.txt
+# CONTEXT: ./context.txt
 # INSTRUCTIONS:
-# - Read and update the ./context.txt file if it exists create one if it does not
+# - Read and update the ./context.txt file if it exists
 # - Do not output any other text other then the transformed input
 
 # run claude with the input and prompt
