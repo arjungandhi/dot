@@ -1,3 +1,6 @@
 #!/usr/bin/bash
 
+# claude-pipe is a simple script to operate on the stdin input and stdout output
+# its used as so
+# echo "input" | claude-pipe "prompt" > output.txt
 
