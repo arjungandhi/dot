@@ -4,3 +4,10 @@
 # its used as so
 # echo "input" | claude-pipe prompt you want to feed claude > output.txt
 
+input=$(cat)
+prompt="$*"
+
+echo "$prompt
+
+Input to process:
+$input" | claude -p
