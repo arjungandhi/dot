@@ -1,0 +1,12 @@
+[Unit]
+Description=ATP Todo GitHub Sync - Sync GitHub project issues with local todos
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="ATP_DIR=${ATP_DIR}"
+Environment="PATH=${SCRIPTS}:${GOPATH}/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=${GOPATH}/bin/atp todo github sync
+
+[Install]
+WantedBy=default.target
