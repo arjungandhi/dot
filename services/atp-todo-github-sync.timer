@@ -3,7 +3,8 @@ Description=Run ATP Todo GitHub Sync daily
 Requires=atp-todo-github-sync.service
 
 [Timer]
-OnCalendar=daily
+OnCalendar=9:15
+OnCalendar=*:00/4
 Persistent=true
 
 [Install]
