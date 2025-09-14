@@ -1,0 +1,12 @@
+[Unit]
+Description=Money Fetch - Fetch financial data using money command
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="MONEY_DIR=${MONEY_DIR}"
+Environment="PATH=${SCRIPTS}:${GOPATH}/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=${GOPATH}/bin/money fetch
+
+[Install]
+WantedBy=default.target
