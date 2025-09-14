@@ -12,6 +12,7 @@ sudo chown -R monkey /opt/monkey/
     echo "ATP_DIR=$ATP_DIR"
     echo "SCRIPTS=$SCRIPTS"
     echo "GOPATH=$GOPATH"
+    echo "MONEY_DIR=$MONEY_DIR"
 } > /opt/monkey/services/env
 
 loginctl enable-linger $USER
