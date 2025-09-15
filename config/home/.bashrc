@@ -31,8 +31,6 @@ export MONEY_DIR=$HOME/repos/github.com/arjungandhi/monkey/money
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
 export JUPYTER_DD_API_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.api')
 export JUPYTER_DD_APP_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.app')
-# Uncomment to enable Jupyter MCP server integration
-# export ENABLE_JUPYTER_MCP=true
 
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export OLLAMA_MODEL="llama3.2"
