@@ -31,6 +31,7 @@ export MONEY_DIR=$HOME/repos/github.com/arjungandhi/monkey/money
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
 export JUPYTER_DD_API_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.api')
 export JUPYTER_DD_APP_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.app')
+export JUPYTER_MCP_TOKEN=$(openssl rand -hex 32)
 
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export OLLAMA_MODEL="llama3.2"
