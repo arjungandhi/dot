@@ -1,9 +1,9 @@
 [Unit]
-Description=Run Money Fetch every 4 hours
+Description=Run Money Fetch every 12 hours
 Requires=money-fetch.service
 
 [Timer]
-OnCalendar=*:00/4
+OnCalendar=*:00/12
 Persistent=true
 
 [Install]
