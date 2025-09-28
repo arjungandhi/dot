@@ -6,7 +6,7 @@ After=network.target
 Type=oneshot
 Environment="MONEY_DIR=${MONEY_DIR}"
 Environment="PATH=${SCRIPTS}:${GOPATH}/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
-ExecStart=${GOPATH}/bin/money fetch
+ExecStart=${GOPATH}/bin/money fetch --days 7
 
 [Install]
 WantedBy=default.target
