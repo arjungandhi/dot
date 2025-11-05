@@ -230,7 +230,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "echo -e ' Logout\n Reboot\n Shutdown\n Suspend' | rofi -dmenu -p ' Power' | xargs -I {} bash -c 'case {} in *Logout) i3-msg exit;; *Reboot) systemctl reboot;; *Shutdown) systemctl poweroff;; *Suspend) systemctl suspend;; esac'"
+bindsym $mod+Shift+e exec "echo -e '󰍃 Logout\n Reboot\n Shutdown\n Suspend' | rofi -dmenu -p ' Power' | xargs -I {} bash -c 'case {} in *Logout) i3-msg exit;; *Reboot) systemctl reboot;; *Shutdown) systemctl poweroff;; *Suspend) systemctl suspend;; esac'"
 
 # Nord theme colors
 
