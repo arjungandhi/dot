@@ -36,7 +36,7 @@ exec --no-startup-id clight
 exec --no-startup-id excalidraw --title scratchterm
 
 #prettyifying i3 borders
-for_window [class="^.*"] border pixel 4 
+for_window [class="^.*"] border pixel 2 
 
 #making spotify existi in music workspace 
 for_window [class="Spotify"] move to workspace $wsm
@@ -250,6 +250,15 @@ set $nord12  #D08770
 set $nord13  #EBCB8B
 set $nord14  #A3BE8C
 set $nord15  #B48EAD
+
+# Window border colors
+# class                 border  backgr. text    indicator child_border
+client.focused          $nord8  $nord1  $nord6  $nord9    $nord8
+client.focused_inactive $nord3  $nord1  $nord4  $nord3    $nord3
+client.unfocused        $nord3  $nord0  $nord4  $nord3    $nord3
+client.urgent           $nord11 $nord1  $nord6  $nord11   $nord11
+client.placeholder      $nord3  $nord0  $nord4  $nord3    $nord3
+client.background       $nord0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
