@@ -36,8 +36,6 @@ clipboard-write = allow
 
 shell-integration-features = ssh-terminfo
 
-
-
 # ---------------------------------- Styling ----------------------------------
 font-family = RobotoMono Nerd Font Mono
 font-size = 10
