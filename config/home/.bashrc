@@ -222,8 +222,7 @@ alias apollo_compose="docker compose --env-file /opt/pattern/robot.env --project
 alias apollo_into="docker exec -it apollo /bin/bash"
 
 # kitty
-alias ssh="kitty +kitten ssh"
-alias icat="kitty +kitten icat"
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
 
 # alias both vi and vim to nvim
 alias vim=nvim
