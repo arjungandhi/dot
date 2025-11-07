@@ -1,7 +1,7 @@
 [global]
     geometry = "300x0-7+7"
 
-    font = Roboto 13
+    font = Roboto 11
     allow_markup = yes
     plain_text = no             # Treat message as plain text
     sort = yes                  # Sort messages by urgency
