@@ -1,0 +1,230 @@
+/* Enhanced Nord Theme - Modern Layout */
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "RobotoMono Nerd Font", "Symbols Nerd Font", monospace;
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #2e3440;
+  color: #e5e9f0;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/* Tooltip styling */
+tooltip {
+  background: #3b4252;
+  border: 2px solid #4c566a;
+  border-radius: 4px;
+}
+
+tooltip label {
+  color: #e5e9f0;
+}
+
+/* Workspaces */
+#workspaces {
+  margin: 4px 8px 4px 4px;
+  background: #2e3440;
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+#workspaces button {
+  padding: 0 2px;
+  margin: 4px 2px;
+  color: #d8dee9;
+  border-radius: 4px;
+}
+
+#workspaces button:hover {
+  background: #434c5e;
+}
+
+#workspaces button.active {
+  background: #88c0d0;
+  color: #2e3440;
+  font-weight: bold;
+}
+
+#workspaces button.urgent {
+  background: #bf616a;
+  color: #eceff4;
+}
+
+/* Submap */
+#submap {
+  background: #ebcb8b;
+  color: #2e3440;
+  padding: 0 14px;
+  margin: 4px 4px 4px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(235, 203, 139, 0.3);
+}
+
+/* Module containers */
+#custom-dockerctx,
+#custom-kubectx,
+#cpu,
+#temperature,
+#memory,
+#disk,
+#network,
+#battery,
+#pulseaudio,
+#clock,
+#tray {
+  padding: 0 12px;
+  margin: 4px 2px;
+  background: #3b4252;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#custom-dockerctx:hover,
+#custom-kubectx:hover,
+#cpu:hover,
+#temperature:hover,
+#memory:hover,
+#disk:hover,
+#network:hover,
+#battery:hover,
+#clock:hover,
+#pulseaudio:hover {
+  background: #434c5e;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* CPU */
+#cpu {
+  background: #3b4252;
+  color: #88c0d0;
+  font-weight: bold;
+}
+
+/* Temperature */
+#temperature {
+  background: #3b4252;
+  color: #d08770;
+  font-weight: bold;
+}
+
+#temperature.critical {
+  background: #bf616a;
+  color: #eceff4;
+  font-weight: bold;
+}
+
+/* Memory */
+#memory {
+  background: #3b4252;
+  color: #a3be8c;
+  font-weight: bold;
+}
+
+/* Disk */
+#disk {
+  background: #3b4252;
+  color: #81a1c1;
+  font-weight: bold;
+}
+
+/* Network */
+#network.wifi {
+  background: #3b4252;
+  color: #88c0d0;
+  font-weight: bold;
+}
+
+#network.ethernet {
+  background: #3b4252;
+  color: #8fbcbb;
+  font-weight: bold;
+}
+
+#network.vpn {
+  background: #3b4252;
+  color: #b48ead;
+  font-weight: bold;
+}
+
+#network.disconnected {
+  background: #2e3440;
+  color: #4c566a;
+}
+
+/* Battery */
+#battery {
+  background: #3b4252;
+  color: #a3be8c;
+  font-weight: bold;
+}
+
+#battery.charging {
+  color: #a3be8c;
+}
+
+#battery.warning:not(.charging) {
+  background: #ebcb8b;
+  color: #2e3440;
+  font-weight: bold;
+}
+
+#battery.critical:not(.charging) {
+  background: #bf616a;
+  color: #eceff4;
+  font-weight: bold;
+}
+
+/* PulseAudio */
+#pulseaudio {
+  background: #3b4252;
+  color: #ebcb8b;
+  font-weight: bold;
+}
+
+#pulseaudio.muted {
+  color: #4c566a;
+  background: #2e3440;
+}
+
+/* Clock */
+#clock {
+  background: #3b4252;
+  color: #eceff4;
+  font-weight: bold;
+}
+
+/* Custom modules */
+#custom-dockerctx {
+  background: #3b4252;
+  color: #81a1c1;
+  font-weight: bold;
+}
+
+#custom-kubectx {
+  background: #3b4252;
+  color: #b48ead;
+  font-weight: bold;
+}
+
+/* Tray */
+#tray {
+  background: #3b4252;
+  padding: 0 10px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}

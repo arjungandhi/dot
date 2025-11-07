@@ -6,7 +6,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # make sure the directory exists
-mkdir -p ~/.config/hypr
+mkdir -p ~/.config/waybar
 
 # create symlinks
-ln -sf $DIR/hyprland.conf ~/.config/hypr/hyprland.conf
+ln -sf $DIR/config ~/.config/waybar/config
+ln -sf $DIR/style.css ~/.config/waybar/style.css

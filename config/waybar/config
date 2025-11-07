@@ -1,0 +1,170 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+    "modules-center": [],
+    "modules-right": [
+        "custom/dockerctx",
+        "custom/kubectx",
+        "cpu",
+        "temperature",
+        "memory",
+        "disk",
+        "network#wifi",
+        "network#ethernet",
+        "network#vpn",
+        "battery",
+        "pulseaudio",
+        "clock",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "󰭹",
+            "11": "",
+            "12": "󰇮",
+            "13": "󰎚",
+            "14": ""
+        }
+    },
+
+    "hyprland/submap": {
+        "format": "✌️ {}",
+        "max-length": 8,
+        "tooltip": false
+    },
+
+    "custom/dockerctx": {
+        "exec": "docker context show 2>/dev/null || echo ''",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": false
+    },
+
+    "custom/kubectx": {
+        "exec": "ns=$(kubens -c 2>/dev/null); ctx=$(kubectx -c 2>/dev/null); if [ -n \"$ns\" ] && [ -n \"$ctx\" ]; then echo \"$ns.$ctx\"; fi",
+        "interval": 5,
+        "format": "󰠳 {}",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "format": "cpu {usage}%",
+        "tooltip": false,
+        "interval": 3
+    },
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C",
+        "format-critical": "{temperatureC}°C",
+        "interval": 3
+    },
+
+    "memory": {
+        "format": "wam {percentage}%",
+        "tooltip-format": "{used:0.1f}G / {total:0.1f}G",
+        "interval": 3
+    },
+
+    "disk": {
+        "path": "/",
+        "format": "disk {free}",
+        "tooltip-format": "{used} used, {free} free ({percentage_used}%)",
+        "interval": 30
+    },
+
+    "network#wifi": {
+        "interface": "wl*",
+        "format-wifi": "󰖩 {essid}",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nSignal: {signalStrength}%\nGateway: {gwaddr}",
+        "interval": 3
+    },
+
+    "network#ethernet": {
+        "interface": "e*",
+        "format-ethernet": "󰈁 {ipaddr}",
+        "format-disconnected": "󰈂",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGateway: {gwaddr}",
+        "interval": 3
+    },
+
+    "network#vpn": {
+        "interface": "tun*",
+        "format": " 󰖂 {ipaddr}",
+        "format-disconnected": "",
+        "tooltip-format": "VPN: {ifname}",
+        "interval": 3
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " 󰂄 {capacity}%",
+        "format-plugged": " 󰚥 {capacity}%",
+        "format-icons": ["󰂃", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}",
+        "interval": 3
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " 󰖁 {volume}%",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "tooltip-format": "{desc}"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    "clock": {
+        "format": "{:%a, %b %d  %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#81a1c1'><b>{}</b></span>",
+                "days": "<span color='#e5e9f0'><b>{}</b></span>",
+                "weeks": "<span color='#88c0d0'><b>W{}</b></span>",
+                "weekdays": "<span color='#ebcb8b'><b>{}</b></span>",
+                "today": "<span color='#bf616a'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
+        "interval": 1
+    }
+}
