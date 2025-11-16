@@ -7,6 +7,7 @@ Updates status file for waybar integration.
 Usage:
     voice-input start    # Start recording
     voice-input stop     # Stop recording and transcribe
+    voice-input toggle   # Toggle recording on/off
     voice-input init     # Initialize status file
     voice-input          # Run recording (same as start but foreground)
 """
@@ -101,6 +102,15 @@ def stop():
         os.remove(PID_FILE)
     else:
         print("No active recording", file=sys.stderr)
+
+def toggle():
+    """Toggle recording on/off."""
+    if os.path.exists(PID_FILE):
+        # Currently recording, stop it
+        stop()
+    else:
+        # Not recording, start it
+        start()
 
 def audio_callback(indata, frames, time_info, status):
     """Callback for continuous audio recording."""
@@ -257,9 +267,11 @@ def main():
             start()
         elif command == "stop":
             stop()
+        elif command == "toggle":
+            toggle()
         else:
             print(f"Unknown command: {command}", file=sys.stderr)
-            print("Usage: voice-input [init|start|stop]", file=sys.stderr)
+            print("Usage: voice-input [init|start|stop|toggle]", file=sys.stderr)
             sys.exit(1)
     else:
         # No command given, run recording
