@@ -62,8 +62,16 @@ def init():
 
 def start():
     """Start recording in background."""
-    # Kill any existing process
+    # Check if already recording
+    if os.path.exists(PID_FILE):
+        print("Already recording", file=sys.stderr)
+        return
+
+    # Kill any zombie processes
     subprocess.run(["pkill", "-9", "voice-input"], stderr=subprocess.DEVNULL)
+
+    # Wait a moment for cleanup
+    time.sleep(0.1)
 
     # Start in background
     proc = subprocess.Popen([sys.executable, __file__],
