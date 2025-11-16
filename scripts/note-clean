@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+
+# note-clean reads text from stdin, cleans it up and formats it as markdown using Ollama
+# Usage: echo "messy notes here" | note-clean
+#        cat notes.txt | note-clean > cleaned.md
+
+# Read stdin
+STDIN_INPUT=$(cat)
+
+if [ -z "$STDIN_INPUT" ]; then
+    echo "Usage: echo 'text' | note-clean" >&2
+    echo "No input provided on stdin" >&2
+    exit 1
+fi
+
+# Create the prompt for Ollama
+PROMPT="You are a note formatting assistant. Take the user's input and:
+1. Fix grammar and spelling errors
+2. Improve clarity and readability
+3. Format as clean, minimal markdown with appropriate headers, lists, and structure
+4. Keep the text concise and understandable
+5. Preserve all important information and meaning
+
+Output ONLY the cleaned and formatted note. Do not add any explanations, comments, or meta-text.
+
+Input text:
+$STDIN_INPUT"
+
+# Send to Ollama and output result
+echo "$PROMPT" | ollama run llama3.2:latest
