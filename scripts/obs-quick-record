@@ -5,19 +5,52 @@
 # Configuration
 OBS_HOST="localhost"
 OBS_PORT="4455"  # OBS Studio 28+ uses port 4455 by default
-NOTIFICATION_TIMEOUT=2000  # milliseconds
 RECORDING_SCENE="Quick Demo"  # Name of the scene to use for recording
 OBS_STARTUP_WAIT=3  # Seconds to wait for OBS to start
+STATUS_FILE="/tmp/obs-recording-status"
+
+# Function to update status for waybar
+update_status() {
+    local status=$1
+    local icon=""
+    local tooltip=""
+
+    case $status in
+        "idle")
+            icon="󰑊"  # recording icon (not active)
+            tooltip="OBS Ready"
+            ;;
+        "recording")
+            icon="󰻂"  # red recording dot
+            tooltip="Recording in progress"
+            ;;
+        "stopped")
+            icon="󰝚"  # stop icon
+            tooltip="Recording stopped"
+            ;;
+        "error")
+            icon="󰅖"  # error icon
+            tooltip="OBS Error"
+            ;;
+    esac
+
+    mkdir -p "$(dirname "$STATUS_FILE")"
+    echo "{\"text\": \"$icon\", \"tooltip\": \"$tooltip\", \"class\": \"$status\"}" > "$STATUS_FILE"
+}
+
+# Initialize status as idle on first run
+if [ ! -f "$STATUS_FILE" ]; then
+    update_status "idle"
+fi
 
 # Check if OBS is running, if not start it
 if ! pgrep -x obs > /dev/null; then
-    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "Starting OBS..."
     obs --minimize-to-tray --scene "$RECORDING_SCENE" &>/dev/null &
     sleep $OBS_STARTUP_WAIT
 fi
 
-# Use Python to control OBS via WebSocket v5
-python3 << 'PYTHON_SCRIPT'
+# Use Python to control OBS via WebSocket v5 and capture output
+OUTPUT=$(python3 << 'PYTHON_SCRIPT'
 import sys
 from obsws_python import ReqClient
 import os
@@ -41,25 +74,47 @@ try:
     except Exception as e:
         pass  # Scene might not exist yet, that's okay
 
+    # Get current recording status before toggle
+    status_before = cl.get_record_status()
+    was_recording = status_before.output_active
+
     # Toggle recording
     cl.toggle_record()
 
-    # Get recording status
-    status = cl.get_record_status()
-    is_recording = status.output_active
+    # Get new recording status
+    status_after = cl.get_record_status()
+    is_recording = status_after.output_active
 
-    # Exit with code to indicate recording status (0=started, 1=stopped)
-    sys.exit(0 if is_recording else 1)
+    # If we just stopped recording, print the output path for notification
+    if was_recording and not is_recording:
+        # Get the output filename (most recent file in recordings dir)
+        import glob
+        recordings_dir = os.path.expanduser("~/recordings")
+        files = glob.glob(os.path.join(recordings_dir, "*.mp4"))
+        if files:
+            latest_file = max(files, key=os.path.getctime)
+            filename = os.path.basename(latest_file)
+            print(filename)  # This will be captured by bash
+        sys.exit(1)  # Stopped
+    else:
+        sys.exit(0)  # Started
 
 except Exception as e:
     os.system(f'notify-send -t 2000 "OBS Recording" "Error: {str(e)}"')
     sys.exit(2)
 PYTHON_SCRIPT
+)
 
-# Check exit code and show notification
+# Check exit code and update status
 EXIT_CODE=$?
 if [ $EXIT_CODE -eq 0 ]; then
-    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "🔴 Recording started"
+    update_status "recording"
 elif [ $EXIT_CODE -eq 1 ]; then
-    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "⏹️ Recording stopped"
+    update_status "idle"
+    # Show notification with filename if recording was stopped
+    if [ -n "$OUTPUT" ]; then
+        notify-send -t 5000 "Recording Saved" "📹 $OUTPUT"
+    fi
+elif [ $EXIT_CODE -eq 2 ]; then
+    update_status "error"
 fi
