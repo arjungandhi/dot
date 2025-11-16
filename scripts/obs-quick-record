@@ -77,6 +77,10 @@ try:
     # Toggle recording
     cl.toggle_record()
 
+    # Wait for OBS to update status
+    import time
+    time.sleep(0.5)
+
     # Get new recording status
     status_after = cl.get_record_status()
     is_recording = status_after.output_active
