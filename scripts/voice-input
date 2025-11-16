@@ -31,7 +31,7 @@ CACHE_DIR = os.path.expanduser("~/.cache/voice-input")
 
 # Auto-enter configuration: window titles/classes that should auto-submit
 AUTO_ENTER_PATTERNS = [
-    "claude",  # Claude Code or Claude windows
+    "com.mitchellh.ghostty",  # Ghostty terminal (where Claude Code runs)
 ]
 
 # Global variables for signal handling
