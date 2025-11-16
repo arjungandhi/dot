@@ -40,11 +40,11 @@ def update_status(status, text=""):
     os.makedirs(os.path.dirname(STATUS_FILE), exist_ok=True)
 
     status_icons = {
-        "idle": "🎙️",
-        "recording": "🎤",
-        "transcribing": "⏳",
-        "typing": "⌨️",
-        "error": "❌"
+        "idle": "󰍬",      # microphone icon
+        "recording": "󰑊", # recording icon
+        "transcribing": "󰔟", # loading/processing icon
+        "typing": "󰗧",    # keyboard icon
+        "error": "󰅖"      # error/x icon
     }
 
     icon = status_icons.get(status, "")
