@@ -74,9 +74,6 @@ def start():
     # Kill any zombie processes
     subprocess.run(["pkill", "-9", "voice-input"], stderr=subprocess.DEVNULL)
 
-    # Wait a moment for cleanup
-    time.sleep(0.1)
-
     # Start in background
     proc = subprocess.Popen([sys.executable, __file__],
                            stdout=subprocess.DEVNULL,
