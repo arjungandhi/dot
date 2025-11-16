@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""
+Voice-to-text input script using Faster Whisper.
+Records audio when triggered and types the transcribed text.
+"""
+
+import sys
+import os
+import tempfile
+import subprocess
+import sounddevice as sd
+import numpy as np
+from faster_whisper import WhisperModel
+from scipy.io import wavfile
+
+def notify(message, urgency="normal"):
+    """Send desktop notification."""
+    try:
+        subprocess.run(["notify-send", "-u", urgency, "Voice Input", message], check=False)
+    except:
+        pass  # Silently fail if notify-send not available
+
+# Configuration
+SAMPLE_RATE = 16000  # Whisper expects 16kHz
+CHANNELS = 1
+RECORDING_DURATION = 5  # seconds - adjust as needed
+MODEL_SIZE = "base"  # Options: tiny, base, small, medium, large-v2, large-v3
+
+def record_audio(duration=RECORDING_DURATION):
+    """Record audio from the default microphone."""
+    print(f"Recording for {duration} seconds...", file=sys.stderr)
+    notify(f"🎤 Recording for {duration} seconds...")
+    audio_data = sd.rec(
+        int(duration * SAMPLE_RATE),
+        samplerate=SAMPLE_RATE,
+        channels=CHANNELS,
+        dtype=np.int16
+    )
+    sd.wait()  # Wait until recording is finished
+    print("Recording complete!", file=sys.stderr)
+    return audio_data
+
+def transcribe_audio(audio_path, model_size=MODEL_SIZE):
+    """Transcribe audio file using Faster Whisper."""
+    print(f"Loading Whisper model ({model_size})...", file=sys.stderr)
+    notify("⏳ Transcribing...")
+
+    # Initialize model (downloads on first run)
+    model = WhisperModel(model_size, device="cpu", compute_type="int8")
+
+    print("Transcribing...", file=sys.stderr)
+    segments, info = model.transcribe(audio_path, beam_size=5)
+
+    # Combine all segments
+    transcription = " ".join([segment.text for segment in segments])
+    return transcription.strip()
+
+def type_text(text):
+    """Type the text using wtype (Wayland)."""
+    if not text:
+        print("No text to type!", file=sys.stderr)
+        return
+
+    print(f"Typing: {text}", file=sys.stderr)
+    subprocess.run(["wtype", text], check=True)
+
+def main():
+    try:
+        # Create temporary WAV file
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio:
+            temp_path = temp_audio.name
+
+        # Record audio
+        audio_data = record_audio()
+
+        # Save to file
+        wavfile.write(temp_path, SAMPLE_RATE, audio_data)
+
+        # Transcribe
+        text = transcribe_audio(temp_path)
+
+        # Clean up temp file
+        os.unlink(temp_path)
+
+        # Type the transcribed text
+        if text:
+            type_text(text)
+            notify(f"✓ Typed: {text[:50]}{'...' if len(text) > 50 else ''}")
+        else:
+            print("No speech detected!", file=sys.stderr)
+            notify("⚠ No speech detected!", urgency="critical")
+
+    except KeyboardInterrupt:
+        print("\nCancelled by user", file=sys.stderr)
+        notify("Cancelled", urgency="low")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        notify(f"Error: {str(e)[:50]}", urgency="critical")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
