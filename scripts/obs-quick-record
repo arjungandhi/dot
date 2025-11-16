@@ -17,16 +17,12 @@ update_status() {
 
     case $status in
         "idle")
-            icon="󰑊"  # recording icon (not active)
+            icon="󰕧"  # video camera icon
             tooltip="OBS Ready"
             ;;
         "recording")
-            icon="󰻂"  # red recording dot
+            icon="󰑊"  # recording dot
             tooltip="Recording in progress"
-            ;;
-        "stopped")
-            icon="󰝚"  # stop icon
-            tooltip="Recording stopped"
             ;;
         "error")
             icon="󰅖"  # error icon

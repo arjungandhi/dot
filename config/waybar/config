@@ -8,6 +8,7 @@
     "modules-center": [],
     "modules-right": [
         "custom/voice-input",
+        "custom/obs-recording",
         "custom/dockerctx",
         "custom/kubectx",
         "cpu",
@@ -171,6 +172,14 @@
 
     "custom/voice-input": {
         "exec": "cat /tmp/voice-input-status 2>/dev/null || echo '{\"text\": \"🎙️\", \"class\": \"idle\"}'",
+        "return-type": "json",
+        "interval": 1,
+        "format": "{}",
+        "tooltip": true
+    },
+
+    "custom/obs-recording": {
+        "exec": "cat /tmp/obs-recording-status 2>/dev/null || echo '{\"text\": \"󰕧\", \"class\": \"idle\"}'",
         "return-type": "json",
         "interval": 1,
         "format": "{}",
