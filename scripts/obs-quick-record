@@ -9,57 +9,64 @@ NOTIFICATION_TIMEOUT=2000  # milliseconds
 RECORDING_SCENE="Quick Demo"  # Name of the scene to use for recording
 OBS_STARTUP_WAIT=3  # Seconds to wait for OBS to start
 
-# Function to wait for OBS WebSocket to be ready
-wait_for_obs_websocket() {
-    local max_attempts=10
-    local attempt=0
-
-    while [ $attempt -lt $max_attempts ]; do
-        if obs-cli scene list --host "$OBS_HOST" --port "$OBS_PORT" &>/dev/null; then
-            return 0
-        fi
-        sleep 0.5
-        attempt=$((attempt + 1))
-    done
-    return 1
-}
-
 # Check if OBS is running, if not start it
 if ! pgrep -x obs > /dev/null; then
     notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "Starting OBS..."
-
-    # Start OBS minimized to tray with the recording scene
     obs --minimize-to-tray --scene "$RECORDING_SCENE" &>/dev/null &
-
-    # Wait for OBS to fully start and WebSocket to be ready
     sleep $OBS_STARTUP_WAIT
-
-    if ! wait_for_obs_websocket; then
-        notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "Failed to connect to OBS. Make sure WebSocket is enabled."
-        exit 1
-    fi
 fi
 
-# Switch to the recording scene (if it exists and isn't already active)
-if obs-cli scene list --host "$OBS_HOST" --port "$OBS_PORT" 2>&1 | grep -q "^$RECORDING_SCENE$"; then
-    CURRENT_SCENE=$(obs-cli scene get --host "$OBS_HOST" --port "$OBS_PORT" 2>&1)
-    if [ "$CURRENT_SCENE" != "$RECORDING_SCENE" ]; then
-        obs-cli scene current "$RECORDING_SCENE" --host "$OBS_HOST" --port "$OBS_PORT" &>/dev/null
-    fi
-fi
+# Use Python to control OBS via WebSocket v5
+python3 << 'PYTHON_SCRIPT'
+import sys
+from obswebsocket import obsws, requests
+from obswebsocket.exceptions import ConnectionFailure
+import os
 
-# Toggle recording
-if obs-cli recording toggle --host "$OBS_HOST" --port "$OBS_PORT" 2>&1; then
-    # Get current status
-    STATUS=$(obs-cli recording status --host "$OBS_HOST" --port "$OBS_PORT" 2>&1)
+host = "localhost"
+port = 4455
+password = ""
 
-    if echo "$STATUS" | grep -q "active"; then
-        notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "🔴 Recording started"
-    else
-        notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "⏹️ Recording stopped"
-    fi
-else
-    # Handle connection errors
-    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "Failed to connect to OBS WebSocket. Make sure WebSocket server is enabled in OBS settings."
-    exit 1
+try:
+    ws = obsws(host, port, password)
+    ws.connect()
+
+    # Try to switch to the recording scene if it exists
+    try:
+        scenes = ws.call(requests.GetSceneList())
+        scene_names = [scene['sceneName'] for scene in scenes.getScenes()]
+
+        if "Quick Demo" in scene_names:
+            current_scene = ws.call(requests.GetCurrentProgramScene())
+            if current_scene.getCurrentProgramSceneName() != "Quick Demo":
+                ws.call(requests.SetCurrentProgramScene(sceneName="Quick Demo"))
+    except Exception as e:
+        pass  # Scene might not exist yet, that's okay
+
+    # Toggle recording
+    ws.call(requests.ToggleRecord())
+
+    # Get recording status
+    status = ws.call(requests.GetRecordStatus())
+    is_recording = status.getOutputActive()
+
+    ws.disconnect()
+
+    # Exit with code to indicate recording status (0=started, 1=stopped)
+    sys.exit(0 if is_recording else 1)
+
+except ConnectionFailure:
+    os.system(f'notify-send -t 2000 "OBS Recording" "Failed to connect to OBS WebSocket"')
+    sys.exit(2)
+except Exception as e:
+    os.system(f'notify-send -t 2000 "OBS Recording" "Error: {str(e)}"')
+    sys.exit(2)
+PYTHON_SCRIPT
+
+# Check exit code and show notification
+EXIT_CODE=$?
+if [ $EXIT_CODE -eq 0 ]; then
+    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "🔴 Recording started"
+elif [ $EXIT_CODE -eq 1 ]; then
+    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "⏹️ Recording stopped"
 fi
