@@ -1,0 +1,12 @@
+[Unit]
+Description=Cleanup Recordings - Remove old videos from recordings directory
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="RECORDINGS_DIR=${HOME}/recordings"
+Environment="PATH=${SCRIPTS}:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=${SCRIPTS}/cleanup-recordings
+
+[Install]
+WantedBy=default.target

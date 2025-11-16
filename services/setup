@@ -13,6 +13,7 @@ sudo chown -R monkey /opt/monkey/
     echo "SCRIPTS=$SCRIPTS"
     echo "GOPATH=$GOPATH"
     echo "MONEY_DIR=$MONEY_DIR"
+    echo "RECORDINGS_DIR=$HOME/recordings"
 } > /opt/monkey/services/env
 
 loginctl enable-linger $USER

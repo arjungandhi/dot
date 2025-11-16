@@ -1,0 +1,49 @@
+#!/usr/bin/bash
+# cleanup-recordings - Clean up old recordings based on age and size
+
+RECORDINGS_DIR="${RECORDINGS_DIR:-$HOME/recordings}"
+MAX_AGE_DAYS=7
+MAX_SIZE_GB=5
+MAX_SIZE_BYTES=$((MAX_SIZE_GB * 1024 * 1024 * 1024))
+
+# Exit if directory doesn't exist
+if [ ! -d "$RECORDINGS_DIR" ]; then
+    echo "Recordings directory not found: $RECORDINGS_DIR"
+    exit 0
+fi
+
+echo "Cleaning up recordings in: $RECORDINGS_DIR"
+
+# Delete files older than MAX_AGE_DAYS
+echo "Removing files older than $MAX_AGE_DAYS days..."
+find "$RECORDINGS_DIR" -type f -name "*.mp4" -mtime +$MAX_AGE_DAYS -print -delete
+
+# Check total directory size
+total_size=$(du -sb "$RECORDINGS_DIR" | cut -f1)
+echo "Current directory size: $(numfmt --to=iec-i --suffix=B $total_size)"
+
+if [ $total_size -gt $MAX_SIZE_BYTES ]; then
+    echo "Directory exceeds ${MAX_SIZE_GB}GB, removing oldest files..."
+
+    # Calculate how much we need to delete (with 10% buffer)
+    bytes_to_delete=$((total_size - MAX_SIZE_BYTES + (MAX_SIZE_GB * 1024 * 1024 * 1024 / 10)))
+    bytes_deleted=0
+
+    # List files by oldest first, delete until we've freed enough space
+    find "$RECORDINGS_DIR" -type f -name "*.mp4" -printf "%T@ %s %p\n" | \
+        sort -n | \
+        while read -r timestamp size filepath; do
+            if [ $bytes_deleted -lt $bytes_to_delete ]; then
+                echo "Deleting: $(basename "$filepath") ($(numfmt --to=iec-i --suffix=B $size))"
+                rm -f "$filepath"
+                bytes_deleted=$((bytes_deleted + size))
+            else
+                break
+            fi
+        done
+fi
+
+# Final size check
+final_size=$(du -sb "$RECORDINGS_DIR" 2>/dev/null | cut -f1 || echo 0)
+echo "Final directory size: $(numfmt --to=iec-i --suffix=B $final_size)"
+echo "Cleanup complete"
