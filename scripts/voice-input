@@ -29,6 +29,11 @@ STATUS_FILE = "/tmp/voice-input-status"
 PID_FILE = "/tmp/voice-input.pid"
 CACHE_DIR = os.path.expanduser("~/.cache/voice-input")
 
+# Auto-enter configuration: window titles/classes that should auto-submit
+AUTO_ENTER_PATTERNS = [
+    "claude",  # Claude Code or Claude windows
+]
+
 # Global variables for signal handling
 recording_data = []
 stream = None
@@ -132,6 +137,32 @@ def transcribe_audio(audio_path, model_size=MODEL_SIZE):
     transcription = " ".join([segment.text for segment in segments])
     return transcription.strip()
 
+def should_auto_enter():
+    """Check if we should auto-press Enter based on active window context."""
+    try:
+        import json
+        result = subprocess.run(
+            ["hyprctl", "activewindow", "-j"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        window_info = json.loads(result.stdout)
+
+        window_class = window_info.get("class", "").lower()
+        window_title = window_info.get("title", "").lower()
+
+        # Check if any pattern matches the window class or title
+        for pattern in AUTO_ENTER_PATTERNS:
+            if pattern.lower() in window_class or pattern.lower() in window_title:
+                print(f"Auto-enter triggered for window: {window_class} / {window_title}", file=sys.stderr)
+                return True
+
+        return False
+    except Exception as e:
+        print(f"Error checking window context: {e}", file=sys.stderr)
+        return False
+
 def type_text(text):
     """Type the text using wtype (Wayland)."""
     if not text:
@@ -140,6 +171,11 @@ def type_text(text):
 
     print(f"Typing: {text}", file=sys.stderr)
     subprocess.run(["wtype", text], check=True)
+
+    # Auto-press Enter if in matching context
+    if should_auto_enter():
+        print("Pressing Enter...", file=sys.stderr)
+        subprocess.run(["wtype", "-k", "Return"], check=True)
 
 def record():
     """Main recording function."""
