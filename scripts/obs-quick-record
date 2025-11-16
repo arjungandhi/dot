@@ -19,8 +19,7 @@ fi
 # Use Python to control OBS via WebSocket v5
 python3 << 'PYTHON_SCRIPT'
 import sys
-from obswebsocket import obsws, requests
-from obswebsocket.exceptions import ConnectionFailure
+from obsws_python import ReqClient
 import os
 
 host = "localhost"
@@ -28,36 +27,30 @@ port = 4455
 password = ""
 
 try:
-    ws = obsws(host, port, password)
-    ws.connect()
+    cl = ReqClient(host=host, port=port, password=password)
 
     # Try to switch to the recording scene if it exists
     try:
-        scenes = ws.call(requests.GetSceneList())
-        scene_names = [scene['sceneName'] for scene in scenes.getScenes()]
+        scenes = cl.get_scene_list()
+        scene_names = [scene['sceneName'] for scene in scenes.scenes]
 
         if "Quick Demo" in scene_names:
-            current_scene = ws.call(requests.GetCurrentProgramScene())
-            if current_scene.getCurrentProgramSceneName() != "Quick Demo":
-                ws.call(requests.SetCurrentProgramScene(sceneName="Quick Demo"))
+            current_scene = cl.get_current_program_scene()
+            if current_scene.current_program_scene_name != "Quick Demo":
+                cl.set_current_program_scene("Quick Demo")
     except Exception as e:
         pass  # Scene might not exist yet, that's okay
 
     # Toggle recording
-    ws.call(requests.ToggleRecord())
+    cl.toggle_record()
 
     # Get recording status
-    status = ws.call(requests.GetRecordStatus())
-    is_recording = status.getOutputActive()
-
-    ws.disconnect()
+    status = cl.get_record_status()
+    is_recording = status.output_active
 
     # Exit with code to indicate recording status (0=started, 1=stopped)
     sys.exit(0 if is_recording else 1)
 
-except ConnectionFailure:
-    os.system(f'notify-send -t 2000 "OBS Recording" "Failed to connect to OBS WebSocket"')
-    sys.exit(2)
 except Exception as e:
     os.system(f'notify-send -t 2000 "OBS Recording" "Error: {str(e)}"')
     sys.exit(2)
