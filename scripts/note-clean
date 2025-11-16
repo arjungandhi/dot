@@ -26,5 +26,5 @@ Output ONLY the cleaned and formatted note. Do not add any explanations, comment
 Input text:
 $STDIN_INPUT"
 
-# Send to Ollama and output result
-echo "$PROMPT" | ollama run llama3.2:latest
+# Send to Ollama and output result (suppress spinner on stderr)
+echo "$PROMPT" | ollama run llama3.2:latest 2>/dev/null
