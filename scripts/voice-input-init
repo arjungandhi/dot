@@ -1,3 +1,0 @@
-#!/bin/bash
-# Initialize voice input status file
-echo '{"text": "🎙️", "class": "idle"}' > /tmp/voice-input-status

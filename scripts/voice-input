@@ -3,6 +3,12 @@
 Voice-to-text input using Faster Whisper.
 Hold-to-record: records while running, transcribes when stopped.
 Updates status file for waybar integration.
+
+Usage:
+    voice-input start    # Start recording
+    voice-input stop     # Stop recording and transcribe
+    voice-input init     # Initialize status file
+    voice-input          # Run recording (same as start but foreground)
 """
 
 import sys
@@ -21,6 +27,7 @@ SAMPLE_RATE = 16000
 CHANNELS = 1
 MODEL_SIZE = "base"  # Options: tiny, base, small, medium, large-v2, large-v3
 STATUS_FILE = "/tmp/voice-input-status"
+PID_FILE = "/tmp/voice-input.pid"
 CACHE_DIR = os.path.expanduser("~/.cache/voice-input")
 
 # Global variables for signal handling
@@ -47,6 +54,44 @@ def update_status(status, text=""):
             f.write(f'{{"text": "{icon}", "tooltip": "{text}", "class": "{status}"}}')
         else:
             f.write(f'{{"text": "{icon}", "class": "{status}"}}')
+
+def init():
+    """Initialize voice input status file."""
+    update_status("idle")
+    print("Voice input initialized", file=sys.stderr)
+
+def start():
+    """Start recording in background."""
+    # Kill any existing process
+    subprocess.run(["pkill", "-9", "voice-input"], stderr=subprocess.DEVNULL)
+
+    # Start in background
+    proc = subprocess.Popen([sys.executable, __file__],
+                           stdout=subprocess.DEVNULL,
+                           stderr=subprocess.DEVNULL)
+
+    # Save PID
+    with open(PID_FILE, 'w') as f:
+        f.write(str(proc.pid))
+
+    print(f"Recording started (PID: {proc.pid})", file=sys.stderr)
+
+def stop():
+    """Stop recording and transcribe."""
+    if os.path.exists(PID_FILE):
+        with open(PID_FILE, 'r') as f:
+            pid = int(f.read().strip())
+
+        try:
+            os.kill(pid, signal.SIGTERM)
+            print(f"Stopped recording (PID: {pid})", file=sys.stderr)
+        except ProcessLookupError:
+            print("No recording process found", file=sys.stderr)
+
+        # Clean up PID file
+        os.remove(PID_FILE)
+    else:
+        print("No active recording", file=sys.stderr)
 
 def audio_callback(indata, frames, time_info, status):
     """Callback for continuous audio recording."""
@@ -90,7 +135,8 @@ def type_text(text):
     print(f"Typing: {text}", file=sys.stderr)
     subprocess.run(["wtype", text], check=True)
 
-def main():
+def record():
+    """Main recording function."""
     global recording_data, stream, stop_recording
 
     signal.signal(signal.SIGTERM, signal_handler)
@@ -155,6 +201,23 @@ def main():
         traceback.print_exc()
         update_status("error", str(e))
         sys.exit(1)
+
+def main():
+    if len(sys.argv) > 1:
+        command = sys.argv[1]
+        if command == "init":
+            init()
+        elif command == "start":
+            start()
+        elif command == "stop":
+            stop()
+        else:
+            print(f"Unknown command: {command}", file=sys.stderr)
+            print("Usage: voice-input [init|start|stop]", file=sys.stderr)
+            sys.exit(1)
+    else:
+        # No command given, run recording
+        record()
 
 if __name__ == "__main__":
     main()
