@@ -1,0 +1,4 @@
+#!/bin/bash
+pkill -9 voice-input 2>/dev/null
+voice-input &
+echo $! > /tmp/voice-input.pid

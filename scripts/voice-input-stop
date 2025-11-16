@@ -1,0 +1,5 @@
+#!/bin/bash
+if [ -f /tmp/voice-input.pid ]; then
+    kill -TERM $(cat /tmp/voice-input.pid) 2>/dev/null
+    rm -f /tmp/voice-input.pid
+fi
