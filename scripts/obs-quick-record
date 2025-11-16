@@ -1,0 +1,30 @@
+#!/bin/bash
+# OBS Quick Record Toggle
+# Toggles recording in OBS Studio with notifications
+
+# Configuration
+OBS_HOST="localhost"
+OBS_PORT="4455"  # OBS Studio 28+ uses port 4455 by default
+NOTIFICATION_TIMEOUT=2000  # milliseconds
+
+# Check if OBS is running
+if ! pgrep -x obs > /dev/null; then
+    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "OBS is not running!"
+    exit 1
+fi
+
+# Toggle recording
+if obs-cli recording toggle --host "$OBS_HOST" --port "$OBS_PORT" 2>&1; then
+    # Get current status
+    STATUS=$(obs-cli recording status --host "$OBS_HOST" --port "$OBS_PORT" 2>&1)
+
+    if echo "$STATUS" | grep -q "active"; then
+        notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "🔴 Recording started"
+    else
+        notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "⏹️ Recording stopped"
+    fi
+else
+    # Handle connection errors
+    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "Failed to connect to OBS WebSocket. Make sure WebSocket server is enabled in OBS settings."
+    exit 1
+fi
