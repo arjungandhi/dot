@@ -111,9 +111,39 @@ if [ $EXIT_CODE -eq 0 ]; then
     update_status "recording"
 elif [ $EXIT_CODE -eq 1 ]; then
     update_status "idle"
-    # Show notification with filename if recording was stopped
+    # Show notification and rename file if recording was stopped
     if [ -n "$OUTPUT" ]; then
-        notify-send -t 5000 "Recording Saved" "📹 $OUTPUT"
+        RECORDINGS_DIR="$HOME/recordings"
+        OLD_PATH="$RECORDINGS_DIR/$OUTPUT"
+
+        # Generate title in background to avoid blocking
+        (
+            # Notify that processing started
+            notify-send -t 3000 "Processing Recording" "Generating title..."
+
+            # Generate title from video
+            TITLE=$(/home/monkey/repos/github.com/arjungandhi/dot/scripts/summarize-video "$OLD_PATH" 2>/dev/null)
+
+            if [ -n "$TITLE" ] && [ "$TITLE" != "untitled" ]; then
+                # Get file extension
+                EXT="${OUTPUT##*.}"
+                # Get timestamp for uniqueness
+                TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+                NEW_FILENAME="${TITLE}-${TIMESTAMP}.${EXT}"
+                NEW_PATH="$RECORDINGS_DIR/$NEW_FILENAME"
+
+                # Rename file
+                mv "$OLD_PATH" "$NEW_PATH" 2>/dev/null
+
+                if [ $? -eq 0 ]; then
+                    notify-send -t 5000 "Recording Saved" "📹 $NEW_FILENAME"
+                else
+                    notify-send -t 5000 "Recording Saved" "📹 $OUTPUT"
+                fi
+            else
+                notify-send -t 5000 "Recording Saved" "📹 $OUTPUT"
+            fi
+        ) &
     fi
 elif [ $EXIT_CODE -eq 2 ]; then
     update_status "error"

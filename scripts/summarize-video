@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+"""
+Summarize a video file by transcribing audio and generating a concise title.
+Uses Whisper for transcription and Ollama for title generation.
+
+Usage:
+    summarize-video <video_file>
+"""
+
+import sys
+import os
+import tempfile
+import subprocess
+
+def extract_audio(video_path):
+    """Extract audio from video file to WAV format."""
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio:
+        audio_path = temp_audio.name
+
+    # Use ffmpeg to extract audio
+    cmd = [
+        "ffmpeg", "-i", video_path,
+        "-vn",  # No video
+        "-acodec", "pcm_s16le",  # PCM 16-bit
+        "-ar", "16000",  # 16kHz sample rate (Whisper standard)
+        "-ac", "1",  # Mono
+        "-y",  # Overwrite
+        audio_path
+    ]
+
+    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+    return audio_path
+
+def transcribe_audio(audio_path):
+    """Transcribe audio using Faster Whisper (lazy loaded)."""
+    # Lazy import to avoid loading heavy model unless needed
+    from faster_whisper import WhisperModel
+
+    cache_dir = os.path.expanduser("~/.cache/voice-input")
+    os.makedirs(cache_dir, exist_ok=True)
+
+    model = WhisperModel(
+        "base",
+        device="cpu",
+        compute_type="int8",
+        download_root=cache_dir
+    )
+
+    segments, _ = model.transcribe(audio_path, beam_size=5)
+    transcription = " ".join([segment.text for segment in segments])
+    return transcription.strip()
+
+def generate_title(transcription):
+    """Generate a short title from transcription using Ollama."""
+    if not transcription:
+        return "untitled"
+
+    # Keep transcription short if it's very long
+    max_chars = 500
+    if len(transcription) > max_chars:
+        transcription = transcription[:max_chars] + "..."
+
+    prompt = f"""Based on this transcription of a screen recording, generate a SHORT, descriptive filename (2-5 words max, no spaces, use hyphens).
+
+Transcription: {transcription}
+
+Requirements:
+- 2-5 words maximum
+- Use hyphens instead of spaces
+- Lowercase only
+- No file extension
+- Be specific and descriptive
+- Example format: "django-setup-tutorial" or "api-debugging-session"
+
+Filename:"""
+
+    # Call Ollama
+    try:
+        result = subprocess.run(
+            ["ollama", "run", "llama3.2"],
+            input=prompt,
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+
+        title = result.stdout.strip()
+        # Clean up the response
+        title = title.lower()
+        title = title.replace(" ", "-")
+        title = "".join(c for c in title if c.isalnum() or c == "-")
+        title = title[:50]  # Limit length
+
+        return title if title else "untitled"
+    except Exception as e:
+        print(f"Error generating title: {e}", file=sys.stderr)
+        return "untitled"
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: summarize-video <video_file>", file=sys.stderr)
+        sys.exit(1)
+
+    video_path = sys.argv[1]
+
+    if not os.path.exists(video_path):
+        print(f"Error: Video file not found: {video_path}", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        # Extract audio from video
+        audio_path = extract_audio(video_path)
+
+        # Transcribe audio
+        transcription = transcribe_audio(audio_path)
+
+        # Clean up audio file
+        os.unlink(audio_path)
+
+        # Generate title
+        title = generate_title(transcription)
+
+        # Print title (will be captured by caller)
+        print(title)
+
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
