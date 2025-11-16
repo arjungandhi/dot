@@ -79,7 +79,7 @@ try:
 
     # Wait for OBS to update status
     import time
-    time.sleep(0.5)
+    time.sleep(1.0)
 
     # Get new recording status
     status_after = cl.get_record_status()
