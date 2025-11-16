@@ -62,13 +62,9 @@ def init():
 
 def start():
     """Start recording in background."""
-    # Debug notification
-    subprocess.run(["notify-send", "Voice Input", "Start command triggered"], stderr=subprocess.DEVNULL)
-
     # Check if already recording
     if os.path.exists(PID_FILE):
         print("Already recording", file=sys.stderr)
-        subprocess.run(["notify-send", "Voice Input", "Already recording"], stderr=subprocess.DEVNULL)
         return
 
     # Kill any zombie processes
@@ -84,13 +80,9 @@ def start():
         f.write(str(proc.pid))
 
     print(f"Recording started (PID: {proc.pid})", file=sys.stderr)
-    subprocess.run(["notify-send", "Voice Input", f"Recording started (PID: {proc.pid})"], stderr=subprocess.DEVNULL)
 
 def stop():
     """Stop recording and transcribe."""
-    # Debug notification
-    subprocess.run(["notify-send", "Voice Input", "Stop command triggered"], stderr=subprocess.DEVNULL)
-
     if os.path.exists(PID_FILE):
         with open(PID_FILE, 'r') as f:
             pid = int(f.read().strip())
@@ -98,16 +90,13 @@ def stop():
         try:
             os.kill(pid, signal.SIGTERM)
             print(f"Stopped recording (PID: {pid})", file=sys.stderr)
-            subprocess.run(["notify-send", "Voice Input", f"Stopped recording (PID: {pid})"], stderr=subprocess.DEVNULL)
         except ProcessLookupError:
             print("No recording process found", file=sys.stderr)
-            subprocess.run(["notify-send", "Voice Input", "No recording process found"], stderr=subprocess.DEVNULL)
 
         # Clean up PID file
         os.remove(PID_FILE)
     else:
         print("No active recording", file=sys.stderr)
-        subprocess.run(["notify-send", "Voice Input", "No active recording"], stderr=subprocess.DEVNULL)
 
 def audio_callback(indata, frames, time_info, status):
     """Callback for continuous audio recording."""
