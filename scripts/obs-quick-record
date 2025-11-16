@@ -1,16 +1,51 @@
 #!/bin/bash
 # OBS Quick Record Toggle
-# Toggles recording in OBS Studio with notifications
+# Auto-starts OBS, switches to recording scene, and toggles recording
 
 # Configuration
 OBS_HOST="localhost"
 OBS_PORT="4455"  # OBS Studio 28+ uses port 4455 by default
 NOTIFICATION_TIMEOUT=2000  # milliseconds
+RECORDING_SCENE="Quick Demo"  # Name of the scene to use for recording
+OBS_STARTUP_WAIT=3  # Seconds to wait for OBS to start
 
-# Check if OBS is running
+# Function to wait for OBS WebSocket to be ready
+wait_for_obs_websocket() {
+    local max_attempts=10
+    local attempt=0
+
+    while [ $attempt -lt $max_attempts ]; do
+        if obs-cli scene list --host "$OBS_HOST" --port "$OBS_PORT" &>/dev/null; then
+            return 0
+        fi
+        sleep 0.5
+        attempt=$((attempt + 1))
+    done
+    return 1
+}
+
+# Check if OBS is running, if not start it
 if ! pgrep -x obs > /dev/null; then
-    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "OBS is not running!"
-    exit 1
+    notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "Starting OBS..."
+
+    # Start OBS minimized to tray with the recording scene
+    obs --minimize-to-tray --scene "$RECORDING_SCENE" &>/dev/null &
+
+    # Wait for OBS to fully start and WebSocket to be ready
+    sleep $OBS_STARTUP_WAIT
+
+    if ! wait_for_obs_websocket; then
+        notify-send -t $NOTIFICATION_TIMEOUT "OBS Recording" "Failed to connect to OBS. Make sure WebSocket is enabled."
+        exit 1
+    fi
+fi
+
+# Switch to the recording scene (if it exists and isn't already active)
+if obs-cli scene list --host "$OBS_HOST" --port "$OBS_PORT" 2>&1 | grep -q "^$RECORDING_SCENE$"; then
+    CURRENT_SCENE=$(obs-cli scene get --host "$OBS_HOST" --port "$OBS_PORT" 2>&1)
+    if [ "$CURRENT_SCENE" != "$RECORDING_SCENE" ]; then
+        obs-cli scene current "$RECORDING_SCENE" --host "$OBS_HOST" --port "$OBS_PORT" &>/dev/null
+    fi
 fi
 
 # Toggle recording
