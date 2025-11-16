@@ -15,12 +15,11 @@ import sys
 import os
 import tempfile
 import subprocess
-import sounddevice as sd
-import numpy as np
-from faster_whisper import WhisperModel
-from scipy.io import wavfile
 import signal
 import time
+
+# Lazy imports for heavy libraries - only import when needed
+# This significantly speeds up start/stop commands
 
 # Configuration
 SAMPLE_RATE = 16000
@@ -114,6 +113,8 @@ def signal_handler(signum, frame):
 
 def transcribe_audio(audio_path, model_size=MODEL_SIZE):
     """Transcribe audio file using Faster Whisper."""
+    from faster_whisper import WhisperModel
+
     print("Loading Whisper model...", file=sys.stderr)
 
     os.makedirs(CACHE_DIR, exist_ok=True)
@@ -142,6 +143,10 @@ def type_text(text):
 
 def record():
     """Main recording function."""
+    import sounddevice as sd
+    import numpy as np
+    from scipy.io import wavfile
+
     global recording_data, stream, stop_recording
 
     signal.signal(signal.SIGTERM, signal_handler)
