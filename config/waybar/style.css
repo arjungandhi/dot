@@ -214,8 +214,7 @@ tooltip label {
 }
 
 #custom-voice-input.recording {
-  background: #bf616a;
-  color: #eceff4;
+  color: #bf616a;
 }
 
 #custom-obs-recording {
@@ -225,8 +224,7 @@ tooltip label {
 }
 
 #custom-obs-recording.recording {
-  background: #bf616a;
-  color: #eceff4;
+  color: #bf616a;
 }
 
 #custom-dockerctx {
