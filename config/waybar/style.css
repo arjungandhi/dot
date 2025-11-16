@@ -69,6 +69,8 @@ tooltip label {
 }
 
 /* Module containers */
+#custom-voice-input,
+#custom-obs-recording,
 #custom-dockerctx,
 #custom-kubectx,
 #cpu,
@@ -88,6 +90,8 @@ tooltip label {
   transition: all 0.3s ease;
 }
 
+#custom-voice-input:hover,
+#custom-obs-recording:hover,
 #custom-dockerctx:hover,
 #custom-kubectx:hover,
 #cpu:hover,
@@ -203,6 +207,28 @@ tooltip label {
 }
 
 /* Custom modules */
+#custom-voice-input {
+  background: #3b4252;
+  color: #88c0d0;
+  font-weight: bold;
+}
+
+#custom-voice-input.recording {
+  background: #bf616a;
+  color: #eceff4;
+}
+
+#custom-obs-recording {
+  background: #3b4252;
+  color: #81a1c1;
+  font-weight: bold;
+}
+
+#custom-obs-recording.recording {
+  background: #bf616a;
+  color: #eceff4;
+}
+
 #custom-dockerctx {
   background: #3b4252;
   color: #81a1c1;
