@@ -33,7 +33,7 @@ def update_status(status, text=""):
     os.makedirs(os.path.dirname(STATUS_FILE), exist_ok=True)
 
     status_icons = {
-        "idle": "",
+        "idle": "🎙️",
         "recording": "🎤",
         "transcribing": "⏳",
         "typing": "⌨️",
