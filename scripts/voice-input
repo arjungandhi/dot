@@ -198,6 +198,7 @@ def type_text(text):
 
 def record():
     """Main recording function."""
+    # Import audio libraries first - these are fast
     import sounddevice as sd
     import numpy as np
     from scipy.io import wavfile
@@ -208,9 +209,7 @@ def record():
     signal.signal(signal.SIGINT, signal_handler)
 
     try:
-        print("Recording... (will stop when process is killed)", file=sys.stderr)
-        update_status("recording", "Recording audio...")
-
+        # Start recording IMMEDIATELY before doing anything else
         recording_data = []
 
         stream = sd.InputStream(
@@ -221,12 +220,16 @@ def record():
         )
 
         stream.start()
+        print("Recording started immediately...", file=sys.stderr)
+        update_status("recording", "Recording audio...")
 
+        # Now that recording has started, we can wait for stop signal
         while not stop_recording:
             time.sleep(0.1)
 
         stream.stop()
         stream.close()
+        print("Recording stopped, processing...", file=sys.stderr)
 
         if not recording_data:
             print("No audio recorded!", file=sys.stderr)
