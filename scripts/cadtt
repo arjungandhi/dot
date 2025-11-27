@@ -1,2 +1,4 @@
 #!/usr/bin/bash
-openscad --viewall $1 &
+clear
+make run 
+onchange make run
