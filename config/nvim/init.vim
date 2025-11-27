@@ -293,8 +293,8 @@ require'lspconfig'.ts_ls.setup{
     "vue",
   },
 }
-
 require'lspconfig'.terraformls.setup{}
+require'lspconfig'.cmake.setup{}
 
 -- cmp
 local cmp = require('cmp')
