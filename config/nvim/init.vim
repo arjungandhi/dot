@@ -225,12 +225,7 @@ vim.diagnostic.config({virtual_text = true})
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lspconfig_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -256,6 +251,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Actual LSP Servers
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 require'lspconfig'.pylsp.setup{
+  capabilities = capabilities,
   settings = {
     pylsp = {
       plugins = {
@@ -275,9 +271,14 @@ require'lspconfig'.pylsp.setup{
       }
     }
 }
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.eslint.setup{}
+require'lspconfig'.gopls.setup{
+  capabilities = capabilities,
+}
+require'lspconfig'.eslint.setup{
+  capabilities = capabilities,
+}
 require'lspconfig'.ts_ls.setup{
+  capabilities = capabilities,
   init_options = {
     plugins = {
       {
@@ -293,8 +294,12 @@ require'lspconfig'.ts_ls.setup{
     "vue",
   },
 }
-require'lspconfig'.terraformls.setup{}
-require'lspconfig'.cmake.setup{}
+require'lspconfig'.terraformls.setup{
+  capabilities = capabilities,
+}
+require'lspconfig'.cmake.setup{
+  capabilities = capabilities,
+}
 
 -- cmp
 local cmp = require('cmp')
