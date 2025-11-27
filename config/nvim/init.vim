@@ -10,7 +10,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 
 " lsp
-Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 
@@ -216,24 +215,15 @@ nmap ga <Plug>(EasyAlign)
 
 " LSP config
 lua <<EOF
--- Reserve a space in the gutter
--- This will avoid an annoying layout shift in the screen
 vim.opt.signcolumn = 'yes'
-
--- Enable LSP diagnostics
 vim.diagnostic.config({virtual_text = true})
 
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- This is where you enable features that only work
--- if there is a language server active in the file
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
     local opts = {buffer = event.buf}
-
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -247,37 +237,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-
--- Actual LSP Servers
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-require'lspconfig'.pylsp.setup{
+vim.lsp.config('pylsp', {
   capabilities = capabilities,
   settings = {
     pylsp = {
       plugins = {
-          pycodestyle = {
-              enabled = false
-          },
-          ruff = {
-              enabled = true,  -- Enable the plugin
-              formatEnabled = true,  -- Enable formatting using ruffs formatter
-              executable = "/usr/bin/ruff",  -- Custom path to ruff
-              extendSelect = { "I" },  -- Rules that are additionally used by ruff
-              format = { "I" },  -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
-              severities = { ["D212"] = "I" },  -- Optional table of rules where a custom severity is desired
-              lineLength = 88,  -- Line length to pass to ruff checking and formatting
-          }, 
-        }
+        pycodestyle = {enabled = false},
+        ruff = {
+          enabled = true,
+          formatEnabled = true,
+          executable = "/usr/bin/ruff",
+          extendSelect = {"I"},
+          format = {"I"},
+          severities = {["D212"] = "I"},
+          lineLength = 88,
+        },
       }
     }
-}
-require'lspconfig'.gopls.setup{
-  capabilities = capabilities,
-}
-require'lspconfig'.eslint.setup{
-  capabilities = capabilities,
-}
-require'lspconfig'.ts_ls.setup{
+  }
+})
+
+vim.lsp.config('gopls', {capabilities = capabilities})
+vim.lsp.config('eslint', {capabilities = capabilities})
+vim.lsp.config('ts_ls', {
   capabilities = capabilities,
   init_options = {
     plugins = {
@@ -288,34 +270,23 @@ require'lspconfig'.ts_ls.setup{
       },
     },
   },
-  filetypes = {
-    "javascript",
-    "typescript",
-    "vue",
-  },
-}
-require'lspconfig'.terraformls.setup{
-  capabilities = capabilities,
-}
-require'lspconfig'.cmake.setup{
-  capabilities = capabilities,
-}
+  filetypes = {"javascript", "typescript", "vue"},
+})
+vim.lsp.config('terraformls', {capabilities = capabilities})
+vim.lsp.config('cmake', {capabilities = capabilities})
 
--- cmp
+vim.lsp.enable({'pylsp', 'gopls', 'eslint', 'ts_ls', 'terraformls', 'cmake'})
+
 local cmp = require('cmp')
-
 cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-  },
+  sources = {{name = 'nvim_lsp'}},
   snippet = {
     expand = function(args)
-      -- You need Neovim v0.10 to use vim.snippet
       vim.snippet.expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
-  ['<Tab>'] = cmp.mapping.confirm({ select = true}),
+    ['<Tab>'] = cmp.mapping.confirm({select = true}),
   }),
 })
 
