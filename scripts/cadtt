@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 clear
-make run 
+make run
 onchange make run
