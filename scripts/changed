@@ -8,11 +8,28 @@ changed () {
   local dir="${PWD}"
   local tmpname="onchange${dir//\//-}"
   local tmp="/tmp/${tmpname}"
+
+  # Get list of files using find
+  local files
   if [[ ! -e "${tmp}" ]]; then
-    find "${dir}" -type f -not -path '*testdata*'
+    files=$(find "${dir}" -type f -not -path '*testdata*' -not -path '*/.git/*')
   else
-    find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*'
+    files=$(find "${dir}" -newer "${tmp}" -type f -not -path '*testdata*' -not -path '*/.git/*')
   fi
+
+  # Check if we're in a git repository and filter through .gitignore
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    # Filter out files that match .gitignore
+    echo "${files}" | while IFS= read -r file; do
+      if [[ -n "${file}" ]] && ! git check-ignore -q "${file}" 2>/dev/null; then
+        echo "${file}"
+      fi
+    done
+  else
+    # Not in a git repo, output as-is
+    echo "${files}"
+  fi
+
   touch "${tmp}"
 }
 
