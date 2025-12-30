@@ -39,6 +39,32 @@ if [ ! -f "$STATUS_FILE" ]; then
     update_status "idle"
 fi
 
+# Check current recording status first to decide if we need confirmation
+CURRENT_STATUS=$(python3 << 'CHECK_STATUS'
+from obsws_python import ReqClient
+import sys
+
+try:
+    cl = ReqClient(host="localhost", port=4455, password="")
+    status = cl.get_record_status()
+    if status.output_active:
+        print("recording")
+    else:
+        print("idle")
+except:
+    print("idle")  # If OBS isn't running, we're not recording
+CHECK_STATUS
+)
+
+# If not currently recording, ask for confirmation before starting
+if [ "$CURRENT_STATUS" != "recording" ]; then
+    CONFIRM=$(echo -e "Yes\nNo" | rofi -dmenu -p "Start OBS Recording?" -mesg "Confirm to start recording")
+    if [ "$CONFIRM" != "Yes" ]; then
+        notify-send -t 2000 "OBS Recording" "Recording cancelled"
+        exit 0
+    fi
+fi
+
 # Check if OBS is running, if not start it
 if ! pgrep -x obs > /dev/null; then
     obs --minimize-to-tray --scene "$RECORDING_SCENE" &>/dev/null &
