@@ -29,6 +29,7 @@ export ATP_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export TODO_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export MONEY_DIR=$HOME/repos/github.com/arjungandhi/monkey/money
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
+export DUNBAR_DIR=$HOME/repos/github.com/arjungandhi/monkey/dunbar
 export JUPYTER_DD_API_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.api')
 export JUPYTER_DD_APP_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.app')
 
