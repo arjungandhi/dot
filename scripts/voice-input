@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
 Voice-to-text input using Faster Whisper.
-Hold-to-record: records while running, transcribes when stopped.
+Hold-to-record: records while running, transcribes live with streaming output.
 Updates status file for waybar integration.
 
 Usage:
-    voice-input start    # Start recording
-    voice-input stop     # Stop recording and transcribe
+    voice-input start    # Start recording with live transcription
+    voice-input stop     # Stop recording
     voice-input toggle   # Toggle recording on/off
     voice-input init     # Initialize status file
     voice-input          # Run recording (same as start but foreground)
@@ -18,6 +18,8 @@ import tempfile
 import subprocess
 import signal
 import time
+import threading
+import queue
 
 # Lazy imports for heavy libraries - only import when needed
 # This significantly speeds up start/stop commands
@@ -30,15 +32,22 @@ STATUS_FILE = "/tmp/voice-input-status"
 PID_FILE = "/tmp/voice-input.pid"
 CACHE_DIR = os.path.expanduser("~/.cache/voice-input")
 
+# Streaming configuration
+CHUNK_DURATION = 1.0  # Process audio every 1 second
+BUFFER_DURATION = 3.0  # Keep 3 seconds of audio for context
+
 # Auto-enter configuration: window titles/classes that should auto-submit
 AUTO_ENTER_PATTERNS = [
     "com.mitchellh.ghostty",  # Ghostty terminal (where Claude Code runs)
 ]
 
-# Global variables for signal handling
+# Global variables for signal handling and streaming
 recording_data = []
 stream = None
 stop_recording = False
+transcription_queue = queue.Queue()
+last_transcription = ""
+whisper_model = None
 
 def update_status(status, text=""):
     """Update status file for waybar."""
@@ -135,26 +144,44 @@ def signal_handler(signum, frame):
         stream.stop()
         stream.close()
 
-def transcribe_audio(audio_path, model_size=MODEL_SIZE):
+def get_whisper_model():
+    """Get or create Whisper model (cached globally)."""
+    global whisper_model
+    if whisper_model is None:
+        from faster_whisper import WhisperModel
+        print("Loading Whisper model...", file=sys.stderr)
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        whisper_model = WhisperModel(
+            MODEL_SIZE,
+            device="cpu",
+            compute_type="int8",
+            download_root=CACHE_DIR
+        )
+    return whisper_model
+
+def transcribe_audio(audio_path):
     """Transcribe audio file using Faster Whisper."""
-    from faster_whisper import WhisperModel
-
-    print("Loading Whisper model...", file=sys.stderr)
-
-    os.makedirs(CACHE_DIR, exist_ok=True)
-
-    model = WhisperModel(
-        model_size,
-        device="cpu",
-        compute_type="int8",
-        download_root=CACHE_DIR
-    )
-
-    print("Transcribing...", file=sys.stderr)
+    model = get_whisper_model()
     segments, info = model.transcribe(audio_path, beam_size=5)
-
     transcription = " ".join([segment.text for segment in segments])
     return transcription.strip()
+
+def transcribe_audio_data(audio_data, sample_rate=SAMPLE_RATE):
+    """Transcribe audio data (numpy array) using Faster Whisper."""
+    import numpy as np
+    from scipy.io import wavfile
+
+    # Save to temporary file
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio:
+        temp_path = temp_audio.name
+
+    wavfile.write(temp_path, sample_rate, audio_data)
+
+    try:
+        transcription = transcribe_audio(temp_path)
+        return transcription
+    finally:
+        os.unlink(temp_path)
 
 def should_auto_enter():
     """Check if we should auto-press Enter based on active window context."""
