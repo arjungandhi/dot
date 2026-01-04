@@ -223,22 +223,98 @@ def type_text(text):
         print("Pressing Enter...", file=sys.stderr)
         subprocess.run(["wtype", "-k", "Return"], check=True)
 
+def type_text_incremental(new_text, previous_text=""):
+    """Type only the new part of text that wasn't in previous_text."""
+    if not new_text:
+        return
+
+    # Find the common prefix
+    if previous_text and new_text.startswith(previous_text):
+        # Type only the new part
+        new_part = new_text[len(previous_text):]
+        if new_part:
+            # Add space if needed (if previous text didn't end with space)
+            if previous_text and not previous_text.endswith(" ") and not new_part.startswith(" "):
+                new_part = " " + new_part
+            print(f"Typing (incremental): {new_part}", file=sys.stderr)
+            subprocess.run(["wtype", new_part], check=True)
+    else:
+        # Transcription changed completely, type the whole thing
+        # This shouldn't happen often but handle it gracefully
+        print(f"Typing (full): {new_text}", file=sys.stderr)
+        subprocess.run(["wtype", new_text], check=True)
+
+def transcription_worker():
+    """Worker thread that processes audio chunks and transcribes them."""
+    import numpy as np
+    global last_transcription, recording_data
+
+    # Pre-load the model in this thread
+    get_whisper_model()
+
+    last_typed = ""
+    chunk_samples = int(SAMPLE_RATE * CHUNK_DURATION)
+    buffer_samples = int(SAMPLE_RATE * BUFFER_DURATION)
+
+    print("Transcription worker started", file=sys.stderr)
+
+    while not stop_recording or len(recording_data) > 0:
+        try:
+            # Wait a bit before processing
+            time.sleep(CHUNK_DURATION)
+
+            if len(recording_data) == 0:
+                continue
+
+            # Get current audio buffer
+            audio_data = np.concatenate(recording_data, axis=0)
+
+            # Skip if too short (need at least 0.5 seconds)
+            if len(audio_data) < SAMPLE_RATE * 0.5:
+                continue
+
+            # Use only the most recent buffer_samples for context
+            if len(audio_data) > buffer_samples:
+                audio_chunk = audio_data[-buffer_samples:]
+            else:
+                audio_chunk = audio_data
+
+            # Transcribe this chunk
+            transcription = transcribe_audio_data(audio_chunk)
+
+            if transcription:
+                # Type only the new part
+                if transcription != last_typed:
+                    update_status("typing", f"{transcription[:50]}...")
+                    type_text_incremental(transcription, last_typed)
+                    last_typed = transcription
+                    last_transcription = transcription
+
+        except Exception as e:
+            print(f"Transcription error: {e}", file=sys.stderr)
+            import traceback
+            traceback.print_exc()
+
+    print("Transcription worker finished", file=sys.stderr)
+
 def record():
-    """Main recording function."""
+    """Main recording function with live streaming transcription."""
     # Import audio libraries first - these are fast
     import sounddevice as sd
     import numpy as np
-    from scipy.io import wavfile
 
-    global recording_data, stream, stop_recording
+    global recording_data, stream, stop_recording, last_transcription
 
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
 
     try:
-        # Start recording IMMEDIATELY before doing anything else
+        # Reset state
         recording_data = []
+        stop_recording = False
+        last_transcription = ""
 
+        # Start recording stream
         stream = sd.InputStream(
             samplerate=SAMPLE_RATE,
             channels=CHANNELS,
@@ -247,48 +323,33 @@ def record():
         )
 
         stream.start()
-        print("Recording started immediately...", file=sys.stderr)
-        update_status("recording", "Recording audio...")
+        print("Recording started with live transcription...", file=sys.stderr)
+        update_status("recording", "Recording with live transcription...")
 
-        # Now that recording has started, we can wait for stop signal
+        # Start transcription worker thread
+        transcription_thread = threading.Thread(target=transcription_worker, daemon=True)
+        transcription_thread.start()
+
+        # Wait for stop signal
         while not stop_recording:
             time.sleep(0.1)
 
+        print("Stop signal received, finishing transcription...", file=sys.stderr)
+
+        # Stop recording
         stream.stop()
         stream.close()
-        print("Recording stopped, processing...", file=sys.stderr)
 
-        if not recording_data:
-            print("No audio recorded!", file=sys.stderr)
-            update_status("idle")
-            return
+        # Wait for transcription thread to finish processing remaining audio
+        transcription_thread.join(timeout=5.0)
 
-        audio_data = np.concatenate(recording_data, axis=0)
-
-        # Skip if recording is too short (less than 0.5 seconds)
-        if len(audio_data) < SAMPLE_RATE * 0.5:
-            print("Recording too short, skipping.", file=sys.stderr)
-            update_status("idle")
-            return
-
-        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio:
-            temp_path = temp_audio.name
-
-        wavfile.write(temp_path, SAMPLE_RATE, audio_data)
-
-        update_status("transcribing", "Transcribing audio...")
-        text = transcribe_audio(temp_path)
-
-        os.unlink(temp_path)
-
-        if text:
-            update_status("typing", f"Typing: {text[:50]}...")
-            type_text(text)
-            print(f"Transcribed and typed: {text}", file=sys.stderr)
-        else:
-            print("No speech detected!", file=sys.stderr)
+        # Press Enter if configured
+        if last_transcription and should_auto_enter():
+            print("Pressing Enter...", file=sys.stderr)
+            subprocess.run(["wtype", "-k", "Return"], check=True)
 
         update_status("idle")
+        print(f"Final transcription: {last_transcription}", file=sys.stderr)
 
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
