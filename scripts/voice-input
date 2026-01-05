@@ -285,6 +285,15 @@ def transcription_worker():
             if transcription:
                 # Type only the new part
                 if transcription != last_typed:
+                    # Clean up transcription (remove trailing ellipsis if present)
+                    transcription = transcription.strip()
+                    if transcription.endswith('...'):
+                        transcription = transcription[:-3].rstrip()
+
+                    if not transcription:
+                        continue
+
+                    print(f"Raw transcription: '{transcription}'", file=sys.stderr)
                     update_status("typing", f"{transcription[:50]}...")
                     type_text_incremental(transcription, last_typed)
                     last_typed = transcription
