@@ -15,21 +15,22 @@ autocommit() {
     	cd $path                              &> /dev/null
         sleep 30s                             &> /dev/null
 
-    	# Attempt git operations and notify on failure
-    	if ! git pull &> /dev/null; then
-    	    notify-send -u critical "Auto-commit Failed" "git pull failed in $path"
-    	    continue
-    	fi
-
+    	# Stage and commit local changes first
     	git add --all                         &> /dev/null
     	now=$(date)                           &> /dev/null
 
     	if ! git commit -m "Auto-Commit at : $now" &> /dev/null; then
     	    # Commit can fail if there are no changes, which is fine
-    	    # Only notify on push failures
     	    continue
     	fi
 
+    	# Pull remote changes after committing local changes
+    	if ! git pull &> /dev/null; then
+    	    notify-send -u critical "Auto-commit Failed" "git pull failed in $path"
+    	    continue
+    	fi
+
+    	# Push combined changes
     	if ! git push &> /dev/null; then
     	    notify-send -u critical "Auto-commit Failed" "git push failed in $path"
     	fi
