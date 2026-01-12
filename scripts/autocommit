@@ -14,11 +14,25 @@ autocommit() {
     	inotifywait --recursive --exclude '\.git' -e attrib,create,delete,modify,delete_self,move,move_self,close_write $path
     	cd $path                              &> /dev/null
         sleep 30s                             &> /dev/null
-    	git pull                              &> /dev/null
+
+    	# Attempt git operations and notify on failure
+    	if ! git pull &> /dev/null; then
+    	    notify-send -u critical "Auto-commit Failed" "git pull failed in $path"
+    	    continue
+    	fi
+
     	git add --all                         &> /dev/null
     	now=$(date)                           &> /dev/null
-    	git commit -m "Auto-Commit at : $now" &> /dev/null	
-    	git push                              &> /dev/null
+
+    	if ! git commit -m "Auto-Commit at : $now" &> /dev/null; then
+    	    # Commit can fail if there are no changes, which is fine
+    	    # Only notify on push failures
+    	    continue
+    	fi
+
+    	if ! git push &> /dev/null; then
+    	    notify-send -u critical "Auto-commit Failed" "git push failed in $path"
+    	fi
     done
 
 }
