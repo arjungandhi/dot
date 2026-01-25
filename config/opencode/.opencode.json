@@ -42,18 +42,28 @@
   },
   "agents": {
     "coder": {
-      "model": "ollama/qwen2.5-coder:7b-instruct-q5_K_M",
+      "model": "ollama/qwen2.5-coder:7b",
       "maxTokens": 5000,
       "reasoningEffort": ""
     },
     "task": {
-      "model": "ollama/deepseek-r1:8b",
+      "model": "ollama/llama3.2:3b",
       "maxTokens": 5000,
       "reasoningEffort": ""
     },
     "title": {
-      "model": "ollama/qwen2.5-coder:7b-instruct-q5_K_M",
+      "model": "ollama/qwen2.5-coder:7b",
       "maxTokens": 80,
+      "reasoningEffort": ""
+    },
+    "search": {
+      "model": "ollama/llama3.2:3b",
+      "maxTokens": 8000,
+      "reasoningEffort": ""
+    },
+    "embedding": {
+      "model": "ollama/nomic-embed-text",
+      "maxTokens": 2048,
       "reasoningEffort": ""
     }
   },

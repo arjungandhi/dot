@@ -9,27 +9,31 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "qwen2.5-coder:7b-16k": {
-          "name": "qwen2.5-coder:7b-16k"
+        "qwen2.5-coder:7b": {
+          "name": "qwen2.5-coder:7b"
         },
-        "deepseek-r1:8b-16k": {
-          "name": "deepseek-r1:8b-16k"
+        "llama3.2:3b": {
+          "name": "llama3.2:3b"
+        },
+        "nomic-embed-text": {
+          "name": "nomic-embed-text"
         }
       }
     }
   },
   "agent": {
     "build": {
-      "model": "ollama/qwen2.5-coder:7b-16k"
+      "model": "ollama/qwen2.5-coder:7b"
     },
     "plan": {
-      "model": "ollama/deepseek-r1:8b-16k",
-      "reasoningEffort": "high"
+      "model": "ollama/qwen2.5-coder:7b"
     },
     "search": {
-      "model": "ollama/deepseek-r1:8b-16k",
-      "prompt": "You are a specialized search assistant. Help find information across emails, drive files, notes, and local data. Provide comprehensive, well-reasoned answers.",
-      "reasoningEffort": "high"
+      "model": "ollama/llama3.2:3b",
+      "prompt": "You are a specialized search and aggregation assistant. Help find and synthesize information across emails, drive files, notes, and local data. Provide comprehensive, well-organized answers."
+    },
+    "embedding": {
+      "model": "ollama/nomic-embed-text"
     }
   }
 }
