@@ -9,25 +9,25 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "qwen2.5-coder:7b-instruct-q5_K_M": {
-          "name": "qwen2.5-coder:7b-instruct-q5_K_M"
+        "qwen2.5-coder:7b-16k": {
+          "name": "qwen2.5-coder:7b-16k"
         },
-        "deepseek-r1:8b": {
-          "name": "deepseek-r1:8b"
+        "deepseek-r1:8b-16k": {
+          "name": "deepseek-r1:8b-16k"
         }
       }
     }
   },
   "agent": {
     "build": {
-      "model": "ollama/qwen2.5-coder:7b-instruct-q5_K_M"
+      "model": "ollama/qwen2.5-coder:7b-16k"
     },
     "plan": {
-      "model": "ollama/deepseek-r1:8b",
+      "model": "ollama/deepseek-r1:8b-16k",
       "reasoningEffort": "high"
     },
     "search": {
-      "model": "ollama/deepseek-r1:8b",
+      "model": "ollama/deepseek-r1:8b-16k",
       "prompt": "You are a specialized search assistant. Help find information across emails, drive files, notes, and local data. Provide comprehensive, well-reasoned answers.",
       "reasoningEffort": "high"
     }
