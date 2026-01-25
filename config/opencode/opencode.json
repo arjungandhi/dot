@@ -35,17 +35,5 @@
     "embedding": {
       "model": "ollama/nomic-embed-text"
     }
-  },
-  "mcp": {
-    "google_workspace": {
-      "type": "local",
-      "command": ["uvx"],
-      "args": ["workspace-mcp"],
-      "env": {
-        "GOOGLE_CLIENT_SECRET_PATH": "/opt/monkey/secrets/opencode_google.json",
-        "OAUTHLIB_INSECURE_TRANSPORT": "1"
-      }
-
-    }
   }
 }
