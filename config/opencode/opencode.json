@@ -35,5 +35,14 @@
     "embedding": {
       "model": "ollama/nomic-embed-text"
     }
+  },
+  "mcp": {
+    "google_workspace": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "workspace-mcp"
+      ]
+    }
   }
 }
