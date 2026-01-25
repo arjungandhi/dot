@@ -10,11 +10,11 @@
         "timeout": 120000
       },
       "models": {
-        "qwen2.5-coder:7b-64k": {
-          "name": "qwen2.5-coder:7b-64k"
+        "qwen2.5-coder:7b-16k": {
+          "name": "qwen2.5-coder:7b-16k"
         },
-        "llama3.2:3b-64k": {
-          "name": "llama3.2:3b-64k"
+        "llama3.2:3b-16k": {
+          "name": "llama3.2:3b-16k"
         },
         "nomic-embed-text": {
           "name": "nomic-embed-text"
@@ -24,13 +24,13 @@
   },
   "agent": {
     "build": {
-      "model": "ollama/qwen2.5-coder:7b-64k"
+      "model": "ollama/qwen2.5-coder:7b-16k"
     },
     "plan": {
-      "model": "ollama/qwen2.5-coder:7b-64k"
+      "model": "ollama/qwen2.5-coder:7b-16k"
     },
     "search": {
-      "model": "ollama/llama3.2:3b-64k",
+      "model": "ollama/llama3.2:3b-16k",
       "prompt": "You are a specialized search and aggregation assistant. Help find and synthesize information across emails, drive files, notes, and local data. Provide comprehensive, well-organized answers."
     },
     "embedding": {
