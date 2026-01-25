@@ -2,22 +2,25 @@
   "data": {
     "directory": ".opencode"
   },
-  "mcpServers": {},
   "providers": {
     "anthropic": {
+      "apiKey": "",
       "disabled": true
     },
     "groq": {
+      "apiKey": "",
       "disabled": true
     },
     "ollama": {
-      "baseURL": "http://localhost:11434/v1",
+      "apiKey": "",
       "disabled": false
     },
     "openai": {
+      "apiKey": "",
       "disabled": true
     },
     "openrouter": {
+      "apiKey": "",
       "disabled": true
     }
   },
