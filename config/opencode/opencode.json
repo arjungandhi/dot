@@ -11,16 +11,10 @@
       },
       "models": {
         "qwen2.5-coder:7b": {
-          "name": "qwen2.5-coder:7b",
-          "options": {
-            "num_ctx": 4096
-          }
+          "name": "qwen2.5-coder:7b"
         },
         "llama3.2:3b": {
-          "name": "llama3.2:3b",
-          "options": {
-            "num_ctx": 2048
-          }
+          "name": "llama3.2:3b"
         },
         "nomic-embed-text": {
           "name": "nomic-embed-text"
