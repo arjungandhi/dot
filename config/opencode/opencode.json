@@ -17,5 +17,14 @@
         }
       }
     }
+  },
+  "agent": {
+    "build": {
+      "model": "ollama/qwen2.5-coder:7b-instruct-q5_K_M"
+    },
+    "plan": {
+      "model": "ollama/deepseek-r1:8b",
+      "reasoningEffort": "high"
+    }
   }
 }
