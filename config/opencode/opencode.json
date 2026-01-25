@@ -25,6 +25,11 @@
     "plan": {
       "model": "ollama/deepseek-r1:8b",
       "reasoningEffort": "high"
+    },
+    "search": {
+      "model": "ollama/deepseek-r1:8b",
+      "prompt": "You are a specialized search assistant. Help find information across emails, drive files, notes, and local data. Provide comprehensive, well-reasoned answers.",
+      "reasoningEffort": "high"
     }
   }
 }
