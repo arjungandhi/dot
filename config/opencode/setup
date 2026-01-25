@@ -8,5 +8,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # create config directory if it doesn't exist
 mkdir -p "$HOME/.config/opencode"
 
-# .opencode.json
-ln -sf "$DIR/.opencode.json" "$HOME/.config/opencode/.opencode.json"
+# opencode.json (v1.1+ config format)
+ln -sf "$DIR/opencode.json" "$HOME/.config/opencode/opencode.json"
