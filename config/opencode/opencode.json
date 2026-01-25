@@ -41,7 +41,10 @@
       "type": "local",
       "command": [
         "uvx",
-        "workspace-mcp"
+        "workspace-mcp",
+        "--tools",
+        "gmail",
+        "drive"
       ],
       "environment": {
           "GOOGLE_CLIENT_SECRET_PATH": "/opt/monkey/secrets/opencode_google.json",
