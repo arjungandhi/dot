@@ -1,0 +1,72 @@
+{
+  "data": {
+    "directory": ".opencode"
+  },
+  "mcpServers": {
+    "example": {
+      "command": "path/to/mcp-server",
+      "env": [],
+      "args": [],
+      "type": "stdio",
+      "url": "",
+      "headers": null
+    }
+  },
+  "providers": {
+    "anthropic": {
+      "apiKey": "",
+      "disabled": true
+    },
+    "groq": {
+      "apiKey": "",
+      "disabled": true
+    },
+    "ollama": {
+      "apiKey": "",
+      "disabled": false
+    },
+    "openai": {
+      "apiKey": "",
+      "disabled": true
+    },
+    "openrouter": {
+      "apiKey": "",
+      "disabled": true
+    }
+  },
+  "lsp": {
+    "go": {
+      "enabled": false,
+      "command": "gopls",
+      "args": null,
+      "options": null
+    }
+  },
+  "agents": {
+    "coder": {
+      "model": "ollama/qwen2.5-coder:7b-instruct-q5_K_M",
+      "maxTokens": 5000,
+      "reasoningEffort": ""
+    },
+    "task": {
+      "model": "ollama/deepseek-r1:8b",
+      "maxTokens": 5000,
+      "reasoningEffort": ""
+    },
+    "title": {
+      "model": "ollama/qwen2.5-coder:7b-instruct-q5_K_M",
+      "maxTokens": 80,
+      "reasoningEffort": ""
+    }
+  },
+  "tui": {
+    "theme": "opencode"
+  },
+  "shell": {
+    "path": "/bin/bash",
+    "args": [
+      "-l"
+    ]
+  },
+  "autoCompact": true
+}

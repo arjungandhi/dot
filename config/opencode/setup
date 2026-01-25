@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+# get script directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# ---------------------------------- Symlinks ----------------------------------
+
+# create config directory if it doesn't exist
+mkdir -p "$HOME/.config/opencode"
+
+# .opencode.json
+ln -sf "$DIR/.opencode.json" "$HOME/.config/opencode/.opencode.json"
