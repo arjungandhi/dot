@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Get current git branch
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+if [ -z "$BRANCH" ]; then
+    echo "Error: Not in a git repository"
+    exit 1
+fi
+
+# Get the git root directory
+GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+if [ -z "$GIT_ROOT" ]; then
+    echo "Error: Could not determine git root"
+    exit 1
+fi
+
+# Verify we're in the_cloud repo
+REPO_NAME=$(basename "$GIT_ROOT")
+if [ "$REPO_NAME" != "the_cloud" ]; then
+    echo "Error: This script must be run from within the_cloud repository"
+    echo "Current repo: $REPO_NAME"
+    exit 1
+fi
+
+# Get current directory relative to git root
+CURRENT_DIR=$(pwd)
+RELATIVE_PATH=${CURRENT_DIR#$GIT_ROOT}
+RELATIVE_PATH=${RELATIVE_PATH#/}  # Remove leading slash if present
+
+# If we're at the root, set relative path to empty
+if [ "$CURRENT_DIR" = "$GIT_ROOT" ]; then
+    RELATIVE_PATH=""
+fi
+
+echo "Branch: $BRANCH"
+echo "Relative path: ${RELATIVE_PATH:-<root>}"
+echo "Running on s003..."
+
+# SSH to s003 and execute commands
+# The cd command will change to the_cloud root, then to the relative path if it exists
+if [ -n "$RELATIVE_PATH" ]; then
+    ssh s003 "cd the_cloud && git checkout '$BRANCH' && cd '$RELATIVE_PATH' && pattern molecule build $*"
+else
+    ssh s003 "cd the_cloud && git checkout '$BRANCH' && pattern molecule build $*"
+fi
