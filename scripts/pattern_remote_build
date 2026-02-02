@@ -14,10 +14,10 @@ if [ -z "$GIT_ROOT" ]; then
     exit 1
 fi
 
-# Verify we're in the_cloud repo
+# Verify we're in a supported Pattern Labs repo
 REPO_NAME=$(basename "$GIT_ROOT")
-if [ "$REPO_NAME" != "the_cloud" ]; then
-    echo "Error: This script must be run from within the_cloud repository"
+if [ "$REPO_NAME" != "the_cloud" ] && [ "$REPO_NAME" != "the_cloud_2" ]; then
+    echo "Error: This script must be run from within the_cloud or the_cloud_2 repository"
     echo "Current repo: $REPO_NAME"
     exit 1
 fi
