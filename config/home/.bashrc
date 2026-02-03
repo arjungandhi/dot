@@ -222,9 +222,6 @@ alias apollo_dev_into=~/workspace/pattern/apollo/docker/scripts/dev_into.sh
 alias apollo_compose="docker compose --env-file /opt/pattern/robot.env --project-directory ~/workspace/pattern/apollo/docker/service"
 alias apollo_into="docker exec -it apollo /bin/bash"
 
-# kitty
-# [[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh"
-
 # alias both vi and vim to nvim
 alias vim=nvim
 
