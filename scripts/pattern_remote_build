@@ -39,7 +39,7 @@ echo "Running on s003..."
 # SSH to s003 and execute commands
 # The cd command will change to the_cloud root, then to the relative path if it exists
 if [ -n "$RELATIVE_PATH" ]; then
-    ssh s003 "cd the_cloud && git checkout '$BRANCH' && git pull && cd '$RELATIVE_PATH' && pattern molecule build $*"
+    ssh s003 "cd the_cloud && git fetch && git checkout '$BRANCH' && git pull && cd '$RELATIVE_PATH' && pattern molecule build $*"
 else
-    ssh s003 "cd the_cloud && git checkout '$BRANCH' && git pull && pattern molecule build $*"
+    ssh s003 "cd the_cloud && git fetch && git checkout '$BRANCH' && git pull && pattern molecule build $*"
 fi
