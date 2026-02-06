@@ -256,8 +256,6 @@ source /etc/profile.d/google-cloud-cli.sh
 # nodenev init
 eval "$(nodenv init -)"
 
-# yarn global bin
-_have yarn && export PATH="$PATH:$(yarn global bin)"
 
 # thefuck
 eval $(thefuck --alias)
