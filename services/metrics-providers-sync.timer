@@ -1,9 +1,9 @@
 [Unit]
-Description=Run Metrics Providers Sync daily
+Description=Run Metrics Providers Sync every 2 hours
 Requires=metrics-providers-sync.service
 
 [Timer]
-OnCalendar=daily
+OnCalendar=*-*-* 0/2:00:00
 Persistent=true
 
 [Install]
