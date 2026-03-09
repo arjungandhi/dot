@@ -1,0 +1,36 @@
+# cd to caffeine dir
+cd /home/monkey/repos/github.com/Pattern-Labs/the_cloud/molecules/caffeine
+
+# build the images
+pattern molecule build 
+
+# as-test
+kubectx as-test
+kubens monkey
+
+pattern molecule delete caffeine --force -p purge
+pattern molecule delete prodfeine --force -p purge
+
+# deploy the caffeine app
+pattern molecule deploy caffeine -- --set log_fetcher.gcs_bucket=as.logs.patternlabs.tech
+pattern molecule deploy caffeine -n prodfeine -- --set log_fetcher.gcs_bucket=as.logs.patternlabs.tech --set data_pipeline.cluster_name=as-prod
+
+# launch the workflows
+argo submit --from cronwf/caffeine-data-pipeline-nightly
+argo submit --from cronwf/prodfeine-data-pipeline-nightly
+
+
+# ual-test
+kubectx ual-test
+kubens monkey
+
+pattern molecule delete caffeine --force -p purge
+pattern molecule delete prodfeine --force -p purge
+
+# deploy the caffeine app
+pattern molecule deploy caffeine -- --set log_fetcher.gcs_bucket=ua.logs.patternlabs.tech
+pattern molecule deploy caffeine -n prodfeine -- --set log_fetcher.gcs_bucket=ua.logs.patternlabs.tech --set data_pipeline.cluster_name=ual-prod
+
+# launch the workflows
+argo submit --from cronwf/caffeine-data-pipeline-nightly
+argo submit --from cronwf/prodfeine-data-pipeline-nightly

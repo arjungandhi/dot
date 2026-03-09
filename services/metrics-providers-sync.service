@@ -1,0 +1,12 @@
+[Unit]
+Description=Metrics Provider Sync - Sync metrics from all providers
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="METRICS_DIR=${METRICS_DIR}"
+Environment="PATH=${SCRIPTS}:${GOPATH}/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=${GOPATH}/bin/metrics provider sync
+
+[Install]
+WantedBy=default.target

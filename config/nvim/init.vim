@@ -43,11 +43,12 @@ Plug 'preservim/nerdtree'
 
 call plug#end()
 
+call glaive#Install()
+Glaive codefmt nixpkgs_fmt_executable='nixfmt'
 
 """ main config
 
 " enable syntax and plugins
-" syntax enable
 filetype plugin indent on
 
 " turn on relative numbers
@@ -98,6 +99,7 @@ autocmd FileType proto AutoFormatBuffer clang-format
 autocmd FileType html,css,sass,scss,less,json,javascript,typescript AutoFormatBuffer prettier
 autocmd FileType go AutoFormatBuffer gofmt  
 autocmd FileType rust AutoFormatBuffer rustfmt
+autocmd FileType nix AutoFormatBuffer nixpkgs-fmt
 
 " python
 " run black on save then compile flake8 and show errors
@@ -202,8 +204,7 @@ let g:cursorhold_updatetime = 100
 let g:context_nvim_no_redraw = 1
 
 " setup TreeSitter to have highlighting and indentation
-autocmd VimEnter * :TSEnable highlight
-autocmd VimEnter * :TSEnable indent
+autocmd FileType * lua pcall(vim.treesitter.start)
 
 " easy align
 "" Start interactive EasyAlign in visual mode (e.g. vipga)

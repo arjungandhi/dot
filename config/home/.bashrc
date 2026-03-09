@@ -30,9 +30,14 @@ export TODO_DIR=$HOME/repos/github.com/arjungandhi/monkey/atp
 export MONEY_DIR=$HOME/repos/github.com/arjungandhi/monkey/money
 export DARWINDIR=$HOME/repos/github.com/arjungandhi/darwin-tree
 export DUNBAR_DIR=$HOME/repos/github.com/arjungandhi/monkey/dunbar
+export METRICS_DIR=$HOME/repos/github.com/arjungandhi/monkey/metrics
+export MESSAGES_DIR=$HOME/repos/github.com/arjungandhi/monkey/messages
+export CALENDAR_DIR=$HOME/repos/github.com/arjungandhi/monkey/calendar
+export CONTACTS_DIR=$HOME/repos/github.com/arjungandhi/monkey/contacts
+
 export JUPYTER_DD_API_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.api')
 export JUPYTER_DD_APP_KEY=$(cat /opt/pattern/secrets/datadog_keys.json | jq -r '.app')
-
+export PULUMI_CONFIG_PASSPHRASE_FILE=/opt/monkey/secrets/pulumi_passphrase.txt
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 export OLLAMA_MODEL="llama3.2:latest"
 export ANDROID_HOME=$HOME/.android/sdk
@@ -205,7 +210,12 @@ _have pattern && . <(pattern completion bash)
 _have molecule && . <(molecule completion bash)
 _have atom && . <(atom completion bash)
 _have kubectl && . <(kubectl completion bash)
+_have flux && . <(flux completion bash)
 _have docker && . <(docker completion bash)
+_have messages && . <(messages completion bash)
+_have calendars && . <(calendars completion bash)
+_have contacts && . <(contacts completion bash)
+_have metrics && . <(metrics completion bash)
 
 complete -C '/usr/bin/aws_completer' aws
 complete -C /usr/bin/terraform terraform

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Metrics Providers Sync daily
+Requires=metrics-providers-sync.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

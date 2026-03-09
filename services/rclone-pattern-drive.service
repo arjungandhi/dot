@@ -1,0 +1,16 @@
+[Unit]
+Description=Mount Google Drive (pattern_drive) via rclone
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=5
+EnvironmentFile=/opt/monkey/services/env
+ExecStartPre=/usr/bin/mkdir -p $HOME/external/pattern_drive
+ExecStart=/usr/bin/rclone mount pattern_drive: $HOME/external/pattern_drive --vfs-cache-mode full
+ExecStop=/usr/bin/fusermount -u $HOME/external/pattern_drive
+
+[Install]
+WantedBy=default.target
