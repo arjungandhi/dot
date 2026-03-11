@@ -1,3 +1,27 @@
 #!/usr/bin/bash
+num_file=/tmp/ito_num
+# read the number from the file, if the file does not exist, set it to 0
+if [ -f $num_file ]; then
+  num=$(cat $num_file)
+else
+  num=0
+fi
 
+# write incremented number back to the file
+echo $((num + 1)) > $num_file
+
+# create the tag 0.0.0-ag-ito-$num
+tag=0.0.0-ag-ito-$num
+
+# print the tag
+echo "Building image with tag: $tag"
+
+# build the image
+pattern_remote_build -t $tag
+
+# uninstall old images if present
+helm uninstall robot-control
+
+# deploy new code
+pattern molecule deploy robot-control -t 0.0.0-ag-ito-13 -- --values charts/rob^C-control/test-ito-process-path.yaml
 
