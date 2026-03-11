@@ -23,5 +23,5 @@ pattern_remote_build -t $tag
 helm uninstall robot-control
 
 # deploy new code
-pattern molecule deploy robot-control -t 0.0.0-ag-ito-13 -- --values charts/rob^C-control/test-ito-process-path.yaml
+pattern molecule deploy robot-control -t $tag -- --values charts/robot-control/test-ito-process-path.yaml
 
