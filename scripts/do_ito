@@ -36,7 +36,7 @@ helm uninstall robot-control
 # deploy new code
 # if process-sim is set deploy the process-sim chart 
 if [ "$process_sim" = true ]; then
-  pattern molecule deploy process-sim -t $tag -- --values charts/process-sim/egll-dhl.values.yaml --set config_tag=$tag
+  pattern molecule deploy process-sim -t $tag -- --values charts/process-sim/egll-dhl-values.yaml --set config_tag=$tag
 else
     pattern molecule deploy robot-control -t $tag -- --values charts/robot-control/test-ito-process-path.yaml
 fi
