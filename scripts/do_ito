@@ -31,7 +31,10 @@ echo "Building image with tag: $tag"
 pattern_remote_build -t $tag
 
 # uninstall old images if present
-helm uninstall robot-control
+if [ "$process_sim" = true ]; then
+  helm uninstall process-sim
+else
+  helm uninstall robot-control
 
 # deploy new code
 # if process-sim is set deploy the process-sim chart 
