@@ -35,6 +35,7 @@ if [ "$process_sim" = true ]; then
   helm uninstall process-sim
 else
   helm uninstall robot-control
+fi
 
 # deploy new code
 # if process-sim is set deploy the process-sim chart 
