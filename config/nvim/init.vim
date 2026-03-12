@@ -315,16 +315,16 @@ vim.g.molten_auto_open_output = true
 vim.g.molten_virt_text_output = false
 
 -- Molten keybindings
-vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>", { silent = true, desc = "Molten Init" })
-vim.keymap.set("n", "<leader>mj", ":MoltenInit shared localhost:1898<CR>", { silent = true, desc = "Molten Connect to Docker Jupyter" })
-vim.keymap.set("n", "<leader>ml", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Molten Evaluate Line" })
-vim.keymap.set("n", "<leader>mc", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Molten Re-evaluate Cell" })
-vim.keymap.set("v", "<leader>mv", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate Visual" })
-vim.keymap.set("n", "<leader>md", ":MoltenDelete<CR>", { silent = true, desc = "Molten Delete Cell" })
-vim.keymap.set("n", "<leader>mh", ":MoltenHideOutput<CR>", { silent = true, desc = "Molten Hide Output" })
-vim.keymap.set("n", "<leader>mo", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "Molten Enter Output" })
-vim.keymap.set("n", "<leader>mr", ":MoltenRestart<CR>", { silent = true, desc = "Molten Restart Kernel" })
-vim.keymap.set("n", "<leader>mn", ":MoltenNext<CR>", { silent = true, desc = "Molten Next Cell" })
-vim.keymap.set("n", "<leader>mp", ":MoltenPrev<CR>", { silent = true, desc = "Molten Prev Cell" })
+vim.keymap.set("n", "<leader>ji", ":MoltenInit<CR>", { silent = true, desc = "Molten Init" })
+vim.keymap.set("n", "<leader>jip", ":MoltenInit shared localhost:1898<CR>", { silent = true, desc = "Molten Connect to Docker Jupyter" })
+vim.keymap.set("n", "<leader>jl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Molten Evaluate Line" })
+vim.keymap.set("n", "<leader>jc", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Molten Re-evaluate Cell" })
+vim.keymap.set("v", "<leader>jv", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate Visual" })
+vim.keymap.set("n", "<leader>jd", ":MoltenDelete<CR>", { silent = true, desc = "Molten Delete Cell" })
+vim.keymap.set("n", "<leader>jh", ":MoltenHideOutput<CR>", { silent = true, desc = "Molten Hide Output" })
+vim.keymap.set("n", "<leader>jo", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "Molten Enter Output" })
+vim.keymap.set("n", "<leader>jr", ":MoltenRestart<CR>", { silent = true, desc = "Molten Restart Kernel" })
+vim.keymap.set("n", "<leader>jn", ":MoltenNext<CR>", { silent = true, desc = "Molten Next Cell" })
+vim.keymap.set("n", "<leader>jp", ":MoltenPrev<CR>", { silent = true, desc = "Molten Prev Cell" })
 
 EOF
