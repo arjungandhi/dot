@@ -30,6 +30,9 @@ Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
 " Image rendering in terminal
 Plug '3rd/image.nvim'
 
+" Jupytext - open .ipynb as scripts
+Plug 'GCBallesteros/jupytext.nvim'
+
 " Useful vim modz
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
