@@ -328,8 +328,9 @@ vim.g.molten_virt_text_output = false
 vim.keymap.set("n", "<leader>ji", ":MoltenInit<CR>", { silent = true, desc = "Molten Init" })
 vim.keymap.set("n", "<leader>jip", ":MoltenInit shared localhost:1898<CR>", { silent = true, desc = "Molten Connect to Docker Jupyter" })
 vim.keymap.set("n", "<leader>jl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Molten Evaluate Line" })
-vim.keymap.set("n", "<leader>jc", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Molten Re-evaluate Cell" })
-vim.keymap.set("v", "<leader>jv", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate Visual" })
+vim.keymap.set("n", "<leader>je", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Molten Re-evaluate Cell" })
+vim.keymap.set("v", "<leader>je", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate" })
+
 vim.keymap.set("n", "<leader>jd", ":MoltenDelete<CR>", { silent = true, desc = "Molten Delete Cell" })
 vim.keymap.set("n", "<leader>jh", ":MoltenHideOutput<CR>", { silent = true, desc = "Molten Hide Output" })
 vim.keymap.set("n", "<leader>jo", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "Molten Enter Output" })
