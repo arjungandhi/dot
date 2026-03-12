@@ -300,6 +300,13 @@ cmp.setup({
   }),
 })
 
+-- Jupytext setup
+require('jupytext').setup({
+  style = 'percent',
+  output_extension = 'auto',
+  force_ft = nil,
+})
+
 -- image.nvim setup
 require('image').setup({
   backend = 'kitty',
