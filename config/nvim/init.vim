@@ -331,8 +331,9 @@ vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "FloatBorder" })
 vim.api.nvim_set_hl(0, "MoltenOutputBorderFail", { link = "DiagnosticError" })
 vim.api.nvim_set_hl(0, "MoltenOutputBorderSuccess", { link = "DiagnosticOk" })
 vim.api.nvim_set_hl(0, "MoltenOutputWin", { link = "NormalFloat" })
-vim.g.molten_auto_open_output = true
-vim.g.molten_virt_text_output = false
+vim.g.molten_auto_open_output = false
+vim.g.molten_virt_text_output = true
+vim.g.molten_virt_lines_off_by_1 = true
 
 -- Run the current # %% cell under cursor
 local function run_cell()
