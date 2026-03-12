@@ -27,6 +27,9 @@ Plug 'github/copilot.vim'
 " Molten - Jupyter in Neovim
 Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
 
+" Image rendering in terminal
+Plug '3rd/image.nvim'
+
 " Useful vim modz
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -294,7 +297,19 @@ cmp.setup({
   }),
 })
 
+-- image.nvim setup
+require('image').setup({
+  backend = 'kitty',
+  processor = 'magick_cli',
+  max_width = 100,
+  max_height = 12,
+  max_height_window_percentage = math.huge,
+  max_width_window_percentage = math.huge,
+  window_overlap_clear_enabled = true,
+})
+
 -- Molten config
+vim.g.molten_image_provider = 'image.nvim'
 vim.g.molten_output_win_max_height = 12
 vim.g.molten_auto_open_output = true
 vim.g.molten_virt_text_output = false
