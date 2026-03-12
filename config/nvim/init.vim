@@ -322,8 +322,15 @@ require('image').setup({
 vim.g.molten_image_provider = 'image.nvim'
 vim.g.molten_output_win_max_height = 20
 vim.g.molten_wrap_output = true
-vim.g.molten_output_win_border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
+vim.g.molten_output_win_border = "single"
+vim.g.molten_output_crop_border = false
 vim.g.molten_use_border_highlights = true
+
+-- Clean up molten highlight groups to match Nord
+vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "MoltenOutputBorderFail", { link = "DiagnosticError" })
+vim.api.nvim_set_hl(0, "MoltenOutputBorderSuccess", { link = "DiagnosticOk" })
+vim.api.nvim_set_hl(0, "MoltenOutputWin", { link = "NormalFloat" })
 vim.g.molten_auto_open_output = true
 vim.g.molten_virt_text_output = false
 
