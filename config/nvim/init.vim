@@ -25,13 +25,9 @@ Plug 'google/vim-glaive'
 Plug 'github/copilot.vim'
 
 " Molten - Jupyter in Neovim
-Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
-
-" Image rendering in terminal
-Plug '3rd/image.nvim'
-
-" Jupytext - open .ipynb as scripts
-Plug 'GCBallesteros/jupytext.nvim'
+" Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug '3rd/image.nvim'
+" Plug 'GCBallesteros/jupytext.nvim'
 
 " Useful vim modz
 " fzf
@@ -299,95 +295,5 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping.confirm({select = true}),
   }),
 })
-
--- Jupytext setup
-require('jupytext').setup({
-  style = 'percent',
-  output_extension = 'auto',
-  force_ft = nil,
-})
-
--- Patch jupytext commands to remove --update flag which corrupts notebooks
-local jupytext_commands = require('jupytext.commands')
-local original_run = jupytext_commands.run_jupytext_command
-jupytext_commands.run_jupytext_command = function(input_file, options)
-  options["--update"] = nil
-  return original_run(input_file, options)
-end
-
--- image.nvim setup
-require('image').setup({
-  backend = 'kitty',
-  processor = 'magick_cli',
-  max_width = 100,
-  max_height = 12,
-  max_height_window_percentage = math.huge,
-  max_width_window_percentage = math.huge,
-  window_overlap_clear_enabled = true,
-})
-
--- Molten config
-vim.g.molten_image_provider = 'image.nvim'
-vim.g.molten_output_win_max_height = 20
-vim.g.molten_wrap_output = true
-vim.g.molten_output_win_border = "single"
-
--- Clean up molten highlight groups to match Nord
-vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "FloatBorder" })
-vim.api.nvim_set_hl(0, "MoltenOutputWin", { link = "NormalFloat" })
-vim.g.molten_auto_open_output = false
-vim.g.molten_virt_text_output = true
-
--- Run the current # %% cell under cursor
-local function run_cell()
-  local buf = vim.api.nvim_get_current_buf()
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local row = cursor[1] - 1 -- 0-indexed
-  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-  local total = #lines
-
-  -- find start of cell (search up for # %%)
-  local cell_start = 0
-  for i = row, 0, -1 do
-    if lines[i + 1]:match("^# %%%%") then
-      cell_start = i + 1 -- 1-indexed, line after marker
-      break
-    end
-  end
-
-  -- find end of cell (search down for next # %% or EOF)
-  local cell_end = total
-  for i = row + 1, total - 1 do
-    if lines[i + 1]:match("^# %%%%") then
-      cell_end = i -- 1-indexed, line before next marker
-      break
-    end
-  end
-
-  -- skip empty leading/trailing lines
-  if cell_start > 0 and cell_start <= total and lines[cell_start]:match("^# %%%%") then
-    cell_start = cell_start + 1
-  end
-
-  if cell_start > cell_end then return end
-
-  vim.api.nvim_buf_set_mark(buf, '<', cell_start, 0, {})
-  vim.api.nvim_buf_set_mark(buf, '>', cell_end, 0, {})
-  vim.cmd("MoltenEvaluateVisual")
-end
-
--- Molten keybindings
-vim.keymap.set("n", "<leader>ji", ":MoltenInit<CR>", { silent = true, desc = "Molten Init" })
-vim.keymap.set("n", "<leader>jip", ":MoltenInit shared http://localhost:1898<CR>", { silent = true, desc = "Molten Connect to Docker Jupyter" })
-vim.keymap.set("n", "<leader>jel", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Molten Evaluate Line" })
-vim.keymap.set("n", "<leader>je", run_cell, { silent = true, desc = "Molten Evaluate Cell" })
-vim.keymap.set("v", "<leader>je", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate Visual" })
-
-vim.keymap.set("n", "<leader>jdc", ":MoltenDelete<CR>", { silent = true, desc = "Molten Delete Cell" })
-vim.keymap.set("n", "<leader>jh", ":MoltenHideOutput<CR>", { silent = true, desc = "Molten Hide Output" })
-vim.keymap.set("n", "<leader>jo", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "Molten Enter Output" })
-vim.keymap.set("n", "<leader>jr", ":MoltenRestart<CR>", { silent = true, desc = "Molten Restart Kernel" })
-vim.keymap.set("n", "<leader>jn", ":MoltenNext<CR>", { silent = true, desc = "Molten Next Cell" })
-vim.keymap.set("n", "<leader>jp", ":MoltenPrev<CR>", { silent = true, desc = "Molten Prev Cell" })
 
 EOF
