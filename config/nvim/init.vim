@@ -320,7 +320,10 @@ require('image').setup({
 
 -- Molten config
 vim.g.molten_image_provider = 'image.nvim'
-vim.g.molten_output_win_max_height = 12
+vim.g.molten_output_win_max_height = 20
+vim.g.molten_wrap_output = true
+vim.g.molten_output_win_border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
+vim.g.molten_use_border_highlights = true
 vim.g.molten_auto_open_output = true
 vim.g.molten_virt_text_output = false
 
