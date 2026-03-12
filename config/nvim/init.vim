@@ -316,6 +316,7 @@ vim.g.molten_virt_text_output = false
 
 -- Molten keybindings
 vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>", { silent = true, desc = "Molten Init" })
+vim.keymap.set("n", "<leader>mj", ":MoltenInit shared localhost:1898<CR>", { silent = true, desc = "Molten Connect to Docker Jupyter" })
 vim.keymap.set("n", "<leader>ml", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Molten Evaluate Line" })
 vim.keymap.set("n", "<leader>mc", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Molten Re-evaluate Cell" })
 vim.keymap.set("v", "<leader>mv", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate Visual" })
