@@ -324,12 +324,51 @@ vim.g.molten_output_win_max_height = 12
 vim.g.molten_auto_open_output = true
 vim.g.molten_virt_text_output = false
 
+-- Run the current # %% cell under cursor
+local function run_cell()
+  local buf = vim.api.nvim_get_current_buf()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local row = cursor[1] - 1 -- 0-indexed
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  local total = #lines
+
+  -- find start of cell (search up for # %%)
+  local cell_start = 0
+  for i = row, 0, -1 do
+    if lines[i + 1]:match("^# %%%%") then
+      cell_start = i + 1 -- 1-indexed, line after marker
+      break
+    end
+  end
+
+  -- find end of cell (search down for next # %% or EOF)
+  local cell_end = total
+  for i = row + 1, total - 1 do
+    if lines[i + 1]:match("^# %%%%") then
+      cell_end = i -- 1-indexed, line before next marker
+      break
+    end
+  end
+
+  -- skip empty leading/trailing lines
+  if cell_start > 0 and cell_start <= total and lines[cell_start]:match("^# %%%%") then
+    cell_start = cell_start + 1
+  end
+
+  if cell_start > cell_end then return end
+
+  vim.fn.cursor(cell_start, 1)
+  vim.cmd("normal! V")
+  vim.fn.cursor(cell_end, 1)
+  vim.cmd(":<C-u>MoltenEvaluateVisual<CR>")
+end
+
 -- Molten keybindings
 vim.keymap.set("n", "<leader>ji", ":MoltenInit<CR>", { silent = true, desc = "Molten Init" })
 vim.keymap.set("n", "<leader>jip", ":MoltenInit shared http://localhost:1898<CR>", { silent = true, desc = "Molten Connect to Docker Jupyter" })
 vim.keymap.set("n", "<leader>jel", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Molten Evaluate Line" })
-vim.keymap.set("n", "<leader>je", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Molten Re-evaluate Cell" })
-vim.keymap.set("v", "<leader>je", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate" })
+vim.keymap.set("n", "<leader>je", run_cell, { silent = true, desc = "Molten Evaluate Cell" })
+vim.keymap.set("v", "<leader>je", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Molten Evaluate Visual" })
 
 vim.keymap.set("n", "<leader>jdc", ":MoltenDelete<CR>", { silent = true, desc = "Molten Delete Cell" })
 vim.keymap.set("n", "<leader>jh", ":MoltenHideOutput<CR>", { silent = true, desc = "Molten Hide Output" })
