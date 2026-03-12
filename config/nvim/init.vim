@@ -307,6 +307,14 @@ require('jupytext').setup({
   force_ft = nil,
 })
 
+-- Patch jupytext commands to remove --update flag which corrupts notebooks
+local jupytext_commands = require('jupytext.commands')
+local original_run = jupytext_commands.run_jupytext_command
+jupytext_commands.run_jupytext_command = function(input_file, options)
+  options["--update"] = nil
+  return original_run(input_file, options)
+end
+
 -- image.nvim setup
 require('image').setup({
   backend = 'kitty',
@@ -323,17 +331,12 @@ vim.g.molten_image_provider = 'image.nvim'
 vim.g.molten_output_win_max_height = 20
 vim.g.molten_wrap_output = true
 vim.g.molten_output_win_border = "single"
-vim.g.molten_output_crop_border = false
-vim.g.molten_use_border_highlights = true
 
 -- Clean up molten highlight groups to match Nord
 vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "FloatBorder" })
-vim.api.nvim_set_hl(0, "MoltenOutputBorderFail", { link = "DiagnosticError" })
-vim.api.nvim_set_hl(0, "MoltenOutputBorderSuccess", { link = "DiagnosticOk" })
 vim.api.nvim_set_hl(0, "MoltenOutputWin", { link = "NormalFloat" })
 vim.g.molten_auto_open_output = false
 vim.g.molten_virt_text_output = true
-vim.g.molten_virt_lines_off_by_1 = true
 
 -- Run the current # %% cell under cursor
 local function run_cell()
