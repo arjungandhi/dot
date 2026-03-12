@@ -357,10 +357,9 @@ local function run_cell()
 
   if cell_start > cell_end then return end
 
-  vim.fn.cursor(cell_start, 1)
-  vim.cmd("normal! V")
-  vim.fn.cursor(cell_end, 1)
-  vim.cmd(":<C-u>MoltenEvaluateVisual<CR>")
+  vim.api.nvim_buf_set_mark(buf, '<', cell_start, 0, {})
+  vim.api.nvim_buf_set_mark(buf, '>', cell_end, 0, {})
+  vim.cmd("MoltenEvaluateVisual")
 end
 
 -- Molten keybindings
