@@ -307,6 +307,25 @@ require('jupytext').setup({
   force_ft = nil,
 })
 
+-- Override jupytext write to avoid --update flag which corrupts notebooks
+vim.api.nvim_create_autocmd({ "BufWriteCmd", "FileWriteCmd" }, {
+  pattern = "*.ipynb",
+  group = vim.api.nvim_create_augroup("jupytext-no-update", { clear = true }),
+  callback = function(ev)
+    local ipynb = ev.match
+    local py_file = vim.fn.fnamemodify(ipynb, ":r") .. ".py"
+    py_file = vim.fn.resolve(vim.fn.expand(py_file))
+    vim.cmd.write({ py_file, bang = true })
+    vim.fn.system("jupytext " .. vim.fn.shellescape(py_file)
+      .. " --to ipynb"
+      .. " --output " .. vim.fn.shellescape(ipynb))
+    if vim.v.shell_error ~= 0 then
+      vim.api.nvim_err_writeln("jupytext write failed")
+    end
+    vim.api.nvim_set_option_value("modified", false, { buf = vim.api.nvim_get_current_buf() })
+  end,
+})
+
 -- image.nvim setup
 require('image').setup({
   backend = 'kitty',
