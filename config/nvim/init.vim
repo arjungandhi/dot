@@ -24,6 +24,9 @@ Plug 'google/vim-glaive'
 " Github Copilot
 Plug 'github/copilot.vim'
 
+" Molten - Jupyter in Neovim
+Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
+
 " Useful vim modz
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
